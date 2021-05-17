@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="keywords" content="Gomoku, Gomoku rating, whole-history rating, WHR" />
+    <meta name="description" content="Whole-history rating of Gomoku players" />
+    <meta name="author" content="Tianyi Hao" />
+    <meta name="copyright" content="2021 Gomoku Rating" />
+    <title>Narva Mart, Estonia - Gomoku Rating</title>
+    <script>
+        if (window.location.protocol != "file:") {
+            var _hmt = _hmt || [];
+            (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?cb525b0b0c34b96320b743cdf90a90c3";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+    <script>
+        if (window.location.protocol != "file:") {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-173435487-1', 'auto');
+            ga('send', 'pageview');
+        }
+    </script>
+    <link href="css/default.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="outer">
+      <div id="header"></div>
+      <div id="menu">
+        <ul>
+          <li class="first">
+            <a href="index.html">Home page</a>
+          </li>
+          <li>
+            <a href="players.html">Players</a>
+          </li>
+          <li>
+            <a href="tournaments.html">Tournaments</a>
+          </li>
+          <li>
+            <a href="top.html">History of Top players</a>
+          </li>
+        </ul>
+      </div>
+      <div id="content">
+        <div id="primaryContentContainer">
+          <div id="primaryContent">
+            <link href="css/nv.d3.css" rel="stylesheet" type="text/css">
+            <h1><img src="flag/EST.svg" class="flag_large" alt="EST" /> Narva Mart</h1>
+            <p><b>Place:</b> unknown, Estonia</p>
+            <p><b>Rating:</b> 2052.87, <b>Rank:</b> 105</p>
+            <p><b>First game:</b> 2013-08-05, <b>Last game:</b> 2018-08-03</p>
+            <p><b>Top rating:</b> 2052.87 (2018-08-03)</p>
+            <p><b>Games:</b> 46, <b>Wins:</b> 23, <b>Draws:</b> 3, <b>Losses:</b> 20</p>
+            <p><b>Gy1:</b> 0, <b>Gy2:</b> 0, <b>Gy5:</b> 31</p>
+            <div id="chart1"></div>
+            <script src="js/d3.min.js" charset="utf-8"></script>
+            <script src="js/nv.d3.js"></script>
+            <script>
+    var chart;
+    var data;
+
+    nv.addGraph(function() {
+        data = Data();
+        var y_min = 1.e+9, y_max = -1.e+9;
+        for(var i = 0; i < data[0].values.length; i ++) {
+            var cur_y = data[0].values[i].y;
+            y_min = Math.min(y_min, cur_y);
+            y_max = Math.max(y_max, cur_y);
+        }
+        var y_d = 200. - (y_max - y_min);
+        if(y_d > 0.) {
+            y_max += y_d / 2.
+            y_min -= y_d / 2.
+        }
+
+        chart = nv.models.lineChart()
+            .options({
+                duration: 300,
+                useInteractiveGuideline: true
+            })
+        ;
+
+        chart.xAxis
+            .axisLabel("Date")
+            .tickFormat(function(d) {
+          return d3.time.format('%Y-%m-%d')(new Date(d))
+		});
+
+		chart.xScale(d3.time.scale());
+
+        chart.yAxis
+            .axisLabel('Rating')
+            .tickFormat(d3.format(',.2f'))
+        ;
+
+        chart.forceY([y_min, y_max]);
+		
+		chart.showYAxis(true).showXAxis(true).showLegend(false).margin({top:20, left: 100, right:100});
+
+        d3.select('#chart1').append('svg')
+            .datum(data)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+    });
+
+    function Data() {
+        var rating = [{x: 1375660800000, y: 1979.428795}, {x: 1419724800000, y: 1976.540993}, {x: 1462320000000, y: 1993.811724}, {x: 1470960000000, y: 1993.611745}, {x: 1493683200000, y: 2002.949304}, {x: 1509062400000, y: 2021.813992}, {x: 1533254400000, y: 2052.871198}, ];
+            ;
+
+        return [
+            {
+                values: rating,
+                color: "#ff7f0e",
+            }
+        ];
+    }
+
+</script>
+            <table>
+              <tbody>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_227.html">World Youth Rapid Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2018-08-03</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2052.87</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/227/14151">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/TUR.svg" class="flag" alt="TUR" />
+                    <a href="player_984.html">Armutlu Nil Beril</a>
+                  </td>
+                  <td class="num">1666.19</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/227/14187">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_963.html">Yudina Maria</a>
+                  </td>
+                  <td class="num">1977.24</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/227/14219">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CHN.svg" class="flag" alt="CHN" />
+                    <a href="player_955.html">Kang Zheming</a>
+                  </td>
+                  <td class="num">2169.97</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/227/14282">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/CHN.svg" class="flag" alt="CHN" />
+                    <a href="player_953.html">Qiu Yujin</a>
+                  </td>
+                  <td class="num">2440.48</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/227/14285">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/GRE.svg" class="flag" alt="GRE" />
+                    <a href="player_601.html">Pestov Arseni</a>
+                  </td>
+                  <td class="num">2013.31</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/227/14421">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_991.html">Orlov Maksim</a>
+                  </td>
+                  <td class="num">2069.62</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/227/14374">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_403.html">Kolk Kuno</a>
+                  </td>
+                  <td class="num">2214.43</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/227/14410">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CHN.svg" class="flag" alt="CHN" />
+                    <a href="player_960.html">Kang Tingrui</a>
+                  </td>
+                  <td class="num">2109.90</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_200.html">Estonian Championship of Gomoku</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2017-10-27</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2021.81</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/200/12980">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_846.html">Sonin Sergei</a>
+                  </td>
+                  <td class="num">1685.66</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/200/12994">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_764.html">Pukk Oskar</a>
+                  </td>
+                  <td class="num">1693.87</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/200/13007">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_669.html">Rahumägi Brenet</a>
+                  </td>
+                  <td class="num">2215.51</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="http://gomokuworld.com/tournaments/200/13020">Draw</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_584.html">Mirme Madli</a>
+                  </td>
+                  <td class="num">1936.19</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/200/13029">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_733.html">Raag Ardi</a>
+                  </td>
+                  <td class="num">2034.77</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/200/13038">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_683.html">Topkin Georg-Romet</a>
+                  </td>
+                  <td class="num">2290.24</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/200/13058">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_679.html">Lõhmus Kristofer</a>
+                  </td>
+                  <td class="num">2101.28</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="http://gomokuworld.com/tournaments/200/13069">Draw</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_738.html">Kõlar Karl-Ustav</a>
+                  </td>
+                  <td class="num">2057.70</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_196.html">Youth European Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2017-05-02</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2002.95</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/196/12123">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_827.html">Stoianov Egor</a>
+                  </td>
+                  <td class="num">1784.31</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/196/12137">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_810.html">Yusupmurzin Danila</a>
+                  </td>
+                  <td class="num">2065.07</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/196/12210">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_818.html">Epifanov Evgenii</a>
+                  </td>
+                  <td class="num">1918.21</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/196/12234">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_862.html">Stulova Daria</a>
+                  </td>
+                  <td class="num">1867.46</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/196/12257">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_865.html">Juht Andres</a>
+                  </td>
+                  <td class="num">1784.24</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/196/12280">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_825.html">Yusupmurzina Darya</a>
+                  </td>
+                  <td class="num">1919.71</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/196/12295">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_792.html">Moor Karl-Mattias</a>
+                  </td>
+                  <td class="num">1944.68</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_176.html">World Youth Rapid Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2016-08-12</td>
+                  <th class="second">Rating</th>
+                  <td class="num">1993.61</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/176/11331">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_828.html">Mumm Kristina</a>
+                  </td>
+                  <td class="num">1812.56</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/176/11364">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_683.html">Topkin Georg-Romet</a>
+                  </td>
+                  <td class="num">2248.98</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/176/11399">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_390.html">Olumets Erko</a>
+                  </td>
+                  <td class="num">1986.34</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/176/11421">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_740.html">Koni Kirke</a>
+                  </td>
+                  <td class="num">2026.09</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/176/11458">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_788.html">Aasav Jaak Andero</a>
+                  </td>
+                  <td class="num">1762.38</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/176/11486">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_825.html">Yusupmurzina Darya</a>
+                  </td>
+                  <td class="num">1906.40</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/176/11515">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_670.html">Sadova Taisiia</a>
+                  </td>
+                  <td class="num">1749.72</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/176/11536">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_826.html">Popova Daria</a>
+                  </td>
+                  <td class="num">1864.20</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_197.html">Team World Championship - Final Tournament</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2016-05-04</td>
+                  <th class="second">Rating</th>
+                  <td class="num">1993.81</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/197/12188">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_676.html">Kallikorm Kevin Kaido</a>
+                  </td>
+                  <td class="num">1863.98</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/197/12192">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_737.html">Murumaa Mathias</a>
+                  </td>
+                  <td class="num">1961.53</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_146.html">Tallinn Open</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2014-12-28</td>
+                  <th class="second">Rating</th>
+                  <td class="num">1976.54</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/146/9960">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/UKR.svg" class="flag" alt="UKR" />
+                    <a href="player_418.html">Bulatowsky Oleg</a>
+                  </td>
+                  <td class="num">2392.22</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/146/9964">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_669.html">Rahumägi Brenet</a>
+                  </td>
+                  <td class="num">2167.88</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="http://gomokuworld.com/tournaments/146/9979">Draw</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_765.html">Narva Jaan Oskar</a>
+                  </td>
+                  <td class="num">1766.55</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/146/9989">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_766.html">Jakobsoo Kaspar</a>
+                  </td>
+                  <td class="num">1610.31</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/146/9998">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_738.html">Kõlar Karl-Ustav</a>
+                  </td>
+                  <td class="num">2007.37</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/146/10013">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_749.html">Laur Ingel</a>
+                  </td>
+                  <td class="num">1592.93</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_105.html">Gomoku World Championship - QT</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2013-08-05</td>
+                  <th class="second">Rating</th>
+                  <td class="num">1979.43</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/105/7961">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_589.html">Poltaratskiy Nikolay</a>
+                  </td>
+                  <td class="num">2321.84</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/105/7978">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_183.html">Tesařík Štěpán</a>
+                  </td>
+                  <td class="num">2386.06</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/105/7986">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_252.html">Rumyantseva Ekaterina</a>
+                  </td>
+                  <td class="num">1987.73</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/105/7996">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_676.html">Kallikorm Kevin Kaido</a>
+                  </td>
+                  <td class="num">1843.86</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/105/8004">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_178.html">Nipoti Vladimir</a>
+                  </td>
+                  <td class="num">2541.47</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/105/8016">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_390.html">Olumets Erko</a>
+                  </td>
+                  <td class="num">1994.55</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/105/8027">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_671.html">Jõgimaa Carmen</a>
+                  </td>
+                  <td class="num">1782.26</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="clear" />
+      </div>
+      <div id="footer">
+        <p>Theme based on <a href="http://templated.co/genericblue">GenericBlue</a> designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+      </div>
+    </div>
+  </body>
+</html>

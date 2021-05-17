@@ -1,0 +1,3136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="keywords" content="Gomoku, Gomoku rating, whole-history rating, WHR" />
+    <meta name="description" content="Whole-history rating of Gomoku players" />
+    <meta name="author" content="Tianyi Hao" />
+    <meta name="copyright" content="2021 Gomoku Rating" />
+    <title>Zajk Michał, Poland - Gomoku Rating</title>
+    <script>
+        if (window.location.protocol != "file:") {
+            var _hmt = _hmt || [];
+            (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?cb525b0b0c34b96320b743cdf90a90c3";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+    <script>
+        if (window.location.protocol != "file:") {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-173435487-1', 'auto');
+            ga('send', 'pageview');
+        }
+    </script>
+    <link href="css/default.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="outer">
+      <div id="header"></div>
+      <div id="menu">
+        <ul>
+          <li class="first">
+            <a href="index.html">Home page</a>
+          </li>
+          <li>
+            <a href="players.html">Players</a>
+          </li>
+          <li>
+            <a href="tournaments.html">Tournaments</a>
+          </li>
+          <li>
+            <a href="top.html">History of Top players</a>
+          </li>
+        </ul>
+      </div>
+      <div id="content">
+        <div id="primaryContentContainer">
+          <div id="primaryContent">
+            <link href="css/nv.d3.css" rel="stylesheet" type="text/css">
+            <h1><img src="flag/POL.svg" class="flag_large" alt="POL" /> Zajk Michał</h1>
+            <p><b>Place:</b> Reda, Poland</p>
+            <p><b>Rating:</b> 2476.08, <b>Rank:</b> 14</p>
+            <p><b>First game:</b> 2007-03-17, <b>Last game:</b> 2019-08-10</p>
+            <p><b>Top rating:</b> 2565.54 (2013-08-14)</p>
+            <p><b>Games:</b> 215, <b>Wins:</b> 151, <b>Draws:</b> 7, <b>Losses:</b> 57</p>
+            <p><b>Gy1:</b> 0, <b>Gy2:</b> 18, <b>Gy5:</b> 61</p>
+            <div id="chart1"></div>
+            <script src="js/d3.min.js" charset="utf-8"></script>
+            <script src="js/nv.d3.js"></script>
+            <script>
+    var chart;
+    var data;
+
+    nv.addGraph(function() {
+        data = Data();
+        var y_min = 1.e+9, y_max = -1.e+9;
+        for(var i = 0; i < data[0].values.length; i ++) {
+            var cur_y = data[0].values[i].y;
+            y_min = Math.min(y_min, cur_y);
+            y_max = Math.max(y_max, cur_y);
+        }
+        var y_d = 200. - (y_max - y_min);
+        if(y_d > 0.) {
+            y_max += y_d / 2.
+            y_min -= y_d / 2.
+        }
+
+        chart = nv.models.lineChart()
+            .options({
+                duration: 300,
+                useInteractiveGuideline: true
+            })
+        ;
+
+        chart.xAxis
+            .axisLabel("Date")
+            .tickFormat(function(d) {
+          return d3.time.format('%Y-%m-%d')(new Date(d))
+		});
+
+		chart.xScale(d3.time.scale());
+
+        chart.yAxis
+            .axisLabel('Rating')
+            .tickFormat(d3.format(',.2f'))
+        ;
+
+        chart.forceY([y_min, y_max]);
+		
+		chart.showYAxis(true).showXAxis(true).showLegend(false).margin({top:20, left: 100, right:100});
+
+        d3.select('#chart1').append('svg')
+            .datum(data)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+    });
+
+    function Data() {
+        var rating = [{x: 1174089600000, y: 2394.339035}, {x: 1182556800000, y: 2398.437367}, {x: 1184371200000, y: 2399.170400}, {x: 1194652800000, y: 2394.154347}, {x: 1217980800000, y: 2402.434544}, {x: 1226102400000, y: 2409.406393}, {x: 1258848000000, y: 2443.508640}, {x: 1289692800000, y: 2478.275570}, {x: 1321056000000, y: 2515.737280}, {x: 1343260800000, y: 2554.874868}, {x: 1353196800000, y: 2565.527422}, {x: 1376438400000, y: 2565.542272}, {x: 1384041600000, y: 2563.955780}, {x: 1416096000000, y: 2529.001971}, {x: 1447545600000, y: 2515.653252}, {x: 1462060800000, y: 2505.544609}, {x: 1462320000000, y: 2505.347316}, {x: 1478995200000, y: 2493.073603}, {x: 1500681600000, y: 2483.077590}, {x: 1501286400000, y: 2483.246294}, {x: 1533945600000, y: 2480.420274}, {x: 1534464000000, y: 2480.475959}, {x: 1564704000000, y: 2475.964803}, {x: 1565395200000, y: 2476.078971}, ];
+            ;
+
+        return [
+            {
+                values: rating,
+                color: "#ff7f0e",
+            }
+        ];
+    }
+
+</script>
+            <table>
+              <tbody>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_237.html">World Gomoku Championship BT</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2019-08-10</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2476.08</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/237/15779">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_738.html">Kõlar Karl-Ustav</a>
+                  </td>
+                  <td class="num">2063.20</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/237/15811">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_860.html">Lavrik-Karmazin Maksim</a>
+                  </td>
+                  <td class="num">2360.38</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/237/15825">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/SVK.svg" class="flag" alt="SVK" />
+                    <a href="player_360.html">Eged Igor</a>
+                  </td>
+                  <td class="num">2329.39</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/237/15835">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                  <td class="num">2531.98</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/237/15852">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_632.html">Rizvanov Edvard</a>
+                  </td>
+                  <td class="num">2416.19</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/237/15862">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_152.html">Kozhin Mikhail</a>
+                  </td>
+                  <td class="num">2430.11</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/237/15870">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_683.html">Topkin Georg-Romet</a>
+                  </td>
+                  <td class="num">2375.82</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/237/15892">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_167.html">Nikonov Konstantin</a>
+                  </td>
+                  <td class="num">2453.24</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/237/15906">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_728.html">Souček Lukáš</a>
+                  </td>
+                  <td class="num">2343.82</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_239.html">World Gomoku Championship Qualification Tournament</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2019-08-02</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2475.96</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/239/15609">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/LAT.svg" class="flag" alt="LAT" />
+                    <a href="player_916.html">Riherts Matiss</a>
+                  </td>
+                  <td class="num">2317.82</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="http://gomokuworld.com/tournaments/239/15623">Draw</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_860.html">Lavrik-Karmazin Maksim</a>
+                  </td>
+                  <td class="num">2360.11</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/239/15639">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_152.html">Kozhin Mikhail</a>
+                  </td>
+                  <td class="num">2429.93</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/239/15651">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_153.html">Balabhai Viktor</a>
+                  </td>
+                  <td class="num">2287.09</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/239/15655">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_135.html">Karasev Maksim</a>
+                  </td>
+                  <td class="num">2486.53</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/239/15670">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_109.html">Bogatyrev Aleksandr</a>
+                  </td>
+                  <td class="num">2158.86</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/239/15682">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                  <td class="num">2531.52</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/239/15689">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_738.html">Kõlar Karl-Ustav</a>
+                  </td>
+                  <td class="num">2063.27</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/239/15710">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/SVK.svg" class="flag" alt="SVK" />
+                    <a href="player_360.html">Eged Igor</a>
+                  </td>
+                  <td class="num">2329.50</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_218.html">Team Gomoku World Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2018-08-17</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2480.48</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/218/14510">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_403.html">Kolk Kuno</a>
+                  </td>
+                  <td class="num">2214.86</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/218/14525">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_592.html">Metreveli Irina</a>
+                  </td>
+                  <td class="num">2397.54</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/218/14549">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_328.html">Brdková Pavlína</a>
+                  </td>
+                  <td class="num">2229.09</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/218/14563">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_662.html">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2320.25</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/218/14579">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_497.html">Małowiejski Piotr</a>
+                  </td>
+                  <td class="num">2148.33</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/218/14609">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_928.html">Fňukal František</a>
+                  </td>
+                  <td class="num">2173.05</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/218/14613">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_103.html">Muratov Ilya</a>
+                  </td>
+                  <td class="num">2508.58</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/218/14636">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_902.html">Horváth Márk</a>
+                  </td>
+                  <td class="num">2235.61</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/218/14655">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_183.html">Tesařík Štěpán</a>
+                  </td>
+                  <td class="num">2422.36</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_217.html">14th Polish Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2018-08-11</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2480.42</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="http://gomokuworld.com/tournaments/217/14428">Draw</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_902.html">Horváth Márk</a>
+                  </td>
+                  <td class="num">2235.69</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/217/14438">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_559.html">Tarasiński Paweł</a>
+                  </td>
+                  <td class="num">2305.88</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/217/14445">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/SVK.svg" class="flag" alt="SVK" />
+                    <a href="player_360.html">Eged Igor</a>
+                  </td>
+                  <td class="num">2367.13</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/217/14456">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/UKR.svg" class="flag" alt="UKR" />
+                    <a href="player_418.html">Bulatowsky Oleg</a>
+                  </td>
+                  <td class="num">2409.28</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/217/14463">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_5.html">László Zoltán</a>
+                  </td>
+                  <td class="num">2632.83</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/217/14471">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_201.html">Muzika Martin</a>
+                  </td>
+                  <td class="num">2578.74</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/217/14484">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_578.html">Żukowski Michał</a>
+                  </td>
+                  <td class="num">2525.31</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/217/14491">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_491.html">Łękowski Jerzy</a>
+                  </td>
+                  <td class="num">1904.16</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_190.html">Gomoku World Championship - BT</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2017-07-29</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2483.25</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/190/12593">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_192.html">Kostlivý Radim</a>
+                  </td>
+                  <td class="num">2240.03</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/190/12602">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_874.html">Metreveli Georgy</a>
+                  </td>
+                  <td class="num">2032.02</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/190/12612">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/UKR.svg" class="flag" alt="UKR" />
+                    <a href="player_418.html">Bulatowsky Oleg</a>
+                  </td>
+                  <td class="num">2406.68</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/190/12622">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_135.html">Karasev Maksim</a>
+                  </td>
+                  <td class="num">2483.72</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/190/12632">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_183.html">Tesařík Štěpán</a>
+                  </td>
+                  <td class="num">2374.84</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/190/12657">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/SVK.svg" class="flag" alt="SVK" />
+                    <a href="player_360.html">Eged Igor</a>
+                  </td>
+                  <td class="num">2393.13</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/190/12685">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_185.html">Němec Tomáš</a>
+                  </td>
+                  <td class="num">2337.33</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/190/12705">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_728.html">Souček Lukáš</a>
+                  </td>
+                  <td class="num">2258.60</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/190/12715">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_495.html">Majksner Łukasz</a>
+                  </td>
+                  <td class="num">2303.98</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_189.html">Gomoku World Championship - QT</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2017-07-22</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2483.08</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/189/12455">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_183.html">Tesařík Štěpán</a>
+                  </td>
+                  <td class="num">2374.15</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/189/12468">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_578.html">Żukowski Michał</a>
+                  </td>
+                  <td class="num">2502.33</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/189/12483">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_109.html">Bogatyrev Aleksandr</a>
+                  </td>
+                  <td class="num">2176.91</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="http://gomokuworld.com/tournaments/189/12503">Draw</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_392.html">Brachaczek Bogdan</a>
+                  </td>
+                  <td class="num">2242.43</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/189/12516">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_495.html">Majksner Łukasz</a>
+                  </td>
+                  <td class="num">2304.44</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/189/12531">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_584.html">Mirme Madli</a>
+                  </td>
+                  <td class="num">1936.44</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/189/12552">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/UKR.svg" class="flag" alt="UKR" />
+                    <a href="player_418.html">Bulatowsky Oleg</a>
+                  </td>
+                  <td class="num">2406.62</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/189/12556">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_4.html">Gyenes Gábor</a>
+                  </td>
+                  <td class="num">2285.92</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_178.html">12th Polish Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2016-11-13</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2493.07</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/178/11695">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_444.html">Gorzecki Marek</a>
+                  </td>
+                  <td class="num">2312.39</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/178/11704">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_710.html">Sekułowicz Jan</a>
+                  </td>
+                  <td class="num">2094.85</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/178/11705">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_366.html">Bieniek Piotr</a>
+                  </td>
+                  <td class="num">2345.41</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="http://gomokuworld.com/tournaments/178/11714">Draw</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_578.html">Żukowski Michał</a>
+                  </td>
+                  <td class="num">2498.26</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/178/11718">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_495.html">Majksner Łukasz</a>
+                  </td>
+                  <td class="num">2300.26</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/178/11721">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_392.html">Brachaczek Bogdan</a>
+                  </td>
+                  <td class="num">2240.61</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/178/11729">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_835.html">Wacławik Adam</a>
+                  </td>
+                  <td class="num">1945.54</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/178/11731">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_662.html">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2286.92</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/178/11739">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_497.html">Małowiejski Piotr</a>
+                  </td>
+                  <td class="num">2163.64</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_197.html">Team World Championship - Final Tournament</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2016-05-04</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2505.35</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/197/12155">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/SVK.svg" class="flag" alt="SVK" />
+                    <a href="player_360.html">Eged Igor</a>
+                  </td>
+                  <td class="num">2393.83</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/197/12159">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_684.html">Piik Sander</a>
+                  </td>
+                  <td class="num">1975.76</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/197/12167">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/TPE.svg" class="flag" alt="TPE" />
+                    <a href="player_423.html">Chen Ko-Han</a>
+                  </td>
+                  <td class="num">2550.42</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_171.html">Team World Championship - Preliminary Tournament</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2016-05-01</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2505.54</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/171/11042">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_401.html">Reinik Liise-Marie</a>
+                  </td>
+                  <td class="num">2004.18</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/171/11059">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/SVK.svg" class="flag" alt="SVK" />
+                    <a href="player_360.html">Eged Igor</a>
+                  </td>
+                  <td class="num">2393.85</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/171/11063">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/TPE.svg" class="flag" alt="TPE" />
+                    <a href="player_423.html">Chen Ko-Han</a>
+                  </td>
+                  <td class="num">2550.32</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/171/11084">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_738.html">Kõlar Karl-Ustav</a>
+                  </td>
+                  <td class="num">2045.85</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/171/11095">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_684.html">Piik Sander</a>
+                  </td>
+                  <td class="num">1975.62</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/171/11113">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_252.html">Rumyantseva Ekaterina</a>
+                  </td>
+                  <td class="num">1971.41</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_164.html">11th Polish Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2015-11-15</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2515.65</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/164/10668">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_444.html">Gorzecki Marek</a>
+                  </td>
+                  <td class="num">2300.26</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/164/10676">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/SVK.svg" class="flag" alt="SVK" />
+                    <a href="player_360.html">Eged Igor</a>
+                  </td>
+                  <td class="num">2386.60</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/164/10690">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_495.html">Majksner Łukasz</a>
+                  </td>
+                  <td class="num">2252.90</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/164/10694">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_328.html">Brdková Pavlína</a>
+                  </td>
+                  <td class="num">2216.13</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/164/10718">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_569.html">Wojtasiński Marcin</a>
+                  </td>
+                  <td class="num">2481.59</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/164/10729">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_578.html">Żukowski Michał</a>
+                  </td>
+                  <td class="num">2495.78</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/164/10734">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_6.html">Hegedűs Attila</a>
+                  </td>
+                  <td class="num">2379.84</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/164/10713">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_488.html">Lange Jarosław</a>
+                  </td>
+                  <td class="num">2428.12</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_136.html">10th Polish Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2014-11-16</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2529.00</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/136/9781">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_559.html">Tarasiński Paweł</a>
+                  </td>
+                  <td class="num">2254.49</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="http://gomokuworld.com/tournaments/136/9787">Draw</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_578.html">Żukowski Michał</a>
+                  </td>
+                  <td class="num">2500.83</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/136/9795">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_558.html">Tamioła Artur</a>
+                  </td>
+                  <td class="num">2575.62</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/136/9803">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_495.html">Majksner Łukasz</a>
+                  </td>
+                  <td class="num">2161.51</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/136/9806">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/UKR.svg" class="flag" alt="UKR" />
+                    <a href="player_418.html">Bulatowsky Oleg</a>
+                  </td>
+                  <td class="num">2398.30</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/136/9816">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_529.html">Podwyszyński Karol</a>
+                  </td>
+                  <td class="num">2087.19</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/136/9823">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                  <td class="num">2537.56</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/136/9829">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_574.html">Zajk Radosław</a>
+                  </td>
+                  <td class="num">2117.45</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_112.html">9th Polish Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2013-11-10</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2563.96</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/112/8606">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_392.html">Brachaczek Bogdan</a>
+                  </td>
+                  <td class="num">2251.05</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/112/8612">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_444.html">Gorzecki Marek</a>
+                  </td>
+                  <td class="num">2289.17</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/112/8619">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_578.html">Żukowski Michał</a>
+                  </td>
+                  <td class="num">2489.12</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/112/8626">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_559.html">Tarasiński Paweł</a>
+                  </td>
+                  <td class="num">2288.82</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/112/8637">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_366.html">Bieniek Piotr</a>
+                  </td>
+                  <td class="num">2336.65</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/112/8639">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/UKR.svg" class="flag" alt="UKR" />
+                    <a href="player_418.html">Bulatowsky Oleg</a>
+                  </td>
+                  <td class="num">2401.27</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/112/8646">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_497.html">Małowiejski Piotr</a>
+                  </td>
+                  <td class="num">2177.90</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/112/8651">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_710.html">Sekułowicz Jan</a>
+                  </td>
+                  <td class="num">2087.27</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/112/8656">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_574.html">Zajk Radosław</a>
+                  </td>
+                  <td class="num">2102.59</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_106.html">Gomoku World Championship - FINAL</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2013-08-14</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2565.54</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/106/8033">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_180.html">Laube Pavel</a>
+                  </td>
+                  <td class="num">2504.74</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/106/8039">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_578.html">Żukowski Michał</a>
+                  </td>
+                  <td class="num">2484.27</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/106/8044">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_1.html">Demján Attila</a>
+                  </td>
+                  <td class="num">2822.19</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/106/8053">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_103.html">Muratov Ilya</a>
+                  </td>
+                  <td class="num">2393.81</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/106/8056">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_2.html">Tóth Gergő</a>
+                  </td>
+                  <td class="num">2545.51</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/106/8066">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                  <td class="num">2533.28</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/106/8067">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_368.html">Pajuste Renee</a>
+                  </td>
+                  <td class="num">2351.86</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/106/8078">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_178.html">Nipoti Vladimir</a>
+                  </td>
+                  <td class="num">2541.63</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/106/8080">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_152.html">Kozhin Mikhail</a>
+                  </td>
+                  <td class="num">2490.78</td>
+                </tr>
+                <tr>
+                  <td class="num">10</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/106/8089">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_153.html">Balabhai Viktor</a>
+                  </td>
+                  <td class="num">2305.87</td>
+                </tr>
+                <tr>
+                  <td class="num">11</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/106/8093">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_135.html">Karasev Maksim</a>
+                  </td>
+                  <td class="num">2418.93</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_89.html">8th Polish Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2012-11-18</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2565.53</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/89/6121">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_584.html">Mirme Madli</a>
+                  </td>
+                  <td class="num">1973.06</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/89/6128">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_449.html">Harmasz Adam</a>
+                  </td>
+                  <td class="num">2392.54</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/89/6140">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_482.html">Kozimor Michał</a>
+                  </td>
+                  <td class="num">2376.90</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/89/6145">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_578.html">Żukowski Michał</a>
+                  </td>
+                  <td class="num">2487.06</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/89/6154">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_444.html">Gorzecki Marek</a>
+                  </td>
+                  <td class="num">2318.92</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/89/6155">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_569.html">Wojtasiński Marcin</a>
+                  </td>
+                  <td class="num">2449.80</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/89/6165">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_559.html">Tarasiński Paweł</a>
+                  </td>
+                  <td class="num">2315.40</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/89/6167">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_494.html">Majczyk Marcin</a>
+                  </td>
+                  <td class="num">2370.04</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/89/6176">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_621.html">Załuska Radosław</a>
+                  </td>
+                  <td class="num">1920.78</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_76.html">1st Team Gomoku European Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2012-07-26</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2554.87</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/76/6826">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_585.html">Kolouch Martin</a>
+                  </td>
+                  <td class="num">1599.23</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/76/6842">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_328.html">Brdková Pavlína</a>
+                  </td>
+                  <td class="num">2111.62</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/76/6839">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_4.html">Gyenes Gábor</a>
+                  </td>
+                  <td class="num">2295.09</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/76/6789">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_183.html">Tesařík Štěpán</a>
+                  </td>
+                  <td class="num">2389.22</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/76/6809">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_62.html">Drabos Tamás</a>
+                  </td>
+                  <td class="num">1988.63</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/76/6841">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/SWE.svg" class="flag" alt="SWE" />
+                    <a href="player_376.html">Jonsson Peter</a>
+                  </td>
+                  <td class="num">2155.33</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/76/6775">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_328.html">Brdková Pavlína</a>
+                  </td>
+                  <td class="num">2111.62</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/76/6782">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_7.html">Ménesi Kristóf</a>
+                  </td>
+                  <td class="num">2343.63</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/76/6840">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_183.html">Tesařík Štěpán</a>
+                  </td>
+                  <td class="num">2389.22</td>
+                </tr>
+                <tr>
+                  <td class="num">10</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/76/6838">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_81.html">Mosóczi Bálint</a>
+                  </td>
+                  <td class="num">1584.20</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_71.html">7th Polish Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2011-11-12</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2515.74</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/71/6019">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                  <td class="num">2531.33</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/71/6028">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_537.html">Rędzioch Mateusz</a>
+                  </td>
+                  <td class="num">1894.39</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/71/6041">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_569.html">Wojtasiński Marcin</a>
+                  </td>
+                  <td class="num">2454.96</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/71/6048">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_449.html">Harmasz Adam</a>
+                  </td>
+                  <td class="num">2401.75</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/71/6055">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_548.html">Stojanowska Aleksandra</a>
+                  </td>
+                  <td class="num">2007.84</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/71/6073">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_578.html">Żukowski Michał</a>
+                  </td>
+                  <td class="num">2492.65</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/71/6077">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_497.html">Małowiejski Piotr</a>
+                  </td>
+                  <td class="num">2200.09</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/71/6087">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_494.html">Majczyk Marcin</a>
+                  </td>
+                  <td class="num">2386.91</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/71/6099">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_574.html">Zajk Radosław</a>
+                  </td>
+                  <td class="num">2119.46</td>
+                </tr>
+                <tr>
+                  <td class="num">10</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/71/6109">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_461.html">Kasprzak Dariusz</a>
+                  </td>
+                  <td class="num">1618.41</td>
+                </tr>
+                <tr>
+                  <td class="num">11</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/71/6114">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_558.html">Tamioła Artur</a>
+                  </td>
+                  <td class="num">2578.52</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_60.html">6th Polish Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2010-11-14</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2478.28</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/60/5023">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_178.html">Nipoti Vladimir</a>
+                  </td>
+                  <td class="num">2509.31</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/60/5037">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_574.html">Zajk Radosław</a>
+                  </td>
+                  <td class="num">2127.63</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/60/5050">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_534.html">Puszkarewicz Paweł</a>
+                  </td>
+                  <td class="num">1913.44</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/60/5059">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_502.html">Matyja Tomasz</a>
+                  </td>
+                  <td class="num">1777.20</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/60/5068">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_531.html">Porczak Marcin</a>
+                  </td>
+                  <td class="num">2290.38</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/60/5078">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_392.html">Brachaczek Bogdan</a>
+                  </td>
+                  <td class="num">2250.12</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/60/5084">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_578.html">Żukowski Michał</a>
+                  </td>
+                  <td class="num">2469.39</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/60/5095">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_482.html">Kozimor Michał</a>
+                  </td>
+                  <td class="num">2413.44</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/60/5109">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_494.html">Majczyk Marcin</a>
+                  </td>
+                  <td class="num">2397.14</td>
+                </tr>
+                <tr>
+                  <td class="num">10</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/60/5122">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_180.html">Laube Pavel</a>
+                  </td>
+                  <td class="num">2467.95</td>
+                </tr>
+                <tr>
+                  <td class="num">11</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/60/5130">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_366.html">Bieniek Piotr</a>
+                  </td>
+                  <td class="num">2342.39</td>
+                </tr>
+                <tr>
+                  <td class="num">12</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/60/5138">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_558.html">Tamioła Artur</a>
+                  </td>
+                  <td class="num">2561.46</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_48.html">5th Polish Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2009-11-22</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2443.51</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/48/4642">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_574.html">Zajk Radosław</a>
+                  </td>
+                  <td class="num">2147.46</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/48/4645">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_536.html">Rędzioch Bartłomiej</a>
+                  </td>
+                  <td class="num">1870.02</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/48/4649">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_497.html">Małowiejski Piotr</a>
+                  </td>
+                  <td class="num">2173.57</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/48/4652">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_505.html">Mielczarek Bartosz</a>
+                  </td>
+                  <td class="num">2095.17</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/48/4657">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_578.html">Żukowski Michał</a>
+                  </td>
+                  <td class="num">2399.07</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/48/4660">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_559.html">Tarasiński Paweł</a>
+                  </td>
+                  <td class="num">2267.29</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/48/4663">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_444.html">Gorzecki Marek</a>
+                  </td>
+                  <td class="num">2250.92</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/48/4666">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_494.html">Majczyk Marcin</a>
+                  </td>
+                  <td class="num">2381.52</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_34.html">4th Polish Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2008-11-08</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2409.41</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/34/1553">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_574.html">Zajk Radosław</a>
+                  </td>
+                  <td class="num">2170.48</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/34/1560">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_509.html">Niedbalec Marcin</a>
+                  </td>
+                  <td class="num">2287.50</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/34/1568">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_559.html">Tarasiński Paweł</a>
+                  </td>
+                  <td class="num">2218.41</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/34/1577">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_444.html">Gorzecki Marek</a>
+                  </td>
+                  <td class="num">2246.29</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/34/1583">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_377.html">Bohdankiewicz Marcin</a>
+                  </td>
+                  <td class="num">2412.66</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/34/1593">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_521.html">Papiński Maciej</a>
+                  </td>
+                  <td class="num">2101.11</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="http://gomokuworld.com/tournaments/34/1598">Draw</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_558.html">Tamioła Artur</a>
+                  </td>
+                  <td class="num">2539.27</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/34/1609">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_578.html">Żukowski Michał</a>
+                  </td>
+                  <td class="num">2337.53</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/34/1617">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_567.html">Wileczek Michał</a>
+                  </td>
+                  <td class="num">2111.83</td>
+                </tr>
+                <tr>
+                  <td class="num">10</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/34/1625">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_446.html">Gruca Marcin</a>
+                  </td>
+                  <td class="num">2172.27</td>
+                </tr>
+                <tr>
+                  <td class="num">11</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/34/1633">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_502.html">Matyja Tomasz</a>
+                  </td>
+                  <td class="num">1754.02</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_99.html">International Advanced Level Gomoku Tournament</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2008-08-06</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2402.43</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/99/7441">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_644.html">Litvinova Yulia</a>
+                  </td>
+                  <td class="num">2115.98</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/99/7467">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_649.html">Molotova Anastasja</a>
+                  </td>
+                  <td class="num">1670.17</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/99/7482">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_381.html">Höbemägi Martin</a>
+                  </td>
+                  <td class="num">2102.10</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/99/7503">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_166.html">Merkulov Maksim</a>
+                  </td>
+                  <td class="num">2072.95</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/99/7521">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/JPN.svg" class="flag" alt="JPN" />
+                    <a href="player_367.html">Ono Takayuki</a>
+                  </td>
+                  <td class="num">2300.08</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/99/7544">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_643.html">Oborina Anastasja</a>
+                  </td>
+                  <td class="num">2096.38</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/99/7560">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_187.html">Strádal Jan</a>
+                  </td>
+                  <td class="num">2368.32</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/99/7578">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_558.html">Tamioła Artur</a>
+                  </td>
+                  <td class="num">2531.84</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_27.html">3rd Polish Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2007-11-10</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2394.15</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/27/1024">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_521.html">Papiński Maciej</a>
+                  </td>
+                  <td class="num">2119.17</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/27/1038">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_494.html">Majczyk Marcin</a>
+                  </td>
+                  <td class="num">2301.54</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/27/1043">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_188.html">Kolouchová Monika</a>
+                  </td>
+                  <td class="num">2282.78</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/27/1061">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                  <td class="num">2480.32</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/27/1082">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_533.html">Pudło Adrian</a>
+                  </td>
+                  <td class="num">2166.33</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/27/1089">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_514.html">Nowakowski Maciej</a>
+                  </td>
+                  <td class="num">2493.93</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/27/1108">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_187.html">Strádal Jan</a>
+                  </td>
+                  <td class="num">2318.14</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/27/1120">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_482.html">Kozimor Michał</a>
+                  </td>
+                  <td class="num">2350.55</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/27/1142">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_565.html">Wiatrak Paweł</a>
+                  </td>
+                  <td class="num">1846.78</td>
+                </tr>
+                <tr>
+                  <td class="num">10</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/27/1155">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_559.html">Tarasiński Paweł</a>
+                  </td>
+                  <td class="num">2134.86</td>
+                </tr>
+                <tr>
+                  <td class="num">11</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/27/1170">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_470.html">Kokoszka Arkadiusz</a>
+                  </td>
+                  <td class="num">2061.94</td>
+                </tr>
+                <tr>
+                  <td class="num">12</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/27/1181">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_558.html">Tamioła Artur</a>
+                  </td>
+                  <td class="num">2503.32</td>
+                </tr>
+                <tr>
+                  <td class="num">13</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/27/1197">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_552.html">Szefler Rafał</a>
+                  </td>
+                  <td class="num">2231.72</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_24.html">Czech Open 2007</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2007-07-14</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2399.17</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/24/3835">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/SVK.svg" class="flag" alt="SVK" />
+                    <a href="player_360.html">Eged Igor</a>
+                  </td>
+                  <td class="num">2268.72</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/24/3857">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_208.html">Vrzal Martin</a>
+                  </td>
+                  <td class="num">1813.72</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/24/3879">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_593.html">Savrasova Yulia</a>
+                  </td>
+                  <td class="num">2133.51</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/24/3901">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_178.html">Nipoti Vladimir</a>
+                  </td>
+                  <td class="num">2455.81</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/24/3922">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_179.html">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2501.60</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/24/3946">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_513.html">Nowak Paweł</a>
+                  </td>
+                  <td class="num">2357.03</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/24/3967">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_167.html">Nikonov Konstantin</a>
+                  </td>
+                  <td class="num">2362.05</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/24/3989">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_187.html">Strádal Jan</a>
+                  </td>
+                  <td class="num">2302.74</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/24/4011">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                  <td class="num">2473.73</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_23.html">1st Kwidzyn County Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2007-06-23</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2398.44</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/23/940">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_444.html">Gorzecki Marek</a>
+                  </td>
+                  <td class="num">2261.55</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/23/945">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_541.html">Skierkowska Kinga</a>
+                  </td>
+                  <td class="num">1484.33</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/23/951">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                  <td class="num">2472.49</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/23/957">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_561.html">Truty Jarosław</a>
+                  </td>
+                  <td class="num">1795.73</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/23/962">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_434.html">Fitzermann Damian</a>
+                  </td>
+                  <td class="num">1876.70</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/23/967">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_441.html">Godlewski Filip</a>
+                  </td>
+                  <td class="num">1932.47</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/23/972">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_435.html">Fitzermann Mikołaj</a>
+                  </td>
+                  <td class="num">1836.34</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/23/977">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_562.html">Truty Laura</a>
+                  </td>
+                  <td class="num">1710.55</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/23/982">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_454.html">Janik Łukasz</a>
+                  </td>
+                  <td class="num">1754.10</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_20.html">14th Polish Gomoku Open</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2007-03-17</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2394.34</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/20/763">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_494.html">Majczyk Marcin</a>
+                  </td>
+                  <td class="num">2273.24</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/20/769">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_513.html">Nowak Paweł</a>
+                  </td>
+                  <td class="num">2347.76</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/20/780">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_180.html">Laube Pavel</a>
+                  </td>
+                  <td class="num">2419.58</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/20/789">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_444.html">Gorzecki Marek</a>
+                  </td>
+                  <td class="num">2267.62</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/20/798">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_574.html">Zajk Radosław</a>
+                  </td>
+                  <td class="num">2186.58</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="http://gomokuworld.com/tournaments/20/806">Loss</a>
+                  </td>
+                  <td>
+                    <img src="flag/SWE.svg" class="flag" alt="SWE" />
+                    <a href="player_579.html">Eriksson Marcus</a>
+                  </td>
+                  <td class="num">2222.14</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/20/816">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_188.html">Kolouchová Monika</a>
+                  </td>
+                  <td class="num">2254.52</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="http://gomokuworld.com/tournaments/20/824">Win</a>
+                  </td>
+                  <td>
+                    <img src="flag/EST.svg" class="flag" alt="EST" />
+                    <a href="player_388.html">Soosorv Ants</a>
+                  </td>
+                  <td class="num">2339.76</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="http://gomokuworld.com/tournaments/20/831">Draw</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_514.html">Nowakowski Maciej</a>
+                  </td>
+                  <td class="num">2504.61</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="clear" />
+      </div>
+      <div id="footer">
+        <p>Theme based on <a href="http://templated.co/genericblue">GenericBlue</a> designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+      </div>
+    </div>
+  </body>
+</html>

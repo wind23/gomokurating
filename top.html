@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="keywords" content="Gomoku, Gomoku rating, whole-history rating, WHR" />
+    <meta name="description" content="Whole-history rating of Gomoku players" />
+    <meta name="author" content="Tianyi Hao" />
+    <meta name="copyright" content="2021 Gomoku Rating" />
+    <title>History Ratings of Top Gomoku Players - Gomoku Rating</title>
+    <script>
+        if (window.location.protocol != "file:") {
+            var _hmt = _hmt || [];
+            (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?cb525b0b0c34b96320b743cdf90a90c3";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+    <script>
+        if (window.location.protocol != "file:") {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-173435487-1', 'auto');
+            ga('send', 'pageview');
+        }
+    </script>
+    <link href="css/default.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="outer">
+      <div id="header"></div>
+      <div id="menu">
+        <ul>
+          <li class="first">
+            <a href="index.html">Home page</a>
+          </li>
+          <li>
+            <a href="players.html">Players</a>
+          </li>
+          <li>
+            <a href="tournaments.html">Tournaments</a>
+          </li>
+          <li>
+            <a href="top.html">History of Top players</a>
+          </li>
+        </ul>
+      </div>
+      <div id="content">
+        <div id="primaryContentContainer">
+          <div id="primaryContent">
+            <link href="css/nv.d3.css" rel="stylesheet" type="text/css">
+            <h1>History Ratings of Top Gomoku Players</h1>
+            <div id="chart1"></div>
+            <script src="js/d3.min.js" charset="utf-8"></script>
+            <script src="js/nv.d3.js"></script>
+            <script>
+    var chart;
+    var data;
+
+    nv.addGraph(function() {
+        data = Data();
+
+        chart = nv.models.lineChart()
+            .options({
+                duration: 300,
+                useInteractiveGuideline: true
+            })
+        ;
+
+        chart.xAxis
+            .axisLabel("Date")
+            .tickFormat(function(d) {
+          return d3.time.format('%Y-%m-%d')(new Date(d))
+		});
+
+		chart.xScale(d3.time.scale());
+
+        chart.yAxis
+            .axisLabel('Rating')
+            .tickFormat(d3.format(',.2f'))
+        ;
+		
+		chart.showYAxis(true).showXAxis(true).showLegend(true).margin({top:20, left: 100, right:100});
+
+        d3.select('#chart1').append('svg')
+            .datum(data)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+    });
+
+    function Data() {
+        var rating_1 = [{x: 1217980800000, y: 2717.788367}, {x: 1223078400000, y: 2720.525793}, {x: 1236470400000, y: 2728.183314}, {x: 1245801600000, y: 2741.310022}, {x: 1249776000000, y: 2744.243938}, {x: 1250121600000, y: 2744.559703}, {x: 1258243200000, y: 2753.532535}, {x: 1261872000000, y: 2756.093742}, {x: 1270339200000, y: 2763.438904}, {x: 1279411200000, y: 2772.644796}, {x: 1280534400000, y: 2773.907236}, {x: 1292112000000, y: 2787.673801}, {x: 1311465600000, y: 2807.398595}, {x: 1312934400000, y: 2808.537520}, {x: 1318118400000, y: 2811.661264}, {x: 1324080000000, y: 2814.202776}, {x: 1343260800000, y: 2817.184708}, {x: 1376438400000, y: 2822.188303}, {x: 1387411200000, y: 2821.708450}, ];
+        var rating_5 = [{x: 1227916800000, y: 2272.709879}, {x: 1236470400000, y: 2284.009078}, {x: 1245801600000, y: 2291.179710}, {x: 1258243200000, y: 2309.111717}, {x: 1259971200000, y: 2311.724569}, {x: 1270339200000, y: 2321.195255}, {x: 1285459200000, y: 2337.926360}, {x: 1311465600000, y: 2367.502499}, {x: 1322956800000, y: 2380.111329}, {x: 1485043200000, y: 2586.539187}, {x: 1500681600000, y: 2612.759801}, {x: 1501286400000, y: 2613.827078}, {x: 1511568000000, y: 2621.303179}, {x: 1520121600000, y: 2627.136361}, {x: 1522368000000, y: 2627.120396}, {x: 1526083200000, y: 2628.116555}, {x: 1533945600000, y: 2632.828814}, {x: 1534464000000, y: 2633.092671}, {x: 1542412800000, y: 2640.032529}, {x: 1565395200000, y: 2646.118493}, {x: 1574553600000, y: 2656.903286}, {x: 1576713600000, y: 2658.713566}, ];
+        var rating_179 = [{x: 1079913600000, y: 2404.016459}, {x: 1097193600000, y: 2430.162021}, {x: 1113696000000, y: 2469.601527}, {x: 1121472000000, y: 2484.705368}, {x: 1128211200000, y: 2493.092495}, {x: 1171065600000, y: 2502.662538}, {x: 1184371200000, y: 2501.603529}, {x: 1191110400000, y: 2497.184999}, {x: 1197158400000, y: 2494.092886}, {x: 1215734400000, y: 2486.022860}, {x: 1217980800000, y: 2487.767690}, {x: 1223078400000, y: 2488.772447}, {x: 1224374400000, y: 2488.733287}, {x: 1227916800000, y: 2490.125460}, {x: 1240012800000, y: 2505.607254}, {x: 1247961600000, y: 2513.922839}, {x: 1253404800000, y: 2518.046037}, {x: 1279411200000, y: 2533.031139}, {x: 1310860800000, y: 2562.220969}, {x: 1318118400000, y: 2568.354847}, {x: 1334448000000, y: 2586.651420}, {x: 1342310400000, y: 2593.199990}, {x: 1343260800000, y: 2594.022305}, {x: 1373760000000, y: 2626.313086}, {x: 1405209600000, y: 2651.099276}, {x: 1408752000000, y: 2652.328100}, ];
+        var rating_3 = [{x: 1227916800000, y: 2546.036997}, {x: 1240617600000, y: 2552.463259}, {x: 1245801600000, y: 2554.518847}, {x: 1258243200000, y: 2558.069283}, {x: 1259971200000, y: 2558.093932}, {x: 1261872000000, y: 2557.305747}, {x: 1270339200000, y: 2552.425844}, {x: 1285459200000, y: 2550.493772}, {x: 1292112000000, y: 2548.807098}, {x: 1311465600000, y: 2547.188572}, {x: 1322956800000, y: 2550.879549}, {x: 1343260800000, y: 2569.343918}, {x: 1353715200000, y: 2581.361191}, {x: 1364083200000, y: 2590.421509}, {x: 1387411200000, y: 2612.033801}, {x: 1408752000000, y: 2630.872038}, {x: 1438732800000, y: 2642.953383}, {x: 1439424000000, y: 2642.970381}, {x: 1460246400000, y: 2636.263323}, {x: 1485043200000, y: 2628.502600}, {x: 1501286400000, y: 2633.323682}, {x: 1511568000000, y: 2633.046699}, {x: 1520121600000, y: 2628.502675}, {x: 1542412800000, y: 2618.255404}, {x: 1574553600000, y: 2617.987110}, ];
+        var rating_2 = [{x: 1223078400000, y: 2441.088069}, {x: 1227916800000, y: 2443.031504}, {x: 1236470400000, y: 2447.383236}, {x: 1240617600000, y: 2449.761505}, {x: 1245801600000, y: 2452.000149}, {x: 1249776000000, y: 2456.894216}, {x: 1250121600000, y: 2457.200221}, {x: 1258243200000, y: 2469.256836}, {x: 1259971200000, y: 2471.096171}, {x: 1270339200000, y: 2475.770142}, {x: 1279411200000, y: 2482.799635}, {x: 1280534400000, y: 2483.722826}, {x: 1285459200000, y: 2489.500042}, {x: 1305331200000, y: 2509.040585}, {x: 1312934400000, y: 2516.759236}, {x: 1318118400000, y: 2525.517796}, {x: 1322956800000, y: 2529.772564}, {x: 1324080000000, y: 2530.326711}, {x: 1334448000000, y: 2538.250146}, {x: 1343260800000, y: 2543.405214}, {x: 1353715200000, y: 2544.124361}, {x: 1364083200000, y: 2543.644467}, {x: 1376438400000, y: 2545.510369}, {x: 1408752000000, y: 2573.960397}, {x: 1439424000000, y: 2606.808059}, {x: 1460246400000, y: 2617.389551}, {x: 1485043200000, y: 2628.442861}, {x: 1501286400000, y: 2627.618800}, {x: 1511568000000, y: 2628.975583}, {x: 1522368000000, y: 2627.436821}, {x: 1533945600000, y: 2622.600925}, {x: 1534464000000, y: 2622.086316}, {x: 1563062400000, y: 2584.650875}, {x: 1565395200000, y: 2582.336683}, {x: 1576713600000, y: 2572.850632}, ];
+        var rating_241 = [{x: 1387065600000, y: 2424.601320}, {x: 1391904000000, y: 2430.138452}, {x: 1394409600000, y: 2431.951398}, {x: 1420761600000, y: 2460.228946}, {x: 1422748800000, y: 2460.924624}, {x: 1425859200000, y: 2464.704578}, {x: 1431302400000, y: 2468.855097}, {x: 1434240000000, y: 2470.441098}, {x: 1477180800000, y: 2526.505882}, {x: 1487980800000, y: 2534.839099}, {x: 1497225600000, y: 2542.306837}, {x: 1500681600000, y: 2551.021871}, {x: 1501286400000, y: 2552.652166}, {x: 1526169600000, y: 2594.501180}, {x: 1528761600000, y: 2597.443720}, {x: 1534464000000, y: 2599.281021}, {x: 1541289600000, y: 2598.672866}, ];
+        var rating_201 = [{x: 1270944000000, y: 2427.258154}, {x: 1279411200000, y: 2430.825366}, {x: 1286582400000, y: 2425.120064}, {x: 1289692800000, y: 2425.294876}, {x: 1302393600000, y: 2419.614060}, {x: 1310860800000, y: 2419.575107}, {x: 1342310400000, y: 2438.848203}, {x: 1385769600000, y: 2473.026528}, {x: 1408752000000, y: 2484.237058}, {x: 1445731200000, y: 2515.076438}, {x: 1468713600000, y: 2531.879982}, {x: 1495929600000, y: 2548.075508}, {x: 1500163200000, y: 2548.347344}, {x: 1500681600000, y: 2549.040038}, {x: 1501286400000, y: 2549.570163}, {x: 1508025600000, y: 2559.641241}, {x: 1520121600000, y: 2569.253280}, {x: 1524355200000, y: 2572.739197}, {x: 1533945600000, y: 2578.739968}, {x: 1534464000000, y: 2579.152087}, {x: 1539475200000, y: 2582.403436}, {x: 1544227200000, y: 2583.177385}, {x: 1555200000000, y: 2585.186674}, {x: 1563062400000, y: 2585.018474}, {x: 1564704000000, y: 2586.683885}, {x: 1565395200000, y: 2587.415689}, {x: 1570924800000, y: 2588.228245}, ];
+        var rating_558 = [{x: 1142035200000, y: 2478.488608}, {x: 1142121600000, y: 2478.534271}, {x: 1171065600000, y: 2497.795452}, {x: 1179619200000, y: 2501.168874}, {x: 1194652800000, y: 2503.321000}, {x: 1217980800000, y: 2531.838300}, {x: 1224374400000, y: 2537.455885}, {x: 1226102400000, y: 2539.268616}, {x: 1236470400000, y: 2545.353105}, {x: 1249776000000, y: 2563.169634}, {x: 1250121600000, y: 2563.567098}, {x: 1267228800000, y: 2555.432687}, {x: 1289692800000, y: 2561.464481}, {x: 1301097600000, y: 2570.908821}, {x: 1302393600000, y: 2572.402334}, {x: 1312934400000, y: 2577.876234}, {x: 1318118400000, y: 2576.596217}, {x: 1321056000000, y: 2578.520098}, {x: 1334448000000, y: 2583.306132}, {x: 1343260800000, y: 2580.741703}, {x: 1353196800000, y: 2576.180782}, {x: 1416096000000, y: 2575.618683}, ];
+        var rating_219 = [{x: 1165708800000, y: 2549.992171}, {x: 1197158400000, y: 2561.097173}, ];
+        var rating_178 = [{x: 1184371200000, y: 2455.808456}, {x: 1191110400000, y: 2458.221690}, {x: 1223078400000, y: 2486.471494}, {x: 1240012800000, y: 2482.868749}, {x: 1247961600000, y: 2484.406073}, {x: 1249776000000, y: 2484.908449}, {x: 1250121600000, y: 2485.061702}, {x: 1253404800000, y: 2489.023387}, {x: 1279411200000, y: 2501.017412}, {x: 1286582400000, y: 2508.218430}, {x: 1289692800000, y: 2509.310884}, {x: 1302393600000, y: 2516.809864}, {x: 1310860800000, y: 2525.544964}, {x: 1312329600000, y: 2526.336801}, {x: 1312934400000, y: 2526.185278}, {x: 1318118400000, y: 2525.921328}, {x: 1334448000000, y: 2527.531488}, {x: 1342310400000, y: 2536.091789}, {x: 1343260800000, y: 2536.624419}, {x: 1350172800000, y: 2536.498241}, {x: 1365897600000, y: 2541.711090}, {x: 1373760000000, y: 2541.975291}, {x: 1375660800000, y: 2541.473585}, {x: 1376438400000, y: 2541.630078}, {x: 1405209600000, y: 2543.599454}, {x: 1408752000000, y: 2545.670961}, {x: 1437264000000, y: 2553.141352}, {x: 1468713600000, y: 2553.470010}, ];
+        var rating_423 = [{x: 1312934400000, y: 2417.646479}, {x: 1462060800000, y: 2550.315149}, {x: 1462320000000, y: 2550.424018}, ];
+        var rating_636 = [{x: 1387065600000, y: 2432.288671}, {x: 1394409600000, y: 2442.260558}, {x: 1425859200000, y: 2478.418945}, {x: 1434240000000, y: 2484.615900}, {x: 1438732800000, y: 2484.382824}, {x: 1439424000000, y: 2484.936705}, {x: 1454112000000, y: 2508.585558}, {x: 1457308800000, y: 2512.891995}, {x: 1465776000000, y: 2520.423646}, {x: 1487980800000, y: 2535.996872}, {x: 1497225600000, y: 2538.588377}, {x: 1501286400000, y: 2536.482605}, {x: 1517097600000, y: 2527.465988}, {x: 1520640000000, y: 2526.401125}, {x: 1528761600000, y: 2526.132695}, {x: 1548547200000, y: 2538.493105}, {x: 1579996800000, y: 2539.180277}, ];
+        var rating_433 = [{x: 1134172800000, y: 2421.098610}, {x: 1134259200000, y: 2421.127101}, {x: 1142035200000, y: 2422.712967}, {x: 1142121600000, y: 2422.807817}, {x: 1157846400000, y: 2444.983699}, {x: 1182556800000, y: 2472.486604}, {x: 1184371200000, y: 2473.728983}, {x: 1194652800000, y: 2480.323482}, {x: 1204934400000, y: 2491.660665}, {x: 1224374400000, y: 2496.316346}, {x: 1243123200000, y: 2505.977167}, {x: 1249776000000, y: 2505.824679}, {x: 1250121600000, y: 2506.049625}, {x: 1267228800000, y: 2512.324451}, {x: 1312329600000, y: 2524.524997}, {x: 1312934400000, y: 2524.735348}, {x: 1321056000000, y: 2531.329511}, {x: 1376438400000, y: 2533.277767}, {x: 1416096000000, y: 2537.564992}, {x: 1447545600000, y: 2536.545311}, {x: 1468713600000, y: 2547.063374}, {x: 1564704000000, y: 2531.517937}, {x: 1565395200000, y: 2531.977328}, ];
+        var rating_578 = [{x: 1224374400000, y: 2335.035442}, {x: 1226102400000, y: 2337.533876}, {x: 1236470400000, y: 2355.329090}, {x: 1249776000000, y: 2380.188186}, {x: 1250121600000, y: 2380.669784}, {x: 1258848000000, y: 2399.074154}, {x: 1267228800000, y: 2418.098360}, {x: 1289692800000, y: 2469.389389}, {x: 1312329600000, y: 2492.327656}, {x: 1312934400000, y: 2493.016599}, {x: 1321056000000, y: 2492.653767}, {x: 1343260800000, y: 2485.764799}, {x: 1353196800000, y: 2487.055233}, {x: 1376438400000, y: 2484.268727}, {x: 1384041600000, y: 2489.120428}, {x: 1408752000000, y: 2500.647479}, {x: 1416096000000, y: 2500.825763}, {x: 1447545600000, y: 2495.776580}, {x: 1462060800000, y: 2497.535303}, {x: 1462320000000, y: 2497.672045}, {x: 1478995200000, y: 2498.260192}, {x: 1500681600000, y: 2502.325820}, {x: 1501286400000, y: 2502.626090}, {x: 1533945600000, y: 2525.314141}, {x: 1534464000000, y: 2525.344709}, {x: 1564704000000, y: 2529.106637}, {x: 1565395200000, y: 2529.301098}, ];
+        var rating_245 = [{x: 1368230400000, y: 2398.393909}, {x: 1376784000000, y: 2406.501393}, {x: 1377993600000, y: 2408.077127}, {x: 1389052800000, y: 2421.808081}, {x: 1399766400000, y: 2431.822574}, {x: 1420761600000, y: 2450.624835}, {x: 1431302400000, y: 2467.547513}, {x: 1433030400000, y: 2468.922969}, {x: 1434240000000, y: 2470.272500}, {x: 1438732800000, y: 2473.750899}, {x: 1439424000000, y: 2473.808733}, {x: 1448668800000, y: 2476.177244}, {x: 1462752000000, y: 2478.004514}, {x: 1465776000000, y: 2477.998911}, {x: 1477180800000, y: 2479.734933}, {x: 1487980800000, y: 2486.430902}, {x: 1494028800000, y: 2494.281226}, {x: 1497225600000, y: 2497.466760}, {x: 1505606400000, y: 2506.075218}, {x: 1512172800000, y: 2512.531270}, {x: 1515369600000, y: 2514.944915}, {x: 1522454400000, y: 2516.201644}, {x: 1526169600000, y: 2517.264953}, {x: 1528761600000, y: 2517.328297}, {x: 1542412800000, y: 2518.267897}, {x: 1557532800000, y: 2517.147773}, {x: 1620000000000, y: 2507.309795}, ];
+        var rating_514 = [{x: 1134172800000, y: 2508.982431}, {x: 1134259200000, y: 2509.094848}, {x: 1142035200000, y: 2516.138928}, {x: 1142121600000, y: 2516.156946}, {x: 1157846400000, y: 2512.250216}, {x: 1171065600000, y: 2505.890164}, {x: 1174089600000, y: 2504.612777}, {x: 1179619200000, y: 2500.662939}, {x: 1184371200000, y: 2497.616324}, {x: 1189209600000, y: 2497.010236}, {x: 1194652800000, y: 2493.927570}, {x: 1249776000000, y: 2444.687192}, {x: 1250121600000, y: 2444.370510}, {x: 1312329600000, y: 2419.965644}, {x: 1312934400000, y: 2419.516380}, {x: 1343260800000, y: 2392.526607}, {x: 1408752000000, y: 2365.171965}, {x: 1500681600000, y: 2353.606134}, {x: 1530403200000, y: 2339.971396}, ];
+        var rating_377 = [{x: 1097193600000, y: 2464.360490}, {x: 1134172800000, y: 2454.656911}, {x: 1134259200000, y: 2454.584924}, {x: 1157846400000, y: 2424.186085}, {x: 1174089600000, y: 2405.901846}, {x: 1204934400000, y: 2405.300130}, {x: 1226102400000, y: 2412.662495}, {x: 1236470400000, y: 2405.391133}, {x: 1267228800000, y: 2361.989492}, {x: 1302393600000, y: 2357.955432}, ];
+        var rating_180 = [{x: 1113696000000, y: 2303.845487}, {x: 1121472000000, y: 2316.456839}, {x: 1128211200000, y: 2330.134769}, {x: 1142035200000, y: 2363.536308}, {x: 1142121600000, y: 2363.660951}, {x: 1144540800000, y: 2369.551957}, {x: 1152921600000, y: 2383.627105}, {x: 1160179200000, y: 2396.030509}, {x: 1165708800000, y: 2404.629912}, {x: 1171065600000, y: 2414.692268}, {x: 1174089600000, y: 2419.583788}, {x: 1177027200000, y: 2425.619164}, {x: 1184371200000, y: 2438.780433}, {x: 1191110400000, y: 2450.524156}, {x: 1197158400000, y: 2457.615580}, {x: 1215734400000, y: 2474.500704}, {x: 1217980800000, y: 2478.010749}, {x: 1223078400000, y: 2485.612072}, {x: 1224374400000, y: 2487.867332}, {x: 1240012800000, y: 2497.279458}, {x: 1249776000000, y: 2498.005816}, {x: 1250121600000, y: 2498.169204}, {x: 1253404800000, y: 2496.311561}, {x: 1270944000000, y: 2489.251241}, {x: 1279411200000, y: 2480.618206}, {x: 1286582400000, y: 2472.236753}, {x: 1289692800000, y: 2467.945002}, {x: 1302393600000, y: 2462.505724}, {x: 1312934400000, y: 2465.153672}, {x: 1334448000000, y: 2481.651930}, {x: 1342310400000, y: 2488.726670}, {x: 1343260800000, y: 2489.936120}, {x: 1350172800000, y: 2500.088893}, {x: 1354406400000, y: 2504.786680}, {x: 1365897600000, y: 2510.312903}, {x: 1376438400000, y: 2504.739711}, {x: 1396742400000, y: 2473.682805}, {x: 1405209600000, y: 2470.262812}, {x: 1408752000000, y: 2468.266195}, {x: 1417219200000, y: 2463.333854}, {x: 1437264000000, y: 2473.816364}, {x: 1445731200000, y: 2477.704287}, {x: 1460246400000, y: 2476.466351}, {x: 1462060800000, y: 2476.814139}, {x: 1462320000000, y: 2476.676428}, {x: 1468713600000, y: 2476.870525}, {x: 1477785600000, y: 2470.410717}, {x: 1485043200000, y: 2468.875722}, {x: 1500163200000, y: 2470.626601}, {x: 1500681600000, y: 2470.035492}, {x: 1501286400000, y: 2469.396330}, {x: 1508025600000, y: 2465.341950}, {x: 1520121600000, y: 2459.769287}, {x: 1524355200000, y: 2459.329831}, {x: 1531612800000, y: 2458.239427}, {x: 1534464000000, y: 2456.507019}, {x: 1539475200000, y: 2456.180100}, {x: 1544227200000, y: 2457.465097}, {x: 1563062400000, y: 2473.377849}, {x: 1564704000000, y: 2474.195557}, {x: 1565395200000, y: 2474.575294}, {x: 1570924800000, y: 2479.193482}, ];
+        var rating_575 = [{x: 1079913600000, y: 2408.322956}, {x: 1134172800000, y: 2383.033562}, {x: 1134259200000, y: 2382.961564}, {x: 1142035200000, y: 2377.733021}, {x: 1142121600000, y: 2377.710069}, ];
+        var rating_182 = [{x: 1079913600000, y: 2377.074432}, {x: 1097193600000, y: 2365.873363}, {x: 1113696000000, y: 2363.766467}, {x: 1121472000000, y: 2364.788918}, {x: 1128211200000, y: 2368.374296}, {x: 1142035200000, y: 2370.553898}, {x: 1144540800000, y: 2371.907217}, {x: 1152921600000, y: 2379.178886}, {x: 1160179200000, y: 2380.506258}, {x: 1165708800000, y: 2376.842090}, {x: 1171065600000, y: 2374.073992}, {x: 1177027200000, y: 2369.250330}, {x: 1184371200000, y: 2360.010034}, {x: 1191110400000, y: 2356.867570}, {x: 1194652800000, y: 2356.795572}, {x: 1197158400000, y: 2357.397916}, {x: 1215734400000, y: 2359.279084}, {x: 1224374400000, y: 2368.865102}, {x: 1227916800000, y: 2372.965174}, {x: 1236470400000, y: 2375.576535}, {x: 1240012800000, y: 2376.236734}, {x: 1247961600000, y: 2378.148808}, {x: 1253404800000, y: 2373.744828}, {x: 1302393600000, y: 2343.200329}, {x: 1310860800000, y: 2345.399299}, {x: 1342310400000, y: 2353.322086}, {x: 1343260800000, y: 2353.359252}, {x: 1350172800000, y: 2354.873914}, {x: 1354406400000, y: 2355.210267}, {x: 1365897600000, y: 2357.583352}, ];
+        var rating_199 = [{x: 1079913600000, y: 2304.963140}, {x: 1113696000000, y: 2326.288058}, {x: 1128211200000, y: 2324.970859}, {x: 1144540800000, y: 2318.424473}, {x: 1191110400000, y: 2311.093447}, ];
+
+        return [
+            { values: rating_1, key: "Demján Attila", color: "#FF4500", },
+            { values: rating_5, key: "László Zoltán", color: "#0000FF", },
+            { values: rating_179, key: "Nykl Ondřej", color: "#006400", },
+            { values: rating_3, key: "Dupszki Rudolf", color: "#DA70D6", },
+            { values: rating_2, key: "Tóth Gergő", color: "#7CFC00", },
+            { values: rating_241, key: "Osipov Denis", color: "#00BFFF", },
+            { values: rating_201, key: "Muzika Martin", color: "#800000", },
+            { values: rating_558, key: "Tamioła Artur", color: "#9400D3", },
+            { values: rating_219, key: "Šálek Jiří", color: "#008080", },
+            { values: rating_178, key: "Nipoti Vladimir", color: "#FF1493", },
+            { values: rating_423, key: "Chen Ko-Han", color: "#00008B", },
+            { values: rating_636, key: "Tarannikov Yuriy", color: "#708090", },
+            { values: rating_433, key: "Fitzermann Adrian", color: "#FF00FF", },
+            { values: rating_578, key: "Żukowski Michał", color: "#7FFFD4", },
+            { values: rating_245, key: "Kachaev Denis", color: "#FA8072", },
+            { values: rating_514, key: "Nowakowski Maciej", color: "#B8860B", },
+            { values: rating_377, key: "Bohdankiewicz Marcin", color: "#4169E1", },
+            { values: rating_180, key: "Laube Pavel", color: "#FFD700", },
+            { values: rating_575, key: "Zakonnik Andrzej", color: "#DC143C", },
+            { values: rating_182, key: "Rybka Aleš", color: "#2F4F4F", },
+            { values: rating_199, key: "Radimský Michal", color: "#BDB76B", },
+        ];
+    }
+
+</script>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Year</th>
+                  <th>1st</th>
+                  <th>2nd</th>
+                  <th>3rd</th>
+                  <th>4th</th>
+                  <th>5th</th>
+                </tr>
+                <tr>
+                  <td class="num">2004</td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_377.html">Bohdankiewicz Marcin</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_179.html">Nykl Ondřej</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_575.html">Zakonnik Andrzej</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_182.html">Rybka Aleš</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_199.html">Radimský Michal</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2005</td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_514.html">Nowakowski Maciej</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_179.html">Nykl Ondřej</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_377.html">Bohdankiewicz Marcin</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_575.html">Zakonnik Andrzej</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2006</td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_219.html">Šálek Jiří</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_514.html">Nowakowski Maciej</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_558.html">Tamioła Artur</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_377.html">Bohdankiewicz Marcin</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2007</td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_219.html">Šálek Jiří</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_558.html">Tamioła Artur</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_179.html">Nykl Ondřej</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_514.html">Nowakowski Maciej</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2008</td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_1.html">Demján Attila</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_3.html">Dupszki Rudolf</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_558.html">Tamioła Artur</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_179.html">Nykl Ondřej</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2009</td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_1.html">Demján Attila</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_558.html">Tamioła Artur</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_3.html">Dupszki Rudolf</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_179.html">Nykl Ondřej</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2010</td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_1.html">Demján Attila</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_558.html">Tamioła Artur</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_3.html">Dupszki Rudolf</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_179.html">Nykl Ondřej</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2011</td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_1.html">Demján Attila</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_558.html">Tamioła Artur</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_179.html">Nykl Ondřej</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_3.html">Dupszki Rudolf</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2012</td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_1.html">Demján Attila</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_179.html">Nykl Ondřej</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_3.html">Dupszki Rudolf</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_558.html">Tamioła Artur</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_573.html">Zajk Michał</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2013</td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_1.html">Demján Attila</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_179.html">Nykl Ondřej</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_3.html">Dupszki Rudolf</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_573.html">Zajk Michał</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_2.html">Tóth Gergő</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2014</td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_179.html">Nykl Ondřej</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_3.html">Dupszki Rudolf</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_2.html">Tóth Gergő</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_558.html">Tamioła Artur</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_178.html">Nipoti Vladimir</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2015</td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_3.html">Dupszki Rudolf</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_2.html">Tóth Gergő</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_178.html">Nipoti Vladimir</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_201.html">Muzika Martin</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2016</td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_3.html">Dupszki Rudolf</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_2.html">Tóth Gergő</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_178.html">Nipoti Vladimir</a>
+                  </td>
+                  <td>
+                    <img src="flag/TPE.svg" class="flag" alt="TPE" />
+                    <a href="player_423.html">Chen Ko-Han</a>
+                  </td>
+                  <td>
+                    <img src="flag/POL.svg" class="flag" alt="POL" />
+                    <a href="player_433.html">Fitzermann Adrian</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2017</td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_3.html">Dupszki Rudolf</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_2.html">Tóth Gergő</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_5.html">László Zoltán</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_241.html">Osipov Denis</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_201.html">Muzika Martin</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2018</td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_5.html">László Zoltán</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_3.html">Dupszki Rudolf</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_2.html">Tóth Gergő</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_241.html">Osipov Denis</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_201.html">Muzika Martin</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2019</td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_5.html">László Zoltán</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_3.html">Dupszki Rudolf</a>
+                  </td>
+                  <td>
+                    <img src="flag/CZE.svg" class="flag" alt="CZE" />
+                    <a href="player_201.html">Muzika Martin</a>
+                  </td>
+                  <td>
+                    <img src="flag/HUN.svg" class="flag" alt="HUN" />
+                    <a href="player_2.html">Tóth Gergő</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_636.html">Tarannikov Yuriy</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="num">2020</td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_636.html">Tarannikov Yuriy</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_103.html">Muratov Ilya</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_774.html">Lebedev Alexey</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_715.html">Yanov Artem</a>
+                  </td>
+                  <td>
+                    <img src="flag/RUS.svg" class="flag" alt="RUS" />
+                    <a href="player_770.html">Gorbachev Dmitriy</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <p><b>Note:</b> This table only contains players with <b>Gy1</b>&gt;0.</p>
+          </div>
+        </div>
+        <div class="clear" />
+      </div>
+      <div id="footer">
+        <p>Theme based on <a href="http://templated.co/genericblue">GenericBlue</a> designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+      </div>
+    </div>
+  </body>
+</html>
