@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html_gomoku xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="keywords" content="Gomoku, Gomoku rating, whole-history rating, WHR" />
+    <meta name="description" content="Whole-history rating of Gomoku players" />
+    <meta name="author" content="Tianyi Hao" />
+    <meta name="copyright" content="2024 Gomoku Rating" />
+    <title>Balázsi Janka, Hungary - Gomoku Rating</title>
+    <script>
+        if (window.location.protocol != "file:") {
+            var _hmt = _hmt || [];
+            (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?cb525b0b0c34b96320b743cdf90a90c3";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+    <script>
+        if (window.location.protocol != "file:") {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-173435487-1', 'auto');
+            ga('send', 'pageview');
+        }
+    </script>
+    <link href="css/default.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="outer">
+      <div id="header"></div>
+      <div id="menu">
+        <ul>
+          <li class="first">
+            <a href="index.html">Home page</a>
+          </li>
+          <li>
+            <a href="players.html">Players</a>
+          </li>
+          <li>
+            <a href="tournaments.html">Tournaments</a>
+          </li>
+          <li>
+            <a href="top.html">History of Top players</a>
+          </li>
+          <li>
+            <a href="top_women.html">History of Top Women</a>
+          </li>
+          <li>
+            <a href="https://rating.renju.net/">Renju</a>
+          </li>
+        </ul>
+      </div>
+      <div id="content">
+        <div id="primaryContentContainer">
+          <div id="primaryContent">
+            <link href="css/nv.d3.css" rel="stylesheet" type="text/css">
+            <h1> Balázsi Janka</h1>
+            <p><b>Place:</b> ?, Hungary</p>
+            <p><b>Rating:</b> 1896.91, <b>Std:</b> 86.83, <b>Rank:</b> 111</p>
+            <p><b>First game:</b> 2022-05-28, <b>Last game:</b> 2024-03-09</p>
+            <p><b>Top rating:</b> 1896.91 (2024-03-09)</p>
+            <p><b>Games:</b> 36, <b>Wins:</b> 14, <b>Draws:</b> 0, <b>Losses:</b> 22</p>
+            <p><b>Gy1:</b> 15, <b>Gy2:</b> 36, <b>Gy5:</b> 36</p>
+            <div id="chart1"></div>
+            <table>
+              <tbody>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_3123.html">Hungarian Spring Gomoku Tournament</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2024-03-09</td>
+                  <th class="second">Rating</th>
+                  <td class="num">1896.91</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/161044/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_170156.html" class="female" title="">Vécsei Anna</a>
+                  </td>
+                  <td class="num">1825.10</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/161050/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_170121.html" class="female" title="">Bekő Virág</a>
+                  </td>
+                  <td class="num">2321.08</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/161070/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_170154.html" title="">Szabó Gábor</a>
+                  </td>
+                  <td class="num">1901.12</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/161085/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_102090.html" class="female" title="">Evelyn Li Han</a>
+                  </td>
+                  <td class="num">1685.91</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/161099/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_170098.html" title="">Kamarás Csaba</a>
+                  </td>
+                  <td class="num">1828.05</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/161112/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_170100.html" class="female" title="">Kamarás Krisztina</a>
+                  </td>
+                  <td class="num">1731.24</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/161122/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150204.html" title="">Horák Jakub</a>
+                  </td>
+                  <td class="num">2410.96</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/161143/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_170153.html" title="">Molnár József</a>
+                  </td>
+                  <td class="num">1780.00</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2943.html">Brnocup 2023</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2023-05-13</td>
+                  <th class="second">Rating</th>
+                  <td class="num">1874.07</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/148551/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150119.html" title="">Tesařík Štěpán</a>
+                  </td>
+                  <td class="num">2496.11</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/148577/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_990055.html" title="">Baník Matej</a>
+                  </td>
+                  <td class="num">1934.98</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/148595/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150252.html" title="">Bilka Hugo</a>
+                  </td>
+                  <td class="num">1865.66</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/148607/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150244.html" title="">Xia Patrik</a>
+                  </td>
+                  <td class="num">1601.40</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/148943/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_990054.html" title="">Belan Andrej</a>
+                  </td>
+                  <td class="num">1989.39</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/149104/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150255.html" class="female" title="">Melicharová Ester</a>
+                  </td>
+                  <td class="num">1434.45</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/149131/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_170098.html" title="">Kamarás Csaba</a>
+                  </td>
+                  <td class="num">1792.18</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2912.html">Hungarian Spring Gomoku Tournament</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2023-03-11</td>
+                  <th class="second">Rating</th>
+                  <td class="num">1872.39</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/146259/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_990037.html" title="">Eged Igor</a>
+                  </td>
+                  <td class="num">2392.07</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/146265/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150231.html" title="">Fojtík Jakub</a>
+                  </td>
+                  <td class="num">2118.11</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/146297/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150229.html" title="">Holub Matěj</a>
+                  </td>
+                  <td class="num">2254.91</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/146301/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_170095.html" title="">Volman Ferenc</a>
+                  </td>
+                  <td class="num">1905.64</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/146322/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_170104.html" title="">Gyenei Manó</a>
+                  </td>
+                  <td class="num">1575.88</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/146324/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150250.html" title="">Kerekeš Pavel</a>
+                  </td>
+                  <td class="num">2139.19</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/146342/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_170098.html" title="">Kamarás Csaba</a>
+                  </td>
+                  <td class="num">1788.44</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2879.html">Deskohraní 2022</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2022-10-23</td>
+                  <th class="second">Rating</th>
+                  <td class="num">1873.19</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/122379/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150188.html" title="">Souček Lukáš</a>
+                  </td>
+                  <td class="num">2420.90</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/122394/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160010.html" title="">Małowiejski Piotr</a>
+                  </td>
+                  <td class="num">2235.61</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/122423/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_170100.html" class="female" title="">Kamarás Krisztina</a>
+                  </td>
+                  <td class="num">1756.43</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/122430/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_170098.html" title="">Kamarás Csaba</a>
+                  </td>
+                  <td class="num">1782.82</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/122516/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150118.html" title="">Purkrábek Jan</a>
+                  </td>
+                  <td class="num">2182.56</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/122498/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_170120.html" class="female" title="">Almási Evelin</a>
+                  </td>
+                  <td class="num">1823.64</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/122508/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_090073.html" class="female" title="">Mirme Madli</a>
+                  </td>
+                  <td class="num">2021.19</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2874.html">Brnocup 2022</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2022-05-28</td>
+                  <th class="second">Rating</th>
+                  <td class="num">1890.03</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/122159/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150236.html" title="">Passini Paolo</a>
+                  </td>
+                  <td class="num">1833.81</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/122172/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_170023.html" title="">Tóth Gergő</a>
+                  </td>
+                  <td class="num">2621.44</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/122189/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150180.html" title="">Žižka Petr</a>
+                  </td>
+                  <td class="num">2408.60</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/122212/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_990051.html" title="">Magyar Peter</a>
+                  </td>
+                  <td class="num">2175.57</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/122225/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_990037.html" title="">Eged Igor</a>
+                  </td>
+                  <td class="num">2410.17</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/122253/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150235.html" title="">Kundrata Matyáš</a>
+                  </td>
+                  <td class="num">1845.28</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/122268/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_170112.html" title="">Sonkoly Zoltán</a>
+                  </td>
+                  <td class="num">2314.38</td>
+                </tr>
+              </tbody>
+            </table>
+            <script src="js/d3.min.js" charset="utf-8"></script>
+            <script src="js/nv.d3.js"></script>
+            <script>
+    var chart;
+    var data;
+
+    nv.addGraph(function() {
+        data = Data();
+        var y_min = 1.e+9, y_max = -1.e+9;
+        for(var i = 0; i < data[0].values.length; i ++) {
+            var cur_y = data[0].values[i].y;
+            y_min = Math.min(y_min, cur_y);
+            y_max = Math.max(y_max, cur_y);
+        }
+        var y_d = 200. - (y_max - y_min);
+        if(y_d > 0.) {
+            y_max += y_d / 2.
+            y_min -= y_d / 2.
+        }
+
+        chart = nv.models.lineChart()
+            .options({
+                duration: 300,
+                useInteractiveGuideline: true
+            })
+        ;
+
+        chart.xAxis
+            .axisLabel("Date")
+            .tickFormat(function(d) {
+          return d3.time.format('%Y-%m-%d')(new Date(d))
+		});
+
+		chart.xScale(d3.time.scale());
+
+        chart.yAxis
+            .axisLabel('Rating')
+            .tickFormat(d3.format(',.2f'))
+        ;
+
+        chart.forceY([y_min, y_max]);
+		
+		chart.showYAxis(true).showXAxis(true).showLegend(false).margin({top:20, left: 100, right:100});
+
+        d3.select('#chart1').append('svg')
+            .datum(data)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+    });
+
+    function Data() {
+        var rating = [{x: 1653696000000, y: 1890.025937}, {x: 1666483200000, y: 1873.187533}, {x: 1678492800000, y: 1872.387562}, {x: 1683936000000, y: 1874.070730}, {x: 1709942400000, y: 1896.910173}, ];
+            ;
+
+        return [
+            {
+                values: rating,
+                color: "#ff7f0e",
+            }
+        ];
+    }
+
+</script>
+          </div>
+        </div>
+        <div class="clear" />
+      </div>
+      <div id="footer">
+        <p>Theme based on <a href="http://templated.co/genericblue">GenericBlue</a> designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+      </div>
+    </div>
+  </body>
+</html_gomoku>

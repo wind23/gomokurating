@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html_gomoku xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="keywords" content="Gomoku, Gomoku rating, whole-history rating, WHR" />
+    <meta name="description" content="Whole-history rating of Gomoku players" />
+    <meta name="author" content="Tianyi Hao" />
+    <meta name="copyright" content="2024 Gomoku Rating" />
+    <title>Soosõrv Ants, Estonia - Gomoku Rating</title>
+    <script>
+        if (window.location.protocol != "file:") {
+            var _hmt = _hmt || [];
+            (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?cb525b0b0c34b96320b743cdf90a90c3";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+    <script>
+        if (window.location.protocol != "file:") {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-173435487-1', 'auto');
+            ga('send', 'pageview');
+        }
+    </script>
+    <link href="css/default.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="outer">
+      <div id="header"></div>
+      <div id="menu">
+        <ul>
+          <li class="first">
+            <a href="index.html">Home page</a>
+          </li>
+          <li>
+            <a href="players.html">Players</a>
+          </li>
+          <li>
+            <a href="tournaments.html">Tournaments</a>
+          </li>
+          <li>
+            <a href="top.html">History of Top players</a>
+          </li>
+          <li>
+            <a href="top_women.html">History of Top Women</a>
+          </li>
+          <li>
+            <a href="https://rating.renju.net/">Renju</a>
+          </li>
+        </ul>
+      </div>
+      <div id="content">
+        <div id="primaryContentContainer">
+          <div id="primaryContent">
+            <link href="css/nv.d3.css" rel="stylesheet" type="text/css">
+            <h1> Soosõrv Ants</h1>
+            <p><b>Place:</b> Tallinn, Estonia</p>
+            <p><b>Rating:</b> 2455.96, <b>Std:</b> 193.53, <b>Rank:</b> -</p>
+            <p><b>First game:</b> 2007-03-17, <b>Last game:</b> 2018-10-20</p>
+            <p><b>Top rating:</b> 2455.96 (2018-10-20)</p>
+            <p><b>Games:</b> 52, <b>Wins:</b> 37, <b>Draws:</b> 3, <b>Losses:</b> 12</p>
+            <p><b>Gy1:</b> 0, <b>Gy2:</b> 0, <b>Gy5:</b> 0</p>
+            <div id="chart1"></div>
+            <table>
+              <tbody>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2845.html">Estonian Championship of Rapid Gomoku</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2018-10-20</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2455.96</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/120530/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090193.html" title="">Lääne Rauno</a>
+                  </td>
+                  <td class="num">2017.77</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/120536/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090132.html" class="female" title="">Kolk Mari</a>
+                  </td>
+                  <td class="num">1956.08</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/120544/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090121.html" title="">Piik Sander</a>
+                  </td>
+                  <td class="num">2063.83</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/120557/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2366.24</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/120560/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090127.html" title="">Moor Karl-Mattias</a>
+                  </td>
+                  <td class="num">1996.46</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/120571/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090156.html" title="">Raag Ardi</a>
+                  </td>
+                  <td class="num">2073.53</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/120574/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_050043.html" title="">Riherts Matiss</a>
+                  </td>
+                  <td class="num">2312.49</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2049.html">World Team Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2018-08-17</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2455.64</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119848/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150118.html" title="">Purkrábek Jan</a>
+                  </td>
+                  <td class="num">2211.09</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119863/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020729.html" title="">Bogatyrev Aleksandr</a>
+                  </td>
+                  <td class="num">2168.94</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119883/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020682.html" title="Денис Федотов">Fedotov Denis</a>
+                  </td>
+                  <td class="num">2306.91</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2820.html">Tallinn Open</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2017-12-29</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2443.26</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/118906/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090180.html" title="">Jakobsoo Kaspar</a>
+                  </td>
+                  <td class="num">1668.58</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/118912/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_090049.html" title="">Purk Tauri</a>
+                  </td>
+                  <td class="num">2336.15</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/118920/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090116.html" title="">Kolk Kuno</a>
+                  </td>
+                  <td class="num">2250.10</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2788.html">Tallinn Open</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2015-12-29</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2425.25</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/116937/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_090116.html" title="">Kolk Kuno</a>
+                  </td>
+                  <td class="num">2288.35</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116942/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090157.html" title="">Kõlar Karl-Ustav</a>
+                  </td>
+                  <td class="num">2049.86</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116953/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090156.html" title="">Raag Ardi</a>
+                  </td>
+                  <td class="num">2017.61</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2771.html">Tallinn Open</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2014-12-28</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2416.15</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116165/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090178.html" title="">Narva Jaan Oskar</a>
+                  </td>
+                  <td class="num">1771.54</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2767.html">Estonian Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2014-10-21</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2414.34</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115899/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090136.html" class="female" title="">Reimand Hanna-Kai</a>
+                  </td>
+                  <td class="num">1920.35</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/115922/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_090122.html" class="female" title="">Tiivel Tuuli</a>
+                  </td>
+                  <td class="num">2061.80</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115923/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090085.html" title="">Lillemaa Argo</a>
+                  </td>
+                  <td class="num">2079.14</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115947/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090135.html" title="">Ikla Markus</a>
+                  </td>
+                  <td class="num">2106.31</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115961/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090116.html" title="">Kolk Kuno</a>
+                  </td>
+                  <td class="num">2265.11</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115973/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090082.html" title="">Olumets Erko</a>
+                  </td>
+                  <td class="num">2040.94</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115987/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090121.html" title="">Piik Sander</a>
+                  </td>
+                  <td class="num">1940.21</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_628.html">Tallinn Gomoku Open</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2009-12-29</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2314.53</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/112270/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_090077.html" title="">Salula Ain</a>
+                  </td>
+                  <td class="num">2138.26</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/112275/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090112.html" title="">Raid Eric</a>
+                  </td>
+                  <td class="num">1631.50</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/112278/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_090049.html" title="">Purk Tauri</a>
+                  </td>
+                  <td class="num">2292.61</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/112285/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090111.html" title="">Raid Dennis</a>
+                  </td>
+                  <td class="num">1769.64</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/112289/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020303.html" title="Владимир Сушков">Sushkov Vladimir</a>
+                  </td>
+                  <td class="num">2526.78</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/112291/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090085.html" title="">Lillemaa Argo</a>
+                  </td>
+                  <td class="num">2015.58</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/112294/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090082.html" title="">Olumets Erko</a>
+                  </td>
+                  <td class="num">1945.89</td>
+                </tr>
+                <tr>
+                  <td class="num">ET1</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/112299/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_090049.html" title="">Purk Tauri</a>
+                  </td>
+                  <td class="num">2292.61</td>
+                </tr>
+                <tr>
+                  <td class="num">ET2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/112300/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090077.html" title="">Salula Ain</a>
+                  </td>
+                  <td class="num">2138.26</td>
+                </tr>
+                <tr>
+                  <td class="num">ET3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/112302/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020303.html" title="Владимир Сушков">Sushkov Vladimir</a>
+                  </td>
+                  <td class="num">2526.78</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2695.html">Czech Open 2007</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2007-07-14</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2341.34</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110123/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150117.html" title="">Tichy Jaroslav</a>
+                  </td>
+                  <td class="num">1500.35</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110142/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2444.82</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110166/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150084.html" title="">Vrzal Martin</a>
+                  </td>
+                  <td class="num">1807.17</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110186/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020497.html" title="">Kryuchok Roman</a>
+                  </td>
+                  <td class="num">2092.57</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110207/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020004.html" title="Константин Никонов">Nikonov Konstantin</a>
+                  </td>
+                  <td class="num">2356.80</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110232/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150077.html" title="">Krček Břetislav</a>
+                  </td>
+                  <td class="num">2189.24</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110254/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020261.html" class="female" title="Ирина Метревели">Metreveli Irina</a>
+                  </td>
+                  <td class="num">2302.68</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110272/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150113.html" title="">Nipoti Vladimir</a>
+                  </td>
+                  <td class="num">2451.43</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110297/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150005.html" title="">Rejšek Jan</a>
+                  </td>
+                  <td class="num">2238.37</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2691.html">14th Polish Gomoku Open</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2007-03-17</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2343.48</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109777/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_030007.html" title="">Jonsson Peter</a>
+                  </td>
+                  <td class="num">2151.24</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109781/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2421.13</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109794/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160079.html" title="">Nowak Paweł</a>
+                  </td>
+                  <td class="num">2357.29</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109803/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_030081.html" title="">Eriksson Marcus</a>
+                  </td>
+                  <td class="num">2222.90</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109812/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160112.html" title="">Majczyk Marcin</a>
+                  </td>
+                  <td class="num">2268.11</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109823/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160037.html" title="">Nowakowski Maciej</a>
+                  </td>
+                  <td class="num">2510.08</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109829/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160129.html" title="">Zajk Radosław</a>
+                  </td>
+                  <td class="num">2200.45</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109839/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160119.html" title="">Zajk Michał</a>
+                  </td>
+                  <td class="num">2391.00</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109844/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160006.html" title="">Gorzecki Marek</a>
+                  </td>
+                  <td class="num">2270.75</td>
+                </tr>
+              </tbody>
+            </table>
+            <script src="js/d3.min.js" charset="utf-8"></script>
+            <script src="js/nv.d3.js"></script>
+            <script>
+    var chart;
+    var data;
+
+    nv.addGraph(function() {
+        data = Data();
+        var y_min = 1.e+9, y_max = -1.e+9;
+        for(var i = 0; i < data[0].values.length; i ++) {
+            var cur_y = data[0].values[i].y;
+            y_min = Math.min(y_min, cur_y);
+            y_max = Math.max(y_max, cur_y);
+        }
+        var y_d = 200. - (y_max - y_min);
+        if(y_d > 0.) {
+            y_max += y_d / 2.
+            y_min -= y_d / 2.
+        }
+
+        chart = nv.models.lineChart()
+            .options({
+                duration: 300,
+                useInteractiveGuideline: true
+            })
+        ;
+
+        chart.xAxis
+            .axisLabel("Date")
+            .tickFormat(function(d) {
+          return d3.time.format('%Y-%m-%d')(new Date(d))
+		});
+
+		chart.xScale(d3.time.scale());
+
+        chart.yAxis
+            .axisLabel('Rating')
+            .tickFormat(d3.format(',.2f'))
+        ;
+
+        chart.forceY([y_min, y_max]);
+		
+		chart.showYAxis(true).showXAxis(true).showLegend(false).margin({top:20, left: 100, right:100});
+
+        d3.select('#chart1').append('svg')
+            .datum(data)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+    });
+
+    function Data() {
+        var rating = [{x: 1174089600000, y: 2343.476792}, {x: 1184371200000, y: 2341.339204}, {x: 1262044800000, y: 2314.530392}, {x: 1413849600000, y: 2414.342202}, {x: 1419724800000, y: 2416.153641}, {x: 1451347200000, y: 2425.254523}, {x: 1514505600000, y: 2443.256926}, {x: 1534464000000, y: 2455.644384}, {x: 1539993600000, y: 2455.959849}, ];
+            ;
+
+        return [
+            {
+                values: rating,
+                color: "#ff7f0e",
+            }
+        ];
+    }
+
+</script>
+          </div>
+        </div>
+        <div class="clear" />
+      </div>
+      <div id="footer">
+        <p>Theme based on <a href="http://templated.co/genericblue">GenericBlue</a> designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+      </div>
+    </div>
+  </body>
+</html_gomoku>

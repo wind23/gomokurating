@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html_gomoku xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="keywords" content="Gomoku, Gomoku rating, whole-history rating, WHR" />
+    <meta name="description" content="Whole-history rating of Gomoku players" />
+    <meta name="author" content="Tianyi Hao" />
+    <meta name="copyright" content="2024 Gomoku Rating" />
+    <title>Whole History Rating (WHR) of All Gomoku Players in China (2023-12-31) - Gomoku Rating</title>
+    <script>
+        if (window.location.protocol != "file:") {
+            var _hmt = _hmt || [];
+            (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?cb525b0b0c34b96320b743cdf90a90c3";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+    <script>
+        if (window.location.protocol != "file:") {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-173435487-1', 'auto');
+            ga('send', 'pageview');
+        }
+    </script>
+    <link href="css/default.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="outer">
+      <div id="header"></div>
+      <div id="menu">
+        <ul>
+          <li class="first">
+            <a href="index.html">Home page</a>
+          </li>
+          <li>
+            <a href="players.html">Players</a>
+          </li>
+          <li>
+            <a href="tournaments.html">Tournaments</a>
+          </li>
+          <li>
+            <a href="top.html">History of Top players</a>
+          </li>
+          <li>
+            <a href="top_women.html">History of Top Women</a>
+          </li>
+          <li>
+            <a href="https://rating.renju.net/">Renju</a>
+          </li>
+        </ul>
+      </div>
+      <div id="content">
+        <div id="primaryContentContainer">
+          <div id="primaryContent">
+            <h1>Whole History Rating (WHR) of All Gomoku Players in China (2023-12-31)</h1>
+            <p><b>Last update:</b> 2024-03-27, <b>Players:</b> 983, <b>Games:</b> 15338</p>
+            <p><b>Note:</b> This rating is calculated based on the <a href="https://www.remi-coulom.fr/WHR/">WHR algorithm</a> by Rémi Coulom, a similar approach as the <a href="https://www.goratings.org/en/">Go Ratings</a>. The core algorithm is based on the <a href="https://github.com/wind23/whr_renju">open-source code</a> on Github.</p>
+            <p><b>History ratings: </b><select onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);"><option value="rating_all_c5.html">Current</option><option value="rating_all_c5_20231231.html" selected="selected">2023</option><option value="rating_all_c5_20221231.html">2022</option><option value="rating_all_c5_20211231.html">2021</option><option value="rating_all_c5_20201231.html">2020</option><option value="rating_all_c5_20191231.html">2019</option><option value="rating_all_c5_20181231.html">2018</option><option value="rating_all_c5_20171231.html">2017</option><option value="rating_all_c5_20161231.html">2016</option><option value="rating_all_c5_20151231.html">2015</option><option value="rating_all_c5_20141231.html">2014</option><option value="rating_all_c5_20131231.html">2013</option><option value="rating_all_c5_20121231.html">2012</option><option value="rating_all_c5_20111231.html">2011</option><option value="rating_all_c5_20101231.html">2010</option><option value="rating_all_c5_20091231.html">2009</option><option value="rating_all_c5_20081231.html">2008</option><option value="rating_all_c5_20071231.html">2007</option><option value="rating_all_c5_20061231.html">2006</option><option value="rating_all_c5_20051231.html">2005</option><option value="rating_all_c5_20041231.html">2004</option></select>&nbsp;&nbsp;&nbsp;&nbsp;<b>Country/Region: </b><select onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);"><option value="rating_all_20231231.html">All</option><option value="rating_all_c12_20231231.html">Armenia</option><option value="rating_all_c5_20231231.html" selected="selected">China</option><option value="rating_all_c8_20231231.html">Chinese Taipei</option><option value="rating_all_c16_20231231.html">Czechia</option><option value="rating_all_c1_20231231.html">Estonia</option><option value="rating_all_c3_20231231.html">Finland</option><option value="rating_all_c44_20231231.html">Greece</option><option value="rating_all_c10_20231231.html">Hungary</option><option value="rating_all_c30_20231231.html">Italy</option><option value="rating_all_c4_20231231.html">Japan</option><option value="rating_all_c17_20231231.html">Latvia</option><option value="rating_all_c22_20231231.html">Norway</option><option value="rating_all_c9_20231231.html">Poland</option><option value="rating_all_c6_20231231.html">Republic of Korea</option><option value="rating_all_c2_20231231.html">Russian Renju Association</option><option value="rating_all_c32_20231231.html">Slovakia</option><option value="rating_all_c7_20231231.html">Sweden</option><option value="rating_all_c41_20231231.html">Türkiye</option><option value="rating_all_c14_20231231.html">Ukraine</option><option value="rating_all_c28_20231231.html">Vietnam</option></select>&nbsp;&nbsp;&nbsp;&nbsp;<b>Active/All players: </b><select onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);"><option value="rating_c5_20231231.html">Active</option><option value="rating_gy1_c5_20231231.html">Gy1≥10</option><option value="rating_all_c5_20231231.html" selected="selected">All</option></select></p>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Rank</th>
+                  <th>Player</th>
+                  <th>Rating</th>
+                  <th>±</th>
+                  <th>Gy1</th>
+                  <th>Gy2</th>
+                  <th>Gy5</th>
+                  <th>Country/Region</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>
+                    <a href="player_100730.html" class="female" title="邱彧瑾">Qiu Yujin</a>
+                  </td>
+                  <td class="num">2475</td>
+                  <td class="graynum">218</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>
+                    <a href="player_100040.html" title="侯军">Hou Jun</a>
+                  </td>
+                  <td class="num">2341</td>
+                  <td class="graynum">152</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>
+                    <a href="player_100515.html" title="杨彬">Yang Bin</a>
+                  </td>
+                  <td class="num">2329</td>
+                  <td class="graynum">155</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>
+                    <a href="player_101486.html" title="刘相伯">Liu Xiangbo</a>
+                  </td>
+                  <td class="num">2309</td>
+                  <td class="graynum">157</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>
+                    <a href="player_100072.html" title="兰洋">Lan Yang</a>
+                  </td>
+                  <td class="num">2303</td>
+                  <td class="graynum">157</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>
+                    <a href="player_100942.html" title="张修齐">Zhang Xiuqi</a>
+                  </td>
+                  <td class="num">2271</td>
+                  <td class="graynum">204</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>
+                    <a href="player_100601.html" title="朱天逸">Zhu Tianyi</a>
+                  </td>
+                  <td class="num">2216</td>
+                  <td class="graynum">137</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>
+                    <a href="player_100941.html" title="康哲铭">Kang Zheming</a>
+                  </td>
+                  <td class="num">2194</td>
+                  <td class="graynum">196</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>
+                    <a href="player_101838.html" title="唐希鲲">Tang Xikun</a>
+                  </td>
+                  <td class="num">2193</td>
+                  <td class="graynum">141</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">10</td>
+                  <td>
+                    <a href="player_100947.html" class="female" title="郑雯馨">Zheng Wenxin</a>
+                  </td>
+                  <td class="num">2188</td>
+                  <td class="graynum">202</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">11</td>
+                  <td>
+                    <a href="player_100945.html" title="张俊宇">Zhang Junyu</a>
+                  </td>
+                  <td class="num">2188</td>
+                  <td class="graynum">198</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">12</td>
+                  <td>
+                    <a href="player_101683.html" title="杨学睿">Yang Xuerui</a>
+                  </td>
+                  <td class="num">2151</td>
+                  <td class="graynum">137</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">13</td>
+                  <td>
+                    <a href="player_101839.html" title="朱烨罡">Zhu Yegang</a>
+                  </td>
+                  <td class="num">2150</td>
+                  <td class="graynum">139</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">14</td>
+                  <td>
+                    <a href="player_100442.html" class="female" title="汪清清">Wang Qingqing</a>
+                  </td>
+                  <td class="num">2143</td>
+                  <td class="graynum">224</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">15</td>
+                  <td>
+                    <a href="player_101681.html" class="female" title="马蓁怡">Ma Zhenyi</a>
+                  </td>
+                  <td class="num">2136</td>
+                  <td class="graynum">143</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">16</td>
+                  <td>
+                    <a href="player_100732.html" title="康庭瑞">Kang Tingrui</a>
+                  </td>
+                  <td class="num">2131</td>
+                  <td class="graynum">198</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">17</td>
+                  <td>
+                    <a href="player_100944.html" class="female" title="王珂苗">Wang Kemiao</a>
+                  </td>
+                  <td class="num">2130</td>
+                  <td class="graynum">201</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">18</td>
+                  <td>
+                    <a href="player_101546.html" title="孙崇杰">Sun Chongjie</a>
+                  </td>
+                  <td class="num">2122</td>
+                  <td class="graynum">140</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">19</td>
+                  <td>
+                    <a href="player_101836.html" title="唐子钦">Tang Ziqin</a>
+                  </td>
+                  <td class="num">2092</td>
+                  <td class="graynum">141</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">20</td>
+                  <td>
+                    <a href="player_100949.html" title="毛玮铭">Mao Weiming</a>
+                  </td>
+                  <td class="num">2087</td>
+                  <td class="graynum">198</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">21</td>
+                  <td>
+                    <a href="player_100943.html" title="赵云">Zhao Yun</a>
+                  </td>
+                  <td class="num">2081</td>
+                  <td class="graynum">197</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">22</td>
+                  <td>
+                    <a href="player_101490.html" class="female" title="兰昕蕾">Lan Xinlei</a>
+                  </td>
+                  <td class="num">2061</td>
+                  <td class="graynum">141</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">23</td>
+                  <td>
+                    <a href="player_101684.html" title="周泽群">Zhou Zequn</a>
+                  </td>
+                  <td class="num">2048</td>
+                  <td class="graynum">132</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">24</td>
+                  <td>
+                    <a href="player_101487.html" title="郑伟">Zheng Wei</a>
+                  </td>
+                  <td class="num">2033</td>
+                  <td class="graynum">132</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">25</td>
+                  <td>
+                    <a href="player_100948.html" class="female" title="张云舒">Zhang Yunshu</a>
+                  </td>
+                  <td class="num">2001</td>
+                  <td class="graynum">193</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">26</td>
+                  <td>
+                    <a href="player_100946.html" class="female" title="徐熙澄">Xu Xicheng</a>
+                  </td>
+                  <td class="num">1997</td>
+                  <td class="graynum">201</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">27</td>
+                  <td>
+                    <a href="player_100820.html" title="范诗豪">Fan Shihao</a>
+                  </td>
+                  <td class="num">1996</td>
+                  <td class="graynum">221</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">28</td>
+                  <td>
+                    <a href="player_101686.html" class="female" title="徐夕雅">Xu Xiya</a>
+                  </td>
+                  <td class="num">1991</td>
+                  <td class="graynum">134</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">29</td>
+                  <td>
+                    <a href="player_100853.html" title="詹力洋">Zhan Liyang</a>
+                  </td>
+                  <td class="num">1986</td>
+                  <td class="graynum">196</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">30</td>
+                  <td>
+                    <a href="player_101840.html" class="female" title="宋雨萌">Song Yumeng</a>
+                  </td>
+                  <td class="num">1977</td>
+                  <td class="graynum">138</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">31</td>
+                  <td>
+                    <a href="player_101841.html" title="丛俊哲">Cong Junzhe</a>
+                  </td>
+                  <td class="num">1963</td>
+                  <td class="graynum">130</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">32</td>
+                  <td>
+                    <a href="player_100952.html" title="项义诚">Xiang Yicheng</a>
+                  </td>
+                  <td class="num">1957</td>
+                  <td class="graynum">197</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">33</td>
+                  <td>
+                    <a href="player_100207.html" title="黄修一">Huang Xiuyi</a>
+                  </td>
+                  <td class="num">1952</td>
+                  <td class="graynum">217</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">34</td>
+                  <td>
+                    <a href="player_101678.html" title="李泽勖">Li Zexu</a>
+                  </td>
+                  <td class="num">1952</td>
+                  <td class="graynum">131</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">35</td>
+                  <td>
+                    <a href="player_101842.html" title="李翔">Li Xiang</a>
+                  </td>
+                  <td class="num">1930</td>
+                  <td class="graynum">130</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">36</td>
+                  <td>
+                    <a href="player_101843.html" title="徐佳乐">Xu Jiale</a>
+                  </td>
+                  <td class="num">1926</td>
+                  <td class="graynum">130</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">37</td>
+                  <td>
+                    <a href="player_100888.html" class="female" title="朱佳颐">Zhu Jiayi</a>
+                  </td>
+                  <td class="num">1925</td>
+                  <td class="graynum">195</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">38</td>
+                  <td>
+                    <a href="player_101844.html" title="车旭澄">Che Xucheng</a>
+                  </td>
+                  <td class="num">1923</td>
+                  <td class="graynum">131</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">39</td>
+                  <td>
+                    <a href="player_101698.html" class="female" title="相雨萌">Xiang Yumeng</a>
+                  </td>
+                  <td class="num">1919</td>
+                  <td class="graynum">130</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">40</td>
+                  <td>
+                    <a href="player_101845.html" title="刘岳铭">Liu Yueming</a>
+                  </td>
+                  <td class="num">1917</td>
+                  <td class="graynum">123</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">41</td>
+                  <td>
+                    <a href="player_100953.html" title="章景波">Zhang Jingbo</a>
+                  </td>
+                  <td class="num">1917</td>
+                  <td class="graynum">197</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">42</td>
+                  <td>
+                    <a href="player_101700.html" class="female" title="董灵渲">Dong Lingxuan</a>
+                  </td>
+                  <td class="num">1912</td>
+                  <td class="graynum">132</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">43</td>
+                  <td>
+                    <a href="player_101290.html" title="李承锋">Li Chengfeng</a>
+                  </td>
+                  <td class="num">1911</td>
+                  <td class="graynum">132</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">44</td>
+                  <td>
+                    <a href="player_100951.html" title="韩奕铭">Han Yiming</a>
+                  </td>
+                  <td class="num">1909</td>
+                  <td class="graynum">193</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">45</td>
+                  <td>
+                    <a href="player_101846.html" title="周锦涵">Zhou Jinhan</a>
+                  </td>
+                  <td class="num">1881</td>
+                  <td class="graynum">125</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">46</td>
+                  <td>
+                    <a href="player_100950.html" class="female" title="王嘉一">Wang Jiayi</a>
+                  </td>
+                  <td class="num">1868</td>
+                  <td class="graynum">202</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">47</td>
+                  <td>
+                    <a href="player_101847.html" title="朱子千">Zhu Ziqian</a>
+                  </td>
+                  <td class="num">1862</td>
+                  <td class="graynum">130</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">48</td>
+                  <td>
+                    <a href="player_101489.html" class="female" title="侯琦萱">Hou Qixuan</a>
+                  </td>
+                  <td class="num">1860</td>
+                  <td class="graynum">133</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">49</td>
+                  <td>
+                    <a href="player_101848.html" class="female" title="钟金玉">Zhong Jinyu</a>
+                  </td>
+                  <td class="num">1855</td>
+                  <td class="graynum">134</td>
+                  <td class="num">6</td>
+                  <td class="num">6</td>
+                  <td class="num">6</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">50</td>
+                  <td>
+                    <a href="player_101679.html" title="张渝杨">Zhang Yuyang</a>
+                  </td>
+                  <td class="num">1848</td>
+                  <td class="graynum">133</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">51</td>
+                  <td>
+                    <a href="player_101849.html" title="张伟业">Zhang Weiye</a>
+                  </td>
+                  <td class="num">1843</td>
+                  <td class="graynum">132</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">52</td>
+                  <td>
+                    <a href="player_101694.html" title="邓博骏">Deng Bojun</a>
+                  </td>
+                  <td class="num">1836</td>
+                  <td class="graynum">133</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">53</td>
+                  <td>
+                    <a href="player_101685.html" class="female" title="蒋晓雯">Jiang Xiaowen</a>
+                  </td>
+                  <td class="num">1834</td>
+                  <td class="graynum">128</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">54</td>
+                  <td>
+                    <a href="player_101850.html" title="胡芝淼">Hu Zhimiao</a>
+                  </td>
+                  <td class="num">1823</td>
+                  <td class="graynum">175</td>
+                  <td class="num">3</td>
+                  <td class="num">3</td>
+                  <td class="num">3</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">55</td>
+                  <td>
+                    <a href="player_101851.html" title="王以勒">Wang Yile</a>
+                  </td>
+                  <td class="num">1816</td>
+                  <td class="graynum">125</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">56</td>
+                  <td>
+                    <a href="player_101852.html" title="韦逸宸">Wei Yichen</a>
+                  </td>
+                  <td class="num">1810</td>
+                  <td class="graynum">129</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">57</td>
+                  <td>
+                    <a href="player_101853.html" class="female" title="邱诗晨">Qiu Shichen</a>
+                  </td>
+                  <td class="num">1806</td>
+                  <td class="graynum">127</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">58</td>
+                  <td>
+                    <a href="player_101854.html" title="韩有原">Han Youyuan</a>
+                  </td>
+                  <td class="num">1799</td>
+                  <td class="graynum">124</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">59</td>
+                  <td>
+                    <a href="player_101855.html" class="female" title="王秀贤">Wang Xiuxian</a>
+                  </td>
+                  <td class="num">1772</td>
+                  <td class="graynum">134</td>
+                  <td class="num">6</td>
+                  <td class="num">6</td>
+                  <td class="num">6</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">60</td>
+                  <td>
+                    <a href="player_101856.html" class="female" title="杨鲁汶">Yang Luwen</a>
+                  </td>
+                  <td class="num">1766</td>
+                  <td class="graynum">133</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">61</td>
+                  <td>
+                    <a href="player_101699.html" title="魏承乾">Wei Chengqian</a>
+                  </td>
+                  <td class="num">1727</td>
+                  <td class="graynum">136</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">62</td>
+                  <td>
+                    <a href="player_101857.html" class="female" title="柯扬">Ke Yang</a>
+                  </td>
+                  <td class="num">1721</td>
+                  <td class="graynum">140</td>
+                  <td class="num">6</td>
+                  <td class="num">6</td>
+                  <td class="num">6</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">63</td>
+                  <td>
+                    <a href="player_101858.html" title="张春晖">Zhang Chunhui</a>
+                  </td>
+                  <td class="num">1713</td>
+                  <td class="graynum">136</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">64</td>
+                  <td>
+                    <a href="player_101696.html" class="female" title="康宁">Kang Ning</a>
+                  </td>
+                  <td class="num">1712</td>
+                  <td class="graynum">131</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">65</td>
+                  <td>
+                    <a href="player_101859.html" class="female" title="杨咏玟">Yang Yongmin</a>
+                  </td>
+                  <td class="num">1702</td>
+                  <td class="graynum">144</td>
+                  <td class="num">6</td>
+                  <td class="num">6</td>
+                  <td class="num">6</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">66</td>
+                  <td>
+                    <a href="player_101860.html" title="赵耀">Zhao Yao</a>
+                  </td>
+                  <td class="num">1700</td>
+                  <td class="graynum">130</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">67</td>
+                  <td>
+                    <a href="player_101861.html" title="汪俊羲">Wang Junxi</a>
+                  </td>
+                  <td class="num">1685</td>
+                  <td class="graynum">134</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">68</td>
+                  <td>
+                    <a href="player_101862.html" class="female" title="顾博雅">Gu Boya</a>
+                  </td>
+                  <td class="num">1660</td>
+                  <td class="graynum">132</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">69</td>
+                  <td>
+                    <a href="player_101863.html" class="female" title="殷伊涵">Yin Yihan</a>
+                  </td>
+                  <td class="num">1654</td>
+                  <td class="graynum">137</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">70</td>
+                  <td>
+                    <a href="player_100906.html" title="">Yulin Chan</a>
+                  </td>
+                  <td class="num">1653</td>
+                  <td class="graynum">209</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">71</td>
+                  <td>
+                    <a href="player_101837.html" class="female" title="朱聃">Zhu Dan</a>
+                  </td>
+                  <td class="num">1569</td>
+                  <td class="graynum">147</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">72</td>
+                  <td>
+                    <a href="player_101864.html" title="常名昊">Chang Minghao</a>
+                  </td>
+                  <td class="num">1510</td>
+                  <td class="graynum">194</td>
+                  <td class="num">5</td>
+                  <td class="num">5</td>
+                  <td class="num">5</td>
+                  <td>China</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="clear" />
+      </div>
+      <div id="footer">
+        <p>Theme based on <a href="http://templated.co/genericblue">GenericBlue</a> designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+      </div>
+    </div>
+  </body>
+</html_gomoku>

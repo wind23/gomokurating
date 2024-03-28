@@ -1,0 +1,2901 @@
+<!DOCTYPE html>
+<html_gomoku xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="keywords" content="Gomoku, Gomoku rating, whole-history rating, WHR" />
+    <meta name="description" content="Whole-history rating of Gomoku players" />
+    <meta name="author" content="Tianyi Hao" />
+    <meta name="copyright" content="2024 Gomoku Rating" />
+    <title>Whole History Rating (WHR) of All Gomoku Players in Russian Renju Association - Gomoku Rating</title>
+    <script>
+        if (window.location.protocol != "file:") {
+            var _hmt = _hmt || [];
+            (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?cb525b0b0c34b96320b743cdf90a90c3";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+    <script>
+        if (window.location.protocol != "file:") {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-173435487-1', 'auto');
+            ga('send', 'pageview');
+        }
+    </script>
+    <link href="css/default.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="outer">
+      <div id="header"></div>
+      <div id="menu">
+        <ul>
+          <li class="first">
+            <a href="index.html">Home page</a>
+          </li>
+          <li>
+            <a href="players.html">Players</a>
+          </li>
+          <li>
+            <a href="tournaments.html">Tournaments</a>
+          </li>
+          <li>
+            <a href="top.html">History of Top players</a>
+          </li>
+          <li>
+            <a href="top_women.html">History of Top Women</a>
+          </li>
+          <li>
+            <a href="https://rating.renju.net/">Renju</a>
+          </li>
+        </ul>
+      </div>
+      <div id="content">
+        <div id="primaryContentContainer">
+          <div id="primaryContent">
+            <h1>Whole History Rating (WHR) of All Gomoku Players in Russian Renju Association</h1>
+            <p><b>Last update:</b> 2024-03-27, <b>Players:</b> 983, <b>Games:</b> 15338</p>
+            <p><b>Note:</b> This rating is calculated based on the <a href="https://www.remi-coulom.fr/WHR/">WHR algorithm</a> by Rémi Coulom, a similar approach as the <a href="https://www.goratings.org/en/">Go Ratings</a>. The core algorithm is based on the <a href="https://github.com/wind23/whr_renju">open-source code</a> on Github.</p>
+            <p><b>History ratings: </b><select onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);"><option value="rating_all_c2.html" selected="selected">Current</option><option value="rating_all_c2_20231231.html">2023</option><option value="rating_all_c2_20221231.html">2022</option><option value="rating_all_c2_20211231.html">2021</option><option value="rating_all_c2_20201231.html">2020</option><option value="rating_all_c2_20191231.html">2019</option><option value="rating_all_c2_20181231.html">2018</option><option value="rating_all_c2_20171231.html">2017</option><option value="rating_all_c2_20161231.html">2016</option><option value="rating_all_c2_20151231.html">2015</option><option value="rating_all_c2_20141231.html">2014</option><option value="rating_all_c2_20131231.html">2013</option><option value="rating_all_c2_20121231.html">2012</option><option value="rating_all_c2_20111231.html">2011</option><option value="rating_all_c2_20101231.html">2010</option><option value="rating_all_c2_20091231.html">2009</option><option value="rating_all_c2_20081231.html">2008</option><option value="rating_all_c2_20071231.html">2007</option><option value="rating_all_c2_20061231.html">2006</option><option value="rating_all_c2_20051231.html">2005</option><option value="rating_all_c2_20041231.html">2004</option></select>&nbsp;&nbsp;&nbsp;&nbsp;<b>Country/Region: </b><select onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);"><option value="rating_all.html">All</option><option value="rating_all_c12.html">Armenia</option><option value="rating_all_c5.html">China</option><option value="rating_all_c8.html">Chinese Taipei</option><option value="rating_all_c16.html">Czechia</option><option value="rating_all_c1.html">Estonia</option><option value="rating_all_c3.html">Finland</option><option value="rating_all_c44.html">Greece</option><option value="rating_all_c10.html">Hungary</option><option value="rating_all_c30.html">Italy</option><option value="rating_all_c4.html">Japan</option><option value="rating_all_c17.html">Latvia</option><option value="rating_all_c22.html">Norway</option><option value="rating_all_c9.html">Poland</option><option value="rating_all_c6.html">Republic of Korea</option><option value="rating_all_c2.html" selected="selected">Russian Renju Association</option><option value="rating_all_c32.html">Slovakia</option><option value="rating_all_c7.html">Sweden</option><option value="rating_all_c41.html">Türkiye</option><option value="rating_all_c14.html">Ukraine</option><option value="rating_all_c28.html">Vietnam</option></select>&nbsp;&nbsp;&nbsp;&nbsp;<b>Active/All players: </b><select onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);"><option value="rating_c2.html">Active</option><option value="rating_gy1_c2.html">Gy1≥10</option><option value="rating_all_c2.html" selected="selected">All</option></select></p>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Rank</th>
+                  <th>Player</th>
+                  <th>Rating</th>
+                  <th>±</th>
+                  <th>Gy1</th>
+                  <th>Gy2</th>
+                  <th>Gy5</th>
+                  <th>Country/Region</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>
+                    <a href="player_020834.html" title="">Osipov Denis</a>
+                  </td>
+                  <td class="num">2657</td>
+                  <td class="graynum">175</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>
+                    <a href="player_020223.html" title="">Tarannikov Yuriy</a>
+                  </td>
+                  <td class="num">2585</td>
+                  <td class="graynum">168</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>
+                    <a href="player_020693.html" title="Денис Качаев">Kachaev Denis</a>
+                  </td>
+                  <td class="num">2550</td>
+                  <td class="graynum">153</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>
+                    <a href="player_020757.html" title="">Kondratiev Valeriy</a>
+                  </td>
+                  <td class="num">2528</td>
+                  <td class="graynum">175</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>
+                    <a href="player_020130.html" title="Михаил Кожин">Kozhin Mikhail</a>
+                  </td>
+                  <td class="num">2518</td>
+                  <td class="graynum">147</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">34</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>
+                    <a href="player_020719.html" title="">Muratov Ilya</a>
+                  </td>
+                  <td class="num">2502</td>
+                  <td class="graynum">157</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">27</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>
+                    <a href="player_020301.html" title="Максим Карасёв">Karasyov Maxim</a>
+                  </td>
+                  <td class="num">2498</td>
+                  <td class="graynum">147</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">29</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>
+                    <a href="player_020004.html" title="Константин Никонов">Nikonov Konstantin</a>
+                  </td>
+                  <td class="num">2492</td>
+                  <td class="graynum">164</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>
+                    <a href="player_020303.html" title="Владимир Сушков">Sushkov Vladimir</a>
+                  </td>
+                  <td class="num">2486</td>
+                  <td class="graynum">230</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">10</td>
+                  <td>
+                    <a href="player_020786.html" title="Эдвард Ризванов">Rizvanov Edward</a>
+                  </td>
+                  <td class="num">2457</td>
+                  <td class="graynum">159</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">25</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">11</td>
+                  <td>
+                    <a href="player_020308.html" title="">Litvinenko Andrey</a>
+                  </td>
+                  <td class="num">2456</td>
+                  <td class="graynum">193</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">12</td>
+                  <td>
+                    <a href="player_020424.html" title="Дмитрий Епифанов">Epifanov Dmitry</a>
+                  </td>
+                  <td class="num">2446</td>
+                  <td class="graynum">189</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">13</td>
+                  <td>
+                    <a href="player_020261.html" class="female" title="Ирина Метревели">Metreveli Irina</a>
+                  </td>
+                  <td class="num">2443</td>
+                  <td class="graynum">198</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">14</td>
+                  <td>
+                    <a href="player_020676.html" title="">Kartashev Daniil</a>
+                  </td>
+                  <td class="num">2427</td>
+                  <td class="graynum">283</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">15</td>
+                  <td>
+                    <a href="player_020732.html" title="">Elizarov Pavel</a>
+                  </td>
+                  <td class="num">2408</td>
+                  <td class="graynum">230</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">16</td>
+                  <td>
+                    <a href="player_020848.html" title="Максим Лаврик-Кармазин">Lavrik-Karmazin Maksim</a>
+                  </td>
+                  <td class="num">2406</td>
+                  <td class="graynum">166</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">18</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">17</td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2393</td>
+                  <td class="graynum">94</td>
+                  <td class="num">16</td>
+                  <td class="num">24</td>
+                  <td class="num">69</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">18</td>
+                  <td>
+                    <a href="player_020805.html" title="">Ezupov Alexandr</a>
+                  </td>
+                  <td class="num">2392</td>
+                  <td class="graynum">191</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">19</td>
+                  <td>
+                    <a href="player_020149.html" title="">Lomakin Mikhail</a>
+                  </td>
+                  <td class="num">2387</td>
+                  <td class="graynum">166</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">14</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">20</td>
+                  <td>
+                    <a href="player_020394.html" title="">Berezin Roman</a>
+                  </td>
+                  <td class="num">2374</td>
+                  <td class="graynum">238</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">21</td>
+                  <td>
+                    <a href="player_020994.html" title="">Pogosov Yura</a>
+                  </td>
+                  <td class="num">2368</td>
+                  <td class="graynum">199</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">22</td>
+                  <td>
+                    <a href="player_020216.html" title="Алексей Михайлов">Mikhailov Alexey</a>
+                  </td>
+                  <td class="num">2365</td>
+                  <td class="graynum">213</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">23</td>
+                  <td>
+                    <a href="player_020370.html" title="Виктор Балабай">Balabhai Viktor</a>
+                  </td>
+                  <td class="num">2354</td>
+                  <td class="graynum">145</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">41</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">24</td>
+                  <td>
+                    <a href="player_020847.html" title="Иван Данилин">Danilin Ivan</a>
+                  </td>
+                  <td class="num">2351</td>
+                  <td class="graynum">238</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">25</td>
+                  <td>
+                    <a href="player_020363.html" title="">Potapov Alexey</a>
+                  </td>
+                  <td class="num">2350</td>
+                  <td class="graynum">259</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">26</td>
+                  <td>
+                    <a href="player_020806.html" title="">Kraubner Yuriy</a>
+                  </td>
+                  <td class="num">2322</td>
+                  <td class="graynum">192</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">27</td>
+                  <td>
+                    <a href="player_020387.html" title="">Sumarokov Evgeny</a>
+                  </td>
+                  <td class="num">2321</td>
+                  <td class="graynum">289</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">28</td>
+                  <td>
+                    <a href="player_020610.html" title="">Sviridov Andrey</a>
+                  </td>
+                  <td class="num">2313</td>
+                  <td class="graynum">234</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">29</td>
+                  <td>
+                    <a href="player_020880.html" title="">Lebedev Alexey</a>
+                  </td>
+                  <td class="num">2312</td>
+                  <td class="graynum">156</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">27</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">30</td>
+                  <td>
+                    <a href="player_020682.html" title="Денис Федотов">Fedotov Denis</a>
+                  </td>
+                  <td class="num">2309</td>
+                  <td class="graynum">178</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">6</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">31</td>
+                  <td>
+                    <a href="player_020251.html" title="Макаров Павел">Makarov Pavel</a>
+                  </td>
+                  <td class="num">2299</td>
+                  <td class="graynum">202</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">32</td>
+                  <td>
+                    <a href="player_020080.html" title="Владимир Филинов">Filinov Vladimir</a>
+                  </td>
+                  <td class="num">2294</td>
+                  <td class="graynum">229</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">33</td>
+                  <td>
+                    <a href="player_020194.html" title="">Smirnov Anatolie</a>
+                  </td>
+                  <td class="num">2283</td>
+                  <td class="graynum">176</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">34</td>
+                  <td>
+                    <a href="player_020266.html" title="Юрий Тайблин">Taiblin Yuriy</a>
+                  </td>
+                  <td class="num">2282</td>
+                  <td class="graynum">152</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">18</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">35</td>
+                  <td>
+                    <a href="player_020253.html" title="">Pushkaryov Dmitry</a>
+                  </td>
+                  <td class="num">2274</td>
+                  <td class="graynum">192</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">36</td>
+                  <td>
+                    <a href="player_020835.html" title="">Yanov Artem</a>
+                  </td>
+                  <td class="num">2246</td>
+                  <td class="graynum">159</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">37</td>
+                  <td>
+                    <a href="player_020461.html" title="">Poltaratsky Nikolay</a>
+                  </td>
+                  <td class="num">2242</td>
+                  <td class="graynum">198</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">38</td>
+                  <td>
+                    <a href="player_020878.html" title="">Gorbachev Dmitriy</a>
+                  </td>
+                  <td class="num">2235</td>
+                  <td class="graynum">162</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">39</td>
+                  <td>
+                    <a href="player_020445.html" title="">Merkulov Artyom</a>
+                  </td>
+                  <td class="num">2226</td>
+                  <td class="graynum">285</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">40</td>
+                  <td>
+                    <a href="player_020433.html" title="">Serdyukov Egor</a>
+                  </td>
+                  <td class="num">2218</td>
+                  <td class="graynum">301</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">41</td>
+                  <td>
+                    <a href="player_020138.html" title="">Eremin Oleg</a>
+                  </td>
+                  <td class="num">2213</td>
+                  <td class="graynum">188</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">42</td>
+                  <td>
+                    <a href="player_020513.html" title="">Sinitsyn Vladimir</a>
+                  </td>
+                  <td class="num">2209</td>
+                  <td class="graynum">178</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">43</td>
+                  <td>
+                    <a href="player_020729.html" title="">Bogatyrev Aleksandr</a>
+                  </td>
+                  <td class="num">2206</td>
+                  <td class="graynum">158</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">18</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">44</td>
+                  <td>
+                    <a href="player_020608.html" class="female" title="">Kurilova Svetlana</a>
+                  </td>
+                  <td class="num">2205</td>
+                  <td class="graynum">282</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">45</td>
+                  <td>
+                    <a href="player_020910.html" class="female" title="">Petrenko Dariya</a>
+                  </td>
+                  <td class="num">2192</td>
+                  <td class="graynum">217</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">46</td>
+                  <td>
+                    <a href="player_020070.html" title="">Semyonov Vladimir</a>
+                  </td>
+                  <td class="num">2192</td>
+                  <td class="graynum">180</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">47</td>
+                  <td>
+                    <a href="player_020247.html" title="">Litvinenko Alexandr</a>
+                  </td>
+                  <td class="num">2178</td>
+                  <td class="graynum">231</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">48</td>
+                  <td>
+                    <a href="player_020627.html" title="">Semenov Oleg</a>
+                  </td>
+                  <td class="num">2155</td>
+                  <td class="graynum">223</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">49</td>
+                  <td>
+                    <a href="player_020472.html" class="female" title="">Pestereva Maria</a>
+                  </td>
+                  <td class="num">2148</td>
+                  <td class="graynum">234</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">50</td>
+                  <td>
+                    <a href="player_020749.html" title="">Mokeev Vladimir</a>
+                  </td>
+                  <td class="num">2147</td>
+                  <td class="graynum">248</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">51</td>
+                  <td>
+                    <a href="player_020305.html" class="female" title="">Sumarokova Aleksandra</a>
+                  </td>
+                  <td class="num">2145</td>
+                  <td class="graynum">193</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">52</td>
+                  <td>
+                    <a href="player_020773.html" title="">Abilkenov Aman</a>
+                  </td>
+                  <td class="num">2133</td>
+                  <td class="graynum">204</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">53</td>
+                  <td>
+                    <a href="player_020907.html" title="Пётр Бурцев">Burtsev Peter</a>
+                  </td>
+                  <td class="num">2132</td>
+                  <td class="graynum">160</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">34</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">54</td>
+                  <td>
+                    <a href="player_020382.html" class="female" title="Юлия Саврасова">Savrasova Yulia</a>
+                  </td>
+                  <td class="num">2122</td>
+                  <td class="graynum">289</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">55</td>
+                  <td>
+                    <a href="player_020073.html" title="">Kaufman Victor</a>
+                  </td>
+                  <td class="num">2119</td>
+                  <td class="graynum">292</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">56</td>
+                  <td>
+                    <a href="player_020507.html" class="female" title="">Litvinova Yulia</a>
+                  </td>
+                  <td class="num">2117</td>
+                  <td class="graynum">301</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">57</td>
+                  <td>
+                    <a href="player_020110.html" title="">Dvoeglazov Vladimir</a>
+                  </td>
+                  <td class="num">2106</td>
+                  <td class="graynum">198</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">58</td>
+                  <td>
+                    <a href="player_020813.html" title="Максим Метревели">Metreveli Maksim</a>
+                  </td>
+                  <td class="num">2104</td>
+                  <td class="graynum">165</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">15</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">59</td>
+                  <td>
+                    <a href="player_021013.html" title="">Bugakov Mikhail</a>
+                  </td>
+                  <td class="num">2099</td>
+                  <td class="graynum">213</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">60</td>
+                  <td>
+                    <a href="player_020846.html" title="">Korenkov Sergey</a>
+                  </td>
+                  <td class="num">2097</td>
+                  <td class="graynum">255</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">61</td>
+                  <td>
+                    <a href="player_020304.html" class="female" title="">Oborina Anastasja</a>
+                  </td>
+                  <td class="num">2095</td>
+                  <td class="graynum">301</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">62</td>
+                  <td>
+                    <a href="player_020913.html" title="Максим Орлов">Orlov Maxim</a>
+                  </td>
+                  <td class="num">2086</td>
+                  <td class="graynum">202</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">63</td>
+                  <td>
+                    <a href="player_020497.html" title="">Kryuchok Roman</a>
+                  </td>
+                  <td class="num">2084</td>
+                  <td class="graynum">281</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">64</td>
+                  <td>
+                    <a href="player_020764.html" title="">Ponezhin Gennady</a>
+                  </td>
+                  <td class="num">2081</td>
+                  <td class="graynum">204</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">65</td>
+                  <td>
+                    <a href="player_020694.html" title="">Lisyutin Alexander</a>
+                  </td>
+                  <td class="num">2081</td>
+                  <td class="graynum">245</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">66</td>
+                  <td>
+                    <a href="player_020531.html" class="female" title="">Belkina Nadezhda</a>
+                  </td>
+                  <td class="num">2078</td>
+                  <td class="graynum">254</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">67</td>
+                  <td>
+                    <a href="player_020720.html" title="">Popov Alexey</a>
+                  </td>
+                  <td class="num">2076</td>
+                  <td class="graynum">299</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">68</td>
+                  <td>
+                    <a href="player_020306.html" class="female" title="">Kurdina Olga</a>
+                  </td>
+                  <td class="num">2072</td>
+                  <td class="graynum">218</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">69</td>
+                  <td>
+                    <a href="player_020626.html" title="">Vostryakov Alexey</a>
+                  </td>
+                  <td class="num">2072</td>
+                  <td class="graynum">220</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">70</td>
+                  <td>
+                    <a href="player_020503.html" title="">Merkulov Maxim</a>
+                  </td>
+                  <td class="num">2070</td>
+                  <td class="graynum">298</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">71</td>
+                  <td>
+                    <a href="player_020770.html" title="">Yusupmurzin Danila</a>
+                  </td>
+                  <td class="num">2068</td>
+                  <td class="graynum">185</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">72</td>
+                  <td>
+                    <a href="player_020953.html" title="">Trubitsin Stepan</a>
+                  </td>
+                  <td class="num">2066</td>
+                  <td class="graynum">233</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">73</td>
+                  <td>
+                    <a href="player_020889.html" title="">Steshev Leonid</a>
+                  </td>
+                  <td class="num">2063</td>
+                  <td class="graynum">211</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">74</td>
+                  <td>
+                    <a href="player_020761.html" class="female" title="">Vohtomina Vladislava</a>
+                  </td>
+                  <td class="num">2055</td>
+                  <td class="graynum">224</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">75</td>
+                  <td>
+                    <a href="player_020959.html" title="">Sidorov Mikhail</a>
+                  </td>
+                  <td class="num">2047</td>
+                  <td class="graynum">188</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">76</td>
+                  <td>
+                    <a href="player_020837.html" class="female" title="Дарья Юсупмурзина">Yusupmurzina Darya</a>
+                  </td>
+                  <td class="num">2047</td>
+                  <td class="graynum">172</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">77</td>
+                  <td>
+                    <a href="player_020554.html" title="">Beshantsev Vasily</a>
+                  </td>
+                  <td class="num">2039</td>
+                  <td class="graynum">283</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">78</td>
+                  <td>
+                    <a href="player_020641.html" title="">Richkov Igor</a>
+                  </td>
+                  <td class="num">2037</td>
+                  <td class="graynum">263</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">79</td>
+                  <td>
+                    <a href="player_020709.html" title="">Sadelov Igor</a>
+                  </td>
+                  <td class="num">2035</td>
+                  <td class="graynum">173</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">80</td>
+                  <td>
+                    <a href="player_020937.html" title="">Efremov Anton</a>
+                  </td>
+                  <td class="num">2032</td>
+                  <td class="graynum">216</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">81</td>
+                  <td>
+                    <a href="player_020330.html" title="">Prokopyev Alexander</a>
+                  </td>
+                  <td class="num">2030</td>
+                  <td class="graynum">201</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">82</td>
+                  <td>
+                    <a href="player_020808.html" title="">Dyachkov Nikita</a>
+                  </td>
+                  <td class="num">2028</td>
+                  <td class="graynum">185</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">83</td>
+                  <td>
+                    <a href="player_020725.html" title="">Kalnitsky Oleg</a>
+                  </td>
+                  <td class="num">2014</td>
+                  <td class="graynum">237</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">84</td>
+                  <td>
+                    <a href="player_020470.html" class="female" title="">Krayeva Tatyana</a>
+                  </td>
+                  <td class="num">2012</td>
+                  <td class="graynum">272</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">85</td>
+                  <td>
+                    <a href="player_020683.html" title="">Karpov Fyodor</a>
+                  </td>
+                  <td class="num">2011</td>
+                  <td class="graynum">206</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">86</td>
+                  <td>
+                    <a href="player_020642.html" title="">Maslov Maksim</a>
+                  </td>
+                  <td class="num">2010</td>
+                  <td class="graynum">248</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">87</td>
+                  <td>
+                    <a href="player_020526.html" title="">Sobolev Pavel</a>
+                  </td>
+                  <td class="num">2008</td>
+                  <td class="graynum">298</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">88</td>
+                  <td>
+                    <a href="player_020122.html" title="">Metreveli Georgiy</a>
+                  </td>
+                  <td class="num">2008</td>
+                  <td class="graynum">148</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">36</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">89</td>
+                  <td>
+                    <a href="player_020294.html" class="female" title="">Nikonova Natalya</a>
+                  </td>
+                  <td class="num">2003</td>
+                  <td class="graynum">307</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">90</td>
+                  <td>
+                    <a href="player_020774.html" title="">Yakovlev Igor</a>
+                  </td>
+                  <td class="num">2002</td>
+                  <td class="graynum">267</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">91</td>
+                  <td>
+                    <a href="player_020730.html" class="female" title="Екатерина Румянцева">Rumyantseva Ekaterina</a>
+                  </td>
+                  <td class="num">1999</td>
+                  <td class="graynum">182</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">92</td>
+                  <td>
+                    <a href="player_020800.html" title="">Nalobin Alexey</a>
+                  </td>
+                  <td class="num">1996</td>
+                  <td class="graynum">268</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">93</td>
+                  <td>
+                    <a href="player_020495.html" class="female" title="">Maliutina Elena</a>
+                  </td>
+                  <td class="num">1996</td>
+                  <td class="graynum">229</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">94</td>
+                  <td>
+                    <a href="player_020414.html" class="female" title="">Yudina Maria</a>
+                  </td>
+                  <td class="num">1995</td>
+                  <td class="graynum">197</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">95</td>
+                  <td>
+                    <a href="player_020491.html" class="female" title="">Litvinenko Lyudmila</a>
+                  </td>
+                  <td class="num">1995</td>
+                  <td class="graynum">243</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">96</td>
+                  <td>
+                    <a href="player_020498.html" class="female" title="">Rachitskaya Viktoria</a>
+                  </td>
+                  <td class="num">1990</td>
+                  <td class="graynum">268</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">97</td>
+                  <td>
+                    <a href="player_021031.html" title="">Gershman Artem</a>
+                  </td>
+                  <td class="num">1990</td>
+                  <td class="graynum">168</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">98</td>
+                  <td>
+                    <a href="player_020680.html" title="">Sedov Andrey</a>
+                  </td>
+                  <td class="num">1988</td>
+                  <td class="graynum">168</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">99</td>
+                  <td>
+                    <a href="player_021054.html" class="female" title="Анастасия Линич">Linich Anastasia</a>
+                  </td>
+                  <td class="num">1982</td>
+                  <td class="graynum">187</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">100</td>
+                  <td>
+                    <a href="player_020442.html" title="">Maximov Nikolay</a>
+                  </td>
+                  <td class="num">1981</td>
+                  <td class="graynum">297</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">101</td>
+                  <td>
+                    <a href="player_020695.html" class="female" title="Илона Качаева">Kachaeva Ilona</a>
+                  </td>
+                  <td class="num">1980</td>
+                  <td class="graynum">157</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">102</td>
+                  <td>
+                    <a href="player_020471.html" class="female" title="">Lebedeva Tatjana</a>
+                  </td>
+                  <td class="num">1974</td>
+                  <td class="graynum">296</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">103</td>
+                  <td>
+                    <a href="player_021042.html" title="">Barinov Rendom</a>
+                  </td>
+                  <td class="num">1972</td>
+                  <td class="graynum">174</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">104</td>
+                  <td>
+                    <a href="player_020751.html" class="female" title="">Prokopets Tatyana</a>
+                  </td>
+                  <td class="num">1971</td>
+                  <td class="graynum">191</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">105</td>
+                  <td>
+                    <a href="player_020969.html" title="">Savenko Dmitry</a>
+                  </td>
+                  <td class="num">1971</td>
+                  <td class="graynum">214</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">106</td>
+                  <td>
+                    <a href="player_021014.html" title="">Khomukhin Gennady</a>
+                  </td>
+                  <td class="num">1969</td>
+                  <td class="graynum">216</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">107</td>
+                  <td>
+                    <a href="player_020775.html" class="female" title="Ксения Матушкина">Matushkina Ksenia</a>
+                  </td>
+                  <td class="num">1965</td>
+                  <td class="graynum">222</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">108</td>
+                  <td>
+                    <a href="player_020885.html" title="Данила Громов">Gromov Danila</a>
+                  </td>
+                  <td class="num">1964</td>
+                  <td class="graynum">199</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">109</td>
+                  <td>
+                    <a href="player_020983.html" title="">Prozorov Sergey</a>
+                  </td>
+                  <td class="num">1964</td>
+                  <td class="graynum">228</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">110</td>
+                  <td>
+                    <a href="player_020828.html" class="female" title="">Vokhtomina Yulia</a>
+                  </td>
+                  <td class="num">1964</td>
+                  <td class="graynum">219</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">111</td>
+                  <td>
+                    <a href="player_020772.html" title="">Glibin Aleksey</a>
+                  </td>
+                  <td class="num">1963</td>
+                  <td class="graynum">221</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">112</td>
+                  <td>
+                    <a href="player_020679.html" title="">Magdeev Igor</a>
+                  </td>
+                  <td class="num">1962</td>
+                  <td class="graynum">252</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">113</td>
+                  <td>
+                    <a href="player_020489.html" class="female" title="">Kovalenko Marina</a>
+                  </td>
+                  <td class="num">1957</td>
+                  <td class="graynum">204</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">114</td>
+                  <td>
+                    <a href="player_020955.html" title="">Andreev Sergey</a>
+                  </td>
+                  <td class="num">1954</td>
+                  <td class="graynum">189</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">115</td>
+                  <td>
+                    <a href="player_020836.html" title="">Vlasenko Alexandr</a>
+                  </td>
+                  <td class="num">1950</td>
+                  <td class="graynum">256</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">116</td>
+                  <td>
+                    <a href="player_020780.html" title="">Stoyanov Kirill</a>
+                  </td>
+                  <td class="num">1948</td>
+                  <td class="graynum">176</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">6</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">117</td>
+                  <td>
+                    <a href="player_020975.html" title="">Startsev Maksim</a>
+                  </td>
+                  <td class="num">1946</td>
+                  <td class="graynum">193</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">118</td>
+                  <td>
+                    <a href="player_020881.html" title="">Nebolsin Aleksei</a>
+                  </td>
+                  <td class="num">1944</td>
+                  <td class="graynum">221</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">119</td>
+                  <td>
+                    <a href="player_020938.html" title="">Ovsyannikov Igor</a>
+                  </td>
+                  <td class="num">1938</td>
+                  <td class="graynum">189</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">120</td>
+                  <td>
+                    <a href="player_020884.html" title="">Epifanov Evgenii</a>
+                  </td>
+                  <td class="num">1933</td>
+                  <td class="graynum">204</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">121</td>
+                  <td>
+                    <a href="player_020731.html" class="female" title="">Matsjuk Oksana</a>
+                  </td>
+                  <td class="num">1928</td>
+                  <td class="graynum">227</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">122</td>
+                  <td>
+                    <a href="player_020698.html" class="female" title="">Komarova Oxana</a>
+                  </td>
+                  <td class="num">1928</td>
+                  <td class="graynum">166</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">123</td>
+                  <td>
+                    <a href="player_020987.html" class="female" title="">Murashko Seva</a>
+                  </td>
+                  <td class="num">1927</td>
+                  <td class="graynum">195</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">124</td>
+                  <td>
+                    <a href="player_021015.html" title="">Kirillov Aleksander</a>
+                  </td>
+                  <td class="num">1918</td>
+                  <td class="graynum">215</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">125</td>
+                  <td>
+                    <a href="player_021034.html" class="female" title="">Buslakova Darya</a>
+                  </td>
+                  <td class="num">1914</td>
+                  <td class="graynum">186</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">126</td>
+                  <td>
+                    <a href="player_020643.html" title="">Tonofa Maksim</a>
+                  </td>
+                  <td class="num">1913</td>
+                  <td class="graynum">263</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">127</td>
+                  <td>
+                    <a href="player_020638.html" title="">Puh Alexander</a>
+                  </td>
+                  <td class="num">1913</td>
+                  <td class="graynum">227</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">128</td>
+                  <td>
+                    <a href="player_020903.html" title="">Kuvaev Vyacheslav</a>
+                  </td>
+                  <td class="num">1911</td>
+                  <td class="graynum">186</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">129</td>
+                  <td>
+                    <a href="player_020858.html" title="">Prokopyev Andrei</a>
+                  </td>
+                  <td class="num">1905</td>
+                  <td class="graynum">171</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">130</td>
+                  <td>
+                    <a href="player_021016.html" title="">Arkharov Alexander</a>
+                  </td>
+                  <td class="num">1903</td>
+                  <td class="graynum">214</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">131</td>
+                  <td>
+                    <a href="player_020939.html" class="female" title="">Teihreva Yana</a>
+                  </td>
+                  <td class="num">1893</td>
+                  <td class="graynum">188</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">132</td>
+                  <td>
+                    <a href="player_020644.html" class="female" title="">Lomakina Olga</a>
+                  </td>
+                  <td class="num">1890</td>
+                  <td class="graynum">190</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">133</td>
+                  <td>
+                    <a href="player_020792.html" class="female" title="">Popova Daria</a>
+                  </td>
+                  <td class="num">1889</td>
+                  <td class="graynum">206</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">134</td>
+                  <td>
+                    <a href="player_020902.html" title="">Petrov Vyacheslav</a>
+                  </td>
+                  <td class="num">1887</td>
+                  <td class="graynum">230</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">135</td>
+                  <td>
+                    <a href="player_020996.html" class="female" title="">Buslakova Anastasja</a>
+                  </td>
+                  <td class="num">1879</td>
+                  <td class="graynum">188</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">136</td>
+                  <td>
+                    <a href="player_021028.html" title="">Kormyshov Mikhail</a>
+                  </td>
+                  <td class="num">1874</td>
+                  <td class="graynum">227</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">137</td>
+                  <td>
+                    <a href="player_020911.html" title="">Nikolaev Oleg</a>
+                  </td>
+                  <td class="num">1868</td>
+                  <td class="graynum">233</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">138</td>
+                  <td>
+                    <a href="player_020988.html" title="">Voloshchuk Aleksey</a>
+                  </td>
+                  <td class="num">1867</td>
+                  <td class="graynum">188</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">139</td>
+                  <td>
+                    <a href="player_020972.html" title="">Perevozkin Andrey</a>
+                  </td>
+                  <td class="num">1865</td>
+                  <td class="graynum">248</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">140</td>
+                  <td>
+                    <a href="player_020940.html" class="female" title="">Vasilieva Evgeniya</a>
+                  </td>
+                  <td class="num">1864</td>
+                  <td class="graynum">207</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">141</td>
+                  <td>
+                    <a href="player_020748.html" class="female" title="">Shabanova Darya</a>
+                  </td>
+                  <td class="num">1862</td>
+                  <td class="graynum">190</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">142</td>
+                  <td>
+                    <a href="player_020768.html" class="female" title="Алла Махина">Makhina Alla</a>
+                  </td>
+                  <td class="num">1859</td>
+                  <td class="graynum">192</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">143</td>
+                  <td>
+                    <a href="player_020390.html" title="Евгений Смирнов">Smirnov Evgeny</a>
+                  </td>
+                  <td class="num">1847</td>
+                  <td class="graynum">195</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">144</td>
+                  <td>
+                    <a href="player_020715.html" title="">Shishkin Gleb</a>
+                  </td>
+                  <td class="num">1846</td>
+                  <td class="graynum">297</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">145</td>
+                  <td>
+                    <a href="player_020970.html" title="">Kosyakin Vladimir</a>
+                  </td>
+                  <td class="num">1846</td>
+                  <td class="graynum">224</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">146</td>
+                  <td>
+                    <a href="player_020961.html" title="">Noskov Pavel</a>
+                  </td>
+                  <td class="num">1845</td>
+                  <td class="graynum">189</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">147</td>
+                  <td>
+                    <a href="player_020699.html" title="">Belousov Dmitriy</a>
+                  </td>
+                  <td class="num">1841</td>
+                  <td class="graynum">303</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">148</td>
+                  <td>
+                    <a href="player_020894.html" title="">Stoyanov Egor</a>
+                  </td>
+                  <td class="num">1836</td>
+                  <td class="graynum">171</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">149</td>
+                  <td>
+                    <a href="player_020929.html" title="">Agarkov Dmitrii</a>
+                  </td>
+                  <td class="num">1835</td>
+                  <td class="graynum">190</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">150</td>
+                  <td>
+                    <a href="player_020508.html" title="">Prokopyev Ruslan</a>
+                  </td>
+                  <td class="num">1832</td>
+                  <td class="graynum">299</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">151</td>
+                  <td>
+                    <a href="player_020844.html" class="female" title="">Korolyova Natalya</a>
+                  </td>
+                  <td class="num">1831</td>
+                  <td class="graynum">276</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">152</td>
+                  <td>
+                    <a href="player_020932.html" class="female" title="">Simanovskaia Anastasia</a>
+                  </td>
+                  <td class="num">1829</td>
+                  <td class="graynum">191</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">153</td>
+                  <td>
+                    <a href="player_020474.html" title="">Gorokhov Dmitry</a>
+                  </td>
+                  <td class="num">1828</td>
+                  <td class="graynum">297</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">154</td>
+                  <td>
+                    <a href="player_020890.html" title="">Frolochkin Vladimir</a>
+                  </td>
+                  <td class="num">1827</td>
+                  <td class="graynum">241</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">155</td>
+                  <td>
+                    <a href="player_020587.html" title="">Gromov Ivan</a>
+                  </td>
+                  <td class="num">1825</td>
+                  <td class="graynum">225</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">156</td>
+                  <td>
+                    <a href="player_020645.html" title="">Belosludtsev Roman</a>
+                  </td>
+                  <td class="num">1819</td>
+                  <td class="graynum">232</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">157</td>
+                  <td>
+                    <a href="player_020446.html" title="">Tumanov Yuryi</a>
+                  </td>
+                  <td class="num">1819</td>
+                  <td class="graynum">297</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">158</td>
+                  <td>
+                    <a href="player_021064.html" title="">Vislovich Vladislav</a>
+                  </td>
+                  <td class="num">1816</td>
+                  <td class="graynum">188</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">159</td>
+                  <td>
+                    <a href="player_020995.html" title="">Kozmin Alexandr</a>
+                  </td>
+                  <td class="num">1816</td>
+                  <td class="graynum">269</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">160</td>
+                  <td>
+                    <a href="player_021037.html" title="">Rumyantsev Dmitry</a>
+                  </td>
+                  <td class="num">1815</td>
+                  <td class="graynum">214</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">161</td>
+                  <td>
+                    <a href="player_020242.html" title="">Kocherovskiy Vadim</a>
+                  </td>
+                  <td class="num">1814</td>
+                  <td class="graynum">235</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">162</td>
+                  <td>
+                    <a href="player_021030.html" title="">Chernyi Anton</a>
+                  </td>
+                  <td class="num">1812</td>
+                  <td class="graynum">211</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">163</td>
+                  <td>
+                    <a href="player_021032.html" title="">Malyarovskiy Stepan</a>
+                  </td>
+                  <td class="num">1812</td>
+                  <td class="graynum">207</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">164</td>
+                  <td>
+                    <a href="player_020686.html" class="female" title="">Stulova Kristina</a>
+                  </td>
+                  <td class="num">1809</td>
+                  <td class="graynum">192</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">165</td>
+                  <td>
+                    <a href="player_021006.html" title="">Roginski Roman</a>
+                  </td>
+                  <td class="num">1806</td>
+                  <td class="graynum">163</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">166</td>
+                  <td>
+                    <a href="player_021007.html" title="">Yakunin Alexei</a>
+                  </td>
+                  <td class="num">1805</td>
+                  <td class="graynum">225</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">167</td>
+                  <td>
+                    <a href="player_020900.html" class="female" title="">Vostriakova Yulia</a>
+                  </td>
+                  <td class="num">1802</td>
+                  <td class="graynum">178</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">168</td>
+                  <td>
+                    <a href="player_020974.html" title="">Galochkin Sergey</a>
+                  </td>
+                  <td class="num">1801</td>
+                  <td class="graynum">187</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">169</td>
+                  <td>
+                    <a href="player_020832.html" title="">Melenchuk Roman</a>
+                  </td>
+                  <td class="num">1800</td>
+                  <td class="graynum">258</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">170</td>
+                  <td>
+                    <a href="player_020750.html" title="">Shabanov Ruslan</a>
+                  </td>
+                  <td class="num">1789</td>
+                  <td class="graynum">187</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">171</td>
+                  <td>
+                    <a href="player_020875.html" class="female" title="">Laskina Elena</a>
+                  </td>
+                  <td class="num">1787</td>
+                  <td class="graynum">258</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">172</td>
+                  <td>
+                    <a href="player_020920.html" class="female" title="">Sonina Marina</a>
+                  </td>
+                  <td class="num">1783</td>
+                  <td class="graynum">197</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">173</td>
+                  <td>
+                    <a href="player_020879.html" class="female" title="">Averina Anna</a>
+                  </td>
+                  <td class="num">1782</td>
+                  <td class="graynum">190</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">174</td>
+                  <td>
+                    <a href="player_020930.html" class="female" title="">Makarova Daria</a>
+                  </td>
+                  <td class="num">1782</td>
+                  <td class="graynum">188</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">175</td>
+                  <td>
+                    <a href="player_020876.html" title="">Afzali Bekhruz</a>
+                  </td>
+                  <td class="num">1781</td>
+                  <td class="graynum">296</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">176</td>
+                  <td>
+                    <a href="player_020891.html" title="">Kulin Daniil</a>
+                  </td>
+                  <td class="num">1773</td>
+                  <td class="graynum">252</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">177</td>
+                  <td>
+                    <a href="player_020830.html" class="female" title="Таисия Садова">Sadova Taisia</a>
+                  </td>
+                  <td class="num">1764</td>
+                  <td class="graynum">217</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">178</td>
+                  <td>
+                    <a href="player_020915.html" title="">Reznik Grigorii</a>
+                  </td>
+                  <td class="num">1752</td>
+                  <td class="graynum">224</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">179</td>
+                  <td>
+                    <a href="player_020840.html" title="">Ivanov Ivan</a>
+                  </td>
+                  <td class="num">1750</td>
+                  <td class="graynum">294</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">180</td>
+                  <td>
+                    <a href="player_020721.html" class="female" title="">Muratova Tatyana</a>
+                  </td>
+                  <td class="num">1750</td>
+                  <td class="graynum">239</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">181</td>
+                  <td>
+                    <a href="player_020496.html" class="female" title="">Deviatkova Ekaterina</a>
+                  </td>
+                  <td class="num">1748</td>
+                  <td class="graynum">208</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">182</td>
+                  <td>
+                    <a href="player_020594.html" title="">Grigoriev Roman</a>
+                  </td>
+                  <td class="num">1746</td>
+                  <td class="graynum">295</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">183</td>
+                  <td>
+                    <a href="player_020908.html" class="female" title="Дарья Толстогузова">Tolstoguzova Daria</a>
+                  </td>
+                  <td class="num">1745</td>
+                  <td class="graynum">230</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">184</td>
+                  <td>
+                    <a href="player_020506.html" title="">Savrasov Ruslan</a>
+                  </td>
+                  <td class="num">1745</td>
+                  <td class="graynum">303</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">185</td>
+                  <td>
+                    <a href="player_020958.html" class="female" title="">Volkova Tatiana</a>
+                  </td>
+                  <td class="num">1739</td>
+                  <td class="graynum">243</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">186</td>
+                  <td>
+                    <a href="player_020941.html" title="">Maximov Konstantin</a>
+                  </td>
+                  <td class="num">1739</td>
+                  <td class="graynum">207</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">187</td>
+                  <td>
+                    <a href="player_020252.html" title="">Saranchin Aleksandr</a>
+                  </td>
+                  <td class="num">1737</td>
+                  <td class="graynum">231</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">188</td>
+                  <td>
+                    <a href="player_021025.html" title="">Gorbachev Daniil</a>
+                  </td>
+                  <td class="num">1735</td>
+                  <td class="graynum">169</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">27</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">189</td>
+                  <td>
+                    <a href="player_020892.html" title="">Kim Alexandr</a>
+                  </td>
+                  <td class="num">1726</td>
+                  <td class="graynum">245</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">190</td>
+                  <td>
+                    <a href="player_020811.html" title="">Makhin Matvei</a>
+                  </td>
+                  <td class="num">1725</td>
+                  <td class="graynum">202</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">191</td>
+                  <td>
+                    <a href="player_020973.html" title="">Morev Oleg</a>
+                  </td>
+                  <td class="num">1725</td>
+                  <td class="graynum">282</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">192</td>
+                  <td>
+                    <a href="player_020942.html" class="female" title="">Dzyuba Anastasiya</a>
+                  </td>
+                  <td class="num">1718</td>
+                  <td class="graynum">189</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">193</td>
+                  <td>
+                    <a href="player_020722.html" title="">Chernishev Alexey</a>
+                  </td>
+                  <td class="num">1717</td>
+                  <td class="graynum">328</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">194</td>
+                  <td>
+                    <a href="player_021038.html" title="">Berdiy Arseniy</a>
+                  </td>
+                  <td class="num">1708</td>
+                  <td class="graynum">195</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">195</td>
+                  <td>
+                    <a href="player_020999.html" title="">Puzanov Georgi</a>
+                  </td>
+                  <td class="num">1701</td>
+                  <td class="graynum">167</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">196</td>
+                  <td>
+                    <a href="player_020947.html" title="">Sonin Sergey</a>
+                  </td>
+                  <td class="num">1701</td>
+                  <td class="graynum">203</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">197</td>
+                  <td>
+                    <a href="player_021017.html" title="">Mkrtychev Eduard</a>
+                  </td>
+                  <td class="num">1694</td>
+                  <td class="graynum">226</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">198</td>
+                  <td>
+                    <a href="player_020515.html" title="">Mizerniuk Oleg</a>
+                  </td>
+                  <td class="num">1688</td>
+                  <td class="graynum">268</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">199</td>
+                  <td>
+                    <a href="player_020984.html" title="">Kuznetsov Yaril</a>
+                  </td>
+                  <td class="num">1685</td>
+                  <td class="graynum">262</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">200</td>
+                  <td>
+                    <a href="player_020998.html" class="female" title="">Yudina Polina</a>
+                  </td>
+                  <td class="num">1685</td>
+                  <td class="graynum">178</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">201</td>
+                  <td>
+                    <a href="player_020501.html" title="">Romanov Sergey</a>
+                  </td>
+                  <td class="num">1678</td>
+                  <td class="graynum">302</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">202</td>
+                  <td>
+                    <a href="player_020703.html" title="">Nogovitsin Alexander</a>
+                  </td>
+                  <td class="num">1675</td>
+                  <td class="graynum">303</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">203</td>
+                  <td>
+                    <a href="player_020868.html" title="">Lomakin Aleksey</a>
+                  </td>
+                  <td class="num">1673</td>
+                  <td class="graynum">199</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">204</td>
+                  <td>
+                    <a href="player_021033.html" class="female" title="">Roshtshina Dilyara</a>
+                  </td>
+                  <td class="num">1669</td>
+                  <td class="graynum">182</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">205</td>
+                  <td>
+                    <a href="player_021040.html" title="">Strakulia Lev</a>
+                  </td>
+                  <td class="num">1666</td>
+                  <td class="graynum">193</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">206</td>
+                  <td>
+                    <a href="player_020564.html" class="female" title="">Molotova Anastasja</a>
+                  </td>
+                  <td class="num">1663</td>
+                  <td class="graynum">307</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">207</td>
+                  <td>
+                    <a href="player_020912.html" class="female" title="">Romanenko Anastasiya</a>
+                  </td>
+                  <td class="num">1660</td>
+                  <td class="graynum">279</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">208</td>
+                  <td>
+                    <a href="player_020869.html" title="">Tonofa Miron</a>
+                  </td>
+                  <td class="num">1656</td>
+                  <td class="graynum">252</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">209</td>
+                  <td>
+                    <a href="player_020833.html" title="">Melenchuk Oleg</a>
+                  </td>
+                  <td class="num">1655</td>
+                  <td class="graynum">223</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">210</td>
+                  <td>
+                    <a href="player_021029.html" class="female" title="">Gamanilova Yuliana</a>
+                  </td>
+                  <td class="num">1654</td>
+                  <td class="graynum">230</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">211</td>
+                  <td>
+                    <a href="player_020831.html" class="female" title="">Epifanova Alisa</a>
+                  </td>
+                  <td class="num">1646</td>
+                  <td class="graynum">238</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">212</td>
+                  <td>
+                    <a href="player_020801.html" title="">Kutsanov Kirill</a>
+                  </td>
+                  <td class="num">1641</td>
+                  <td class="graynum">299</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">213</td>
+                  <td>
+                    <a href="player_020893.html" title="">Kisilev Anton</a>
+                  </td>
+                  <td class="num">1637</td>
+                  <td class="graynum">254</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">214</td>
+                  <td>
+                    <a href="player_021056.html" title="Николай Бурцев">Burtsev Nikolai</a>
+                  </td>
+                  <td class="num">1630</td>
+                  <td class="graynum">175</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">15</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">215</td>
+                  <td>
+                    <a href="player_021012.html" title="">Nikitin Danila</a>
+                  </td>
+                  <td class="num">1624</td>
+                  <td class="graynum">253</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">216</td>
+                  <td>
+                    <a href="player_020714.html" class="female" title="">Kovalenko Ekaterina</a>
+                  </td>
+                  <td class="num">1618</td>
+                  <td class="graynum">226</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">217</td>
+                  <td>
+                    <a href="player_020767.html" title="">Rashitov Denis</a>
+                  </td>
+                  <td class="num">1607</td>
+                  <td class="graynum">310</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">218</td>
+                  <td>
+                    <a href="player_020943.html" class="female" title="">Churkina Anna</a>
+                  </td>
+                  <td class="num">1604</td>
+                  <td class="graynum">211</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">219</td>
+                  <td>
+                    <a href="player_020944.html" class="female" title="">Kolomiets Elena</a>
+                  </td>
+                  <td class="num">1604</td>
+                  <td class="graynum">211</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">220</td>
+                  <td>
+                    <a href="player_020985.html" title="">Bichevin N</a>
+                  </td>
+                  <td class="num">1601</td>
+                  <td class="graynum">249</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">221</td>
+                  <td>
+                    <a href="player_020877.html" title="">Polyakov Vladimir</a>
+                  </td>
+                  <td class="num">1599</td>
+                  <td class="graynum">249</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">222</td>
+                  <td>
+                    <a href="player_020989.html" class="female" title="">Rudenok Ksenia</a>
+                  </td>
+                  <td class="num">1580</td>
+                  <td class="graynum">205</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">223</td>
+                  <td>
+                    <a href="player_021019.html" title="Сергей Микрюков">Mikryukov Sergey</a>
+                  </td>
+                  <td class="num">1574</td>
+                  <td class="graynum">199</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">224</td>
+                  <td>
+                    <a href="player_020986.html" title="">Kirilchenko N</a>
+                  </td>
+                  <td class="num">1570</td>
+                  <td class="graynum">240</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">225</td>
+                  <td>
+                    <a href="player_021018.html" class="female" title="">Shuvalova Natalia</a>
+                  </td>
+                  <td class="num">1569</td>
+                  <td class="graynum">254</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">226</td>
+                  <td>
+                    <a href="player_021055.html" class="female" title="">Churikova Daria</a>
+                  </td>
+                  <td class="num">1547</td>
+                  <td class="graynum">206</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">227</td>
+                  <td>
+                    <a href="player_020946.html" class="female" title="">Sonina Vladislava</a>
+                  </td>
+                  <td class="num">1501</td>
+                  <td class="graynum">209</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">228</td>
+                  <td>
+                    <a href="player_021053.html" class="female" title="Мария Петрова">Petrova Mariia</a>
+                  </td>
+                  <td class="num">1497</td>
+                  <td class="graynum">242</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">5</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">229</td>
+                  <td>
+                    <a href="player_020945.html" title="">Spasskiyi Sergei</a>
+                  </td>
+                  <td class="num">1494</td>
+                  <td class="graynum">218</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">230</td>
+                  <td>
+                    <a href="player_020936.html" class="female" title="">Sonina Irina</a>
+                  </td>
+                  <td class="num">1449</td>
+                  <td class="graynum">238</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">231</td>
+                  <td>
+                    <a href="player_020990.html" title="">Ulikov Alexandr</a>
+                  </td>
+                  <td class="num">1448</td>
+                  <td class="graynum">220</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">232</td>
+                  <td>
+                    <a href="player_020853.html" class="female" title="">Dokuchaeva Ekaterina</a>
+                  </td>
+                  <td class="num">1386</td>
+                  <td class="graynum">197</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">233</td>
+                  <td>
+                    <a href="player_020870.html" class="female" title="">Pushkareva Anastasja</a>
+                  </td>
+                  <td class="num">1334</td>
+                  <td class="graynum">244</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">234</td>
+                  <td>
+                    <a href="player_020871.html" title="">Pushkarev Andrey</a>
+                  </td>
+                  <td class="num">1293</td>
+                  <td class="graynum">287</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="clear" />
+      </div>
+      <div id="footer">
+        <p>Theme based on <a href="http://templated.co/genericblue">GenericBlue</a> designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+      </div>
+    </div>
+  </body>
+</html_gomoku>

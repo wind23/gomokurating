@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html_gomoku xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="keywords" content="Gomoku, Gomoku rating, whole-history rating, WHR" />
+    <meta name="description" content="Whole-history rating of Gomoku players" />
+    <meta name="author" content="Tianyi Hao" />
+    <meta name="copyright" content="2024 Gomoku Rating" />
+    <title>Kondratiev Valeriy, Russian Renju Association - Gomoku Rating</title>
+    <script>
+        if (window.location.protocol != "file:") {
+            var _hmt = _hmt || [];
+            (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?cb525b0b0c34b96320b743cdf90a90c3";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+    <script>
+        if (window.location.protocol != "file:") {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-173435487-1', 'auto');
+            ga('send', 'pageview');
+        }
+    </script>
+    <link href="css/default.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="outer">
+      <div id="header"></div>
+      <div id="menu">
+        <ul>
+          <li class="first">
+            <a href="index.html">Home page</a>
+          </li>
+          <li>
+            <a href="players.html">Players</a>
+          </li>
+          <li>
+            <a href="tournaments.html">Tournaments</a>
+          </li>
+          <li>
+            <a href="top.html">History of Top players</a>
+          </li>
+          <li>
+            <a href="top_women.html">History of Top Women</a>
+          </li>
+          <li>
+            <a href="https://rating.renju.net/">Renju</a>
+          </li>
+        </ul>
+      </div>
+      <div id="content">
+        <div id="primaryContentContainer">
+          <div id="primaryContent">
+            <link href="css/nv.d3.css" rel="stylesheet" type="text/css">
+            <h1> Kondratiev Valeriy</h1>
+            <p><b>Place:</b> Saint Petersburg, Russian Renju Association</p>
+            <p><b>Rating:</b> 2527.80, <b>Std:</b> 175.10, <b>Rank:</b> -</p>
+            <p><b>First game:</b> 2013-08-18, <b>Last game:</b> 2018-08-17</p>
+            <p><b>Top rating:</b> 2527.80 (2018-08-17)</p>
+            <p><b>Games:</b> 129, <b>Wins:</b> 80, <b>Draws:</b> 11, <b>Losses:</b> 38</p>
+            <p><b>Gy1:</b> 0, <b>Gy2:</b> 0, <b>Gy5:</b> 0</p>
+            <div id="chart1"></div>
+            <table>
+              <tbody>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2049.html">World Team Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2018-08-17</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2527.80</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119718/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020122.html" title="">Metreveli Georgiy</a>
+                  </td>
+                  <td class="num">2064.50</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119737/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020130.html" title="Михаил Кожин">Kozhin Mikhail</a>
+                  </td>
+                  <td class="num">2463.40</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/119764/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_170026.html" title="">László Zoltán</a>
+                  </td>
+                  <td class="num">2683.94</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119782/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160176.html" title="">Majksner Łukasz</a>
+                  </td>
+                  <td class="num">2350.32</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/119794/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150145.html" title="">Muzika Martin</a>
+                  </td>
+                  <td class="num">2632.00</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119821/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_040061.html" title="">Bulatovsky Oleg</a>
+                  </td>
+                  <td class="num">2447.45</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119840/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150207.html" title="">Horký Petr</a>
+                  </td>
+                  <td class="num">1840.37</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119862/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090074.html" title="">Hõbemägi Martin</a>
+                  </td>
+                  <td class="num">2538.16</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119878/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150188.html" title="">Souček Lukáš</a>
+                  </td>
+                  <td class="num">2372.80</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2843.html">Russian Championship Final</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2018-06-12</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2518.95</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/120180/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_020786.html" title="Эдвард Ризванов">Rizvanov Edward</a>
+                  </td>
+                  <td class="num">2458.13</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/120186/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020370.html" title="Виктор Балабай">Balabhai Viktor</a>
+                  </td>
+                  <td class="num">2321.60</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/120190/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020004.html" title="Константин Никонов">Nikonov Konstantin</a>
+                  </td>
+                  <td class="num">2521.96</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/120195/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020719.html" title="">Muratov Ilya</a>
+                  </td>
+                  <td class="num">2560.19</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/120199/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020880.html" title="">Lebedev Alexey</a>
+                  </td>
+                  <td class="num">2350.78</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/120204/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_020223.html" title="">Tarannikov Yuriy</a>
+                  </td>
+                  <td class="num">2566.16</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/120208/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020834.html" title="">Osipov Denis</a>
+                  </td>
+                  <td class="num">2656.77</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/120213/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020693.html" title="Денис Качаев">Kachaev Denis</a>
+                  </td>
+                  <td class="num">2564.50</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/120222/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020835.html" title="">Yanov Artem</a>
+                  </td>
+                  <td class="num">2229.11</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2829.html">Saint Petersburg Christmas Tournament</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2018-01-08</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2509.98</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119331/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2383.48</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/119338/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020805.html" title="">Ezupov Alexandr</a>
+                  </td>
+                  <td class="num">2392.10</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/119346/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020130.html" title="Михаил Кожин">Kozhin Mikhail</a>
+                  </td>
+                  <td class="num">2472.56</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119349/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020251.html" title="Макаров Павел">Makarov Pavel</a>
+                  </td>
+                  <td class="num">2299.40</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/119356/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_020138.html" title="">Eremin Oleg</a>
+                  </td>
+                  <td class="num">2218.46</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/119360/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020880.html" title="">Lebedev Alexey</a>
+                  </td>
+                  <td class="num">2350.87</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119371/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020730.html" class="female" title="Екатерина Румянцева">Rumyantseva Ekaterina</a>
+                  </td>
+                  <td class="num">1997.03</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2828.html">Krasnodar Open Tournament</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2017-12-09</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2511.96</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119310/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020994.html" title="">Pogosov Yura</a>
+                  </td>
+                  <td class="num">2366.92</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119314/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2384.04</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119317/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020995.html" title="">Kozmin Alexandr</a>
+                  </td>
+                  <td class="num">1815.57</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119319/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020786.html" title="Эдвард Ризванов">Rizvanov Edward</a>
+                  </td>
+                  <td class="num">2454.59</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119320/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020994.html" title="">Pogosov Yura</a>
+                  </td>
+                  <td class="num">2366.92</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119324/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2384.04</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119327/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020995.html" title="">Kozmin Alexandr</a>
+                  </td>
+                  <td class="num">1815.57</td>
+                </tr>
+                <tr>
+                  <td class="num">10</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119328/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020786.html" title="Эдвард Ризванов">Rizvanov Edward</a>
+                  </td>
+                  <td class="num">2454.59</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2823.html">Autumn legends</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2017-09-17</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2504.34</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119017/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020853.html" class="female" title="">Dokuchaeva Ekaterina</a>
+                  </td>
+                  <td class="num">1418.75</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119028/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020644.html" class="female" title="">Lomakina Olga</a>
+                  </td>
+                  <td class="num">1881.72</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/119034/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2378.49</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119038/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020985.html" title="">Bichevin N</a>
+                  </td>
+                  <td class="num">1600.51</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119041/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020693.html" title="Денис Качаев">Kachaev Denis</a>
+                  </td>
+                  <td class="num">2548.95</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/119047/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020730.html" class="female" title="Екатерина Румянцева">Rumyantseva Ekaterina</a>
+                  </td>
+                  <td class="num">2000.76</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/119053/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020370.html" title="Виктор Балабай">Balabhai Viktor</a>
+                  </td>
+                  <td class="num">2349.60</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2818.html">Russian Championship Final 2017</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2017-06-12</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2500.72</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/118757/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2367.01</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/118760/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020223.html" title="">Tarannikov Yuriy</a>
+                  </td>
+                  <td class="num">2584.95</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/118767/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020834.html" title="">Osipov Denis</a>
+                  </td>
+                  <td class="num">2581.91</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/118772/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020786.html" title="Эдвард Ризванов">Rizvanov Edward</a>
+                  </td>
+                  <td class="num">2490.28</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/118775/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020878.html" title="">Gorbachev Dmitriy</a>
+                  </td>
+                  <td class="num">2093.81</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/118780/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020693.html" title="Денис Качаев">Kachaev Denis</a>
+                  </td>
+                  <td class="num">2536.77</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/118788/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020130.html" title="Михаил Кожин">Kozhin Mikhail</a>
+                  </td>
+                  <td class="num">2484.76</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/118791/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020880.html" title="">Lebedev Alexey</a>
+                  </td>
+                  <td class="num">2292.49</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/118798/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020719.html" title="">Muratov Ilya</a>
+                  </td>
+                  <td class="num">2517.27</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2801.html">Saint Petersburg's autumn 2016</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2016-10-23</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2493.65</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/117867/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020880.html" title="">Lebedev Alexey</a>
+                  </td>
+                  <td class="num">2225.98</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/117868/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020937.html" title="">Efremov Anton</a>
+                  </td>
+                  <td class="num">2037.15</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/117873/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020834.html" title="">Osipov Denis</a>
+                  </td>
+                  <td class="num">2564.49</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/117880/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020370.html" title="Виктор Балабай">Balabhai Viktor</a>
+                  </td>
+                  <td class="num">2352.54</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/117884/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020805.html" title="">Ezupov Alexandr</a>
+                  </td>
+                  <td class="num">2393.15</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/117888/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020786.html" title="Эдвард Ризванов">Rizvanov Edward</a>
+                  </td>
+                  <td class="num">2483.93</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/117894/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020693.html" title="Денис Качаев">Kachaev Denis</a>
+                  </td>
+                  <td class="num">2511.78</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2783.html">Gomoku World Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2015-08-13</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2463.37</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/116663/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2278.65</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116671/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_010043.html" title="阪本嵩山">Sakamoto Suzan</a>
+                  </td>
+                  <td class="num">2159.60</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/116674/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_170023.html" title="">Tóth Gergő</a>
+                  </td>
+                  <td class="num">2649.61</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116681/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020880.html" title="">Lebedev Alexey</a>
+                  </td>
+                  <td class="num">2120.40</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116687/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020729.html" title="">Bogatyrev Aleksandr</a>
+                  </td>
+                  <td class="num">2256.12</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/116695/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_020130.html" title="Михаил Кожин">Kozhin Mikhail</a>
+                  </td>
+                  <td class="num">2524.30</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/116701/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020786.html" title="Эдвард Ризванов">Rizvanov Edward</a>
+                  </td>
+                  <td class="num">2460.00</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/116703/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_020693.html" title="Денис Качаев">Kachaev Denis</a>
+                  </td>
+                  <td class="num">2506.47</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116712/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020194.html" title="">Smirnov Anatolie</a>
+                  </td>
+                  <td class="num">2263.39</td>
+                </tr>
+                <tr>
+                  <td class="num">10</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/116717/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_170027.html" title="">Dupszki Rudolf</a>
+                  </td>
+                  <td class="num">2685.42</td>
+                </tr>
+                <tr>
+                  <td class="num">11</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116724/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020223.html" title="">Tarannikov Yuriy</a>
+                  </td>
+                  <td class="num">2510.70</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2779.html">Gomoku World Championship QT</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2015-08-05</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2462.67</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116478/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2278.65</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/116482/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020693.html" title="Денис Качаев">Kachaev Denis</a>
+                  </td>
+                  <td class="num">2506.48</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/116491/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_020729.html" title="">Bogatyrev Aleksandr</a>
+                  </td>
+                  <td class="num">2256.07</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116495/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020223.html" title="">Tarannikov Yuriy</a>
+                  </td>
+                  <td class="num">2509.97</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/116501/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_020130.html" title="Михаил Кожин">Kozhin Mikhail</a>
+                  </td>
+                  <td class="num">2524.09</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116509/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020194.html" title="">Smirnov Anatolie</a>
+                  </td>
+                  <td class="num">2263.36</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/116511/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_170027.html" title="">Dupszki Rudolf</a>
+                  </td>
+                  <td class="num">2685.41</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2778.html">4th Saint Petersburg Open Tournament</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2015-05-11</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2453.70</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116430/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020370.html" title="Виктор Балабай">Balabhai Viktor</a>
+                  </td>
+                  <td class="num">2323.93</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/116441/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020693.html" title="Денис Качаев">Kachaev Denis</a>
+                  </td>
+                  <td class="num">2498.17</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116448/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020695.html" class="female" title="Илона Качаева">Kachaeva Ilona</a>
+                  </td>
+                  <td class="num">1949.66</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116449/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020880.html" title="">Lebedev Alexey</a>
+                  </td>
+                  <td class="num">2111.25</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/116457/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020149.html" title="">Lomakin Mikhail</a>
+                  </td>
+                  <td class="num">2446.83</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/116467/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020834.html" title="">Osipov Denis</a>
+                  </td>
+                  <td class="num">2492.23</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/116471/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2281.02</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2772.html">Christmas Tournament</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2015-01-09</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2455.70</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116233/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020730.html" class="female" title="Екатерина Румянцева">Rumyantseva Ekaterina</a>
+                  </td>
+                  <td class="num">1987.57</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116236/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020805.html" title="">Ezupov Alexandr</a>
+                  </td>
+                  <td class="num">2371.90</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/116240/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020693.html" title="Денис Качаев">Kachaev Denis</a>
+                  </td>
+                  <td class="num">2474.42</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116246/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_090153.html" title="">Orlov Denis</a>
+                  </td>
+                  <td class="num">2087.20</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116254/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020130.html" title="Михаил Кожин">Kozhin Mikhail</a>
+                  </td>
+                  <td class="num">2518.12</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/116255/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020834.html" title="">Osipov Denis</a>
+                  </td>
+                  <td class="num">2481.52</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/116262/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2274.18</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2763.html">Russian Championship Final</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2014-06-15</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2451.93</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/115655/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020149.html" title="">Lomakin Mikhail</a>
+                  </td>
+                  <td class="num">2480.73</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/115657/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2258.80</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/115665/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020513.html" title="">Sinitsyn Vladimir</a>
+                  </td>
+                  <td class="num">2254.86</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115669/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020805.html" title="">Ezupov Alexandr</a>
+                  </td>
+                  <td class="num">2364.97</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/115675/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020308.html" title="">Litvinenko Andrey</a>
+                  </td>
+                  <td class="num">2465.77</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115681/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020194.html" title="">Smirnov Anatolie</a>
+                  </td>
+                  <td class="num">2264.89</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/115685/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020719.html" title="">Muratov Ilya</a>
+                  </td>
+                  <td class="num">2483.37</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/115690/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020130.html" title="Михаил Кожин">Kozhin Mikhail</a>
+                  </td>
+                  <td class="num">2512.44</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115695/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020729.html" title="">Bogatyrev Aleksandr</a>
+                  </td>
+                  <td class="num">2258.07</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_1562.html">Open Russian Gomoku Cup</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2014-05-11</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2457.64</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115007/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020806.html" title="">Kraubner Yuriy</a>
+                  </td>
+                  <td class="num">2103.19</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/115018/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_020719.html" title="">Muratov Ilya</a>
+                  </td>
+                  <td class="num">2473.13</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115024/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020729.html" title="">Bogatyrev Aleksandr</a>
+                  </td>
+                  <td class="num">2257.33</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/115034/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020693.html" title="Денис Качаев">Kachaev Denis</a>
+                  </td>
+                  <td class="num">2450.17</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115038/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020513.html" title="">Sinitsyn Vladimir</a>
+                  </td>
+                  <td class="num">2259.91</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115050/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2257.94</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115052/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020130.html" title="Михаил Кожин">Kozhin Mikhail</a>
+                  </td>
+                  <td class="num">2511.77</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2760.html">The 2-nd QTRC</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2014-03-10</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2463.47</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115546/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020513.html" title="">Sinitsyn Vladimir</a>
+                  </td>
+                  <td class="num">2268.20</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115557/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020729.html" title="">Bogatyrev Aleksandr</a>
+                  </td>
+                  <td class="num">2257.36</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115564/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020194.html" title="">Smirnov Anatolie</a>
+                  </td>
+                  <td class="num">2265.52</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/115573/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_020834.html" title="">Osipov Denis</a>
+                  </td>
+                  <td class="num">2442.40</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115575/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020130.html" title="Михаил Кожин">Kozhin Mikhail</a>
+                  </td>
+                  <td class="num">2511.57</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115584/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020223.html" title="">Tarannikov Yuriy</a>
+                  </td>
+                  <td class="num">2451.31</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/115591/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020149.html" title="">Lomakin Mikhail</a>
+                  </td>
+                  <td class="num">2477.53</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2758.html">Christmas Tournament</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2014-01-07</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2463.49</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115257/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020695.html" class="female" title="Илона Качаева">Kachaeva Ilona</a>
+                  </td>
+                  <td class="num">1888.47</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115266/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020709.html" title="">Sadelov Igor</a>
+                  </td>
+                  <td class="num">2108.86</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/115273/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020693.html" title="Денис Качаев">Kachaev Denis</a>
+                  </td>
+                  <td class="num">2436.75</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115276/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020725.html" title="">Kalnitsky Oleg</a>
+                  </td>
+                  <td class="num">2015.45</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/115285/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020363.html" title="">Potapov Alexey</a>
+                  </td>
+                  <td class="num">2350.10</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115286/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020370.html" title="Виктор Балабай">Balabhai Viktor</a>
+                  </td>
+                  <td class="num">2316.96</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/115292/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2256.80</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2750.html">2nd Saint Petersburg express gomoku tournament</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2013-09-01</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2467.73</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114726/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2227.09</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114727/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020730.html" class="female" title="Екатерина Румянцева">Rumyantseva Ekaterina</a>
+                  </td>
+                  <td class="num">2002.30</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/114730/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020805.html" title="">Ezupov Alexandr</a>
+                  </td>
+                  <td class="num">2334.30</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114734/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020080.html" title="Владимир Филинов">Filinov Vladimir</a>
+                  </td>
+                  <td class="num">2283.27</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114736/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020693.html" title="Денис Качаев">Kachaev Denis</a>
+                  </td>
+                  <td class="num">2417.34</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114741/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020695.html" class="female" title="Илона Качаева">Kachaeva Ilona</a>
+                  </td>
+                  <td class="num">1885.19</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2748.html">1st Saint Petersburg express gomoku tournament</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2013-08-18</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2467.88</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114551/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020693.html" title="Денис Качаев">Kachaev Denis</a>
+                  </td>
+                  <td class="num">2415.07</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114553/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020805.html" title="">Ezupov Alexandr</a>
+                  </td>
+                  <td class="num">2332.53</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114555/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2225.36</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114559/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_020695.html" class="female" title="Илона Качаева">Kachaeva Ilona</a>
+                  </td>
+                  <td class="num">1885.04</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114563/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_050042.html" title="">Semjonov Dmitrij</a>
+                  </td>
+                  <td class="num">2088.26</td>
+                </tr>
+              </tbody>
+            </table>
+            <script src="js/d3.min.js" charset="utf-8"></script>
+            <script src="js/nv.d3.js"></script>
+            <script>
+    var chart;
+    var data;
+
+    nv.addGraph(function() {
+        data = Data();
+        var y_min = 1.e+9, y_max = -1.e+9;
+        for(var i = 0; i < data[0].values.length; i ++) {
+            var cur_y = data[0].values[i].y;
+            y_min = Math.min(y_min, cur_y);
+            y_max = Math.max(y_max, cur_y);
+        }
+        var y_d = 200. - (y_max - y_min);
+        if(y_d > 0.) {
+            y_max += y_d / 2.
+            y_min -= y_d / 2.
+        }
+
+        chart = nv.models.lineChart()
+            .options({
+                duration: 300,
+                useInteractiveGuideline: true
+            })
+        ;
+
+        chart.xAxis
+            .axisLabel("Date")
+            .tickFormat(function(d) {
+          return d3.time.format('%Y-%m-%d')(new Date(d))
+		});
+
+		chart.xScale(d3.time.scale());
+
+        chart.yAxis
+            .axisLabel('Rating')
+            .tickFormat(d3.format(',.2f'))
+        ;
+
+        chart.forceY([y_min, y_max]);
+		
+		chart.showYAxis(true).showXAxis(true).showLegend(false).margin({top:20, left: 100, right:100});
+
+        d3.select('#chart1').append('svg')
+            .datum(data)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+    });
+
+    function Data() {
+        var rating = [{x: 1376784000000, y: 2467.877744}, {x: 1377993600000, y: 2467.726330}, {x: 1389052800000, y: 2463.490131}, {x: 1394409600000, y: 2463.470044}, {x: 1399766400000, y: 2457.636112}, {x: 1402790400000, y: 2451.933410}, {x: 1420761600000, y: 2455.703628}, {x: 1431302400000, y: 2453.701864}, {x: 1438732800000, y: 2462.669165}, {x: 1439424000000, y: 2463.365223}, {x: 1477180800000, y: 2493.652288}, {x: 1497225600000, y: 2500.719911}, {x: 1505606400000, y: 2504.344069}, {x: 1512777600000, y: 2511.957925}, {x: 1515369600000, y: 2509.976323}, {x: 1528761600000, y: 2518.953004}, {x: 1534464000000, y: 2527.799493}, ];
+            ;
+
+        return [
+            {
+                values: rating,
+                color: "#ff7f0e",
+            }
+        ];
+    }
+
+</script>
+          </div>
+        </div>
+        <div class="clear" />
+      </div>
+      <div id="footer">
+        <p>Theme based on <a href="http://templated.co/genericblue">GenericBlue</a> designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+      </div>
+    </div>
+  </body>
+</html_gomoku>

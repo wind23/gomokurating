@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html_gomoku xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="keywords" content="Gomoku, Gomoku rating, whole-history rating, WHR" />
+    <meta name="description" content="Whole-history rating of Gomoku players" />
+    <meta name="author" content="Tianyi Hao" />
+    <meta name="copyright" content="2024 Gomoku Rating" />
+    <title>Whole History Rating (WHR) of Active Gomoku Players - Gomoku Rating</title>
+    <script>
+        if (window.location.protocol != "file:") {
+            var _hmt = _hmt || [];
+            (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?cb525b0b0c34b96320b743cdf90a90c3";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+    <script>
+        if (window.location.protocol != "file:") {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-173435487-1', 'auto');
+            ga('send', 'pageview');
+        }
+    </script>
+    <link href="css/default.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="outer">
+      <div id="header"></div>
+      <div id="menu">
+        <ul>
+          <li class="first">
+            <a href="index.html">Home page</a>
+          </li>
+          <li>
+            <a href="players.html">Players</a>
+          </li>
+          <li>
+            <a href="tournaments.html">Tournaments</a>
+          </li>
+          <li>
+            <a href="top.html">History of Top players</a>
+          </li>
+          <li>
+            <a href="top_women.html">History of Top Women</a>
+          </li>
+          <li>
+            <a href="https://rating.renju.net/">Renju</a>
+          </li>
+        </ul>
+      </div>
+      <div id="content">
+        <div id="primaryContentContainer">
+          <div id="primaryContent">
+            <h1>Whole History Rating (WHR) of Active Gomoku Players</h1>
+            <p><b>Last update:</b> 2024-03-27, <b>Players:</b> 983, <b>Games:</b> 15338</p>
+            <p><b>Note:</b> This rating is calculated based on the <a href="https://www.remi-coulom.fr/WHR/">WHR algorithm</a> by Rémi Coulom, a similar approach as the <a href="https://www.goratings.org/en/">Go Ratings</a>. The core algorithm is based on the <a href="https://github.com/wind23/whr_renju">open-source code</a> on Github.</p>
+            <p><b>History ratings: </b><select onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);"><option value="index.html" selected="selected">Current</option><option value="rating_20231231.html">2023</option><option value="rating_20221231.html">2022</option><option value="rating_20211231.html">2021</option><option value="rating_20201231.html">2020</option><option value="rating_20191231.html">2019</option><option value="rating_20181231.html">2018</option><option value="rating_20171231.html">2017</option><option value="rating_20161231.html">2016</option><option value="rating_20151231.html">2015</option><option value="rating_20141231.html">2014</option><option value="rating_20131231.html">2013</option><option value="rating_20121231.html">2012</option><option value="rating_20111231.html">2011</option><option value="rating_20101231.html">2010</option><option value="rating_20091231.html">2009</option><option value="rating_20081231.html">2008</option><option value="rating_20071231.html">2007</option><option value="rating_20061231.html">2006</option><option value="rating_20051231.html">2005</option><option value="rating_20041231.html">2004</option></select>&nbsp;&nbsp;&nbsp;&nbsp;<b>Country/Region: </b><select onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);"><option value="index.html" selected="selected">All</option><option value="rating_c12.html">Armenia</option><option value="rating_c5.html">China</option><option value="rating_c8.html">Chinese Taipei</option><option value="rating_c16.html">Czechia</option><option value="rating_c1.html">Estonia</option><option value="rating_c3.html">Finland</option><option value="rating_c44.html">Greece</option><option value="rating_c10.html">Hungary</option><option value="rating_c30.html">Italy</option><option value="rating_c4.html">Japan</option><option value="rating_c17.html">Latvia</option><option value="rating_c22.html">Norway</option><option value="rating_c9.html">Poland</option><option value="rating_c6.html">Republic of Korea</option><option value="rating_c2.html">Russian Renju Association</option><option value="rating_c32.html">Slovakia</option><option value="rating_c7.html">Sweden</option><option value="rating_c41.html">Türkiye</option><option value="rating_c14.html">Ukraine</option><option value="rating_c28.html">Vietnam</option></select>&nbsp;&nbsp;&nbsp;&nbsp;<b>Active/All players: </b><select onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);"><option value="index.html" selected="selected">Active</option><option value="rating_gy1.html">Gy1≥10</option><option value="rating_all.html">All</option></select></p>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Rank</th>
+                  <th>Player</th>
+                  <th>Rating</th>
+                  <th>±</th>
+                  <th>Gy1</th>
+                  <th>Gy2</th>
+                  <th>Gy5</th>
+                  <th>Country/Region</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>
+                    <a href="player_170026.html" title="">László Zoltán</a>
+                  </td>
+                  <td class="num">2687</td>
+                  <td class="graynum">89</td>
+                  <td class="num">18</td>
+                  <td class="num">42</td>
+                  <td class="num">64</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>
+                    <a href="player_150145.html" title="">Muzika Martin</a>
+                  </td>
+                  <td class="num">2670</td>
+                  <td class="graynum">97</td>
+                  <td class="num">18</td>
+                  <td class="num">25</td>
+                  <td class="num">67</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>
+                    <a href="player_170023.html" title="">Tóth Gergő</a>
+                  </td>
+                  <td class="num">2663</td>
+                  <td class="graynum">80</td>
+                  <td class="num">26</td>
+                  <td class="num">49</td>
+                  <td class="num">71</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>
+                    <a href="player_170027.html" title="">Dupszki Rudolf</a>
+                  </td>
+                  <td class="num">2651</td>
+                  <td class="graynum">169</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>
+                    <a href="player_090074.html" title="">Hõbemägi Martin</a>
+                  </td>
+                  <td class="num">2621</td>
+                  <td class="graynum">137</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td class="num">22</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>
+                    <a href="player_160101.html" title="">Fitzermann Adrian</a>
+                  </td>
+                  <td class="num">2620</td>
+                  <td class="graynum">108</td>
+                  <td class="num">11</td>
+                  <td class="num">11</td>
+                  <td class="num">29</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>
+                    <a href="player_150144.html" title="">Háša Miroslav</a>
+                  </td>
+                  <td class="num">2595</td>
+                  <td class="graynum">78</td>
+                  <td class="num">22</td>
+                  <td class="num">45</td>
+                  <td class="num">58</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>
+                    <a href="player_020223.html" title="">Tarannikov Yuriy</a>
+                  </td>
+                  <td class="num">2585</td>
+                  <td class="graynum">168</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>
+                    <a href="player_160159.html" title="">Żukowski Michał</a>
+                  </td>
+                  <td class="num">2580</td>
+                  <td class="graynum">161</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">20</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">10</td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2561</td>
+                  <td class="graynum">77</td>
+                  <td class="num">40</td>
+                  <td class="num">47</td>
+                  <td class="num">87</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">11</td>
+                  <td>
+                    <a href="player_020693.html" title="Денис Качаев">Kachaev Denis</a>
+                  </td>
+                  <td class="num">2550</td>
+                  <td class="graynum">153</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">12</td>
+                  <td>
+                    <a href="player_160119.html" title="">Zajk Michał</a>
+                  </td>
+                  <td class="num">2533</td>
+                  <td class="graynum">105</td>
+                  <td class="num">11</td>
+                  <td class="num">11</td>
+                  <td class="num">29</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">13</td>
+                  <td>
+                    <a href="player_020130.html" title="Михаил Кожин">Kozhin Mikhail</a>
+                  </td>
+                  <td class="num">2518</td>
+                  <td class="graynum">147</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">34</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">14</td>
+                  <td>
+                    <a href="player_040061.html" title="">Bulatovsky Oleg</a>
+                  </td>
+                  <td class="num">2510</td>
+                  <td class="graynum">156</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">39</td>
+                  <td>Ukraine</td>
+                </tr>
+                <tr>
+                  <td class="num">15</td>
+                  <td>
+                    <a href="player_150119.html" title="">Tesařík Štěpán</a>
+                  </td>
+                  <td class="num">2508</td>
+                  <td class="graynum">82</td>
+                  <td class="num">21</td>
+                  <td class="num">48</td>
+                  <td class="num">103</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">16</td>
+                  <td>
+                    <a href="player_020719.html" title="">Muratov Ilya</a>
+                  </td>
+                  <td class="num">2502</td>
+                  <td class="graynum">157</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">27</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">17</td>
+                  <td>
+                    <a href="player_020301.html" title="Максим Карасёв">Karasyov Maxim</a>
+                  </td>
+                  <td class="num">2498</td>
+                  <td class="graynum">147</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">29</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">18</td>
+                  <td>
+                    <a href="player_020004.html" title="Константин Никонов">Nikonov Konstantin</a>
+                  </td>
+                  <td class="num">2492</td>
+                  <td class="graynum">164</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">19</td>
+                  <td>
+                    <a href="player_020786.html" title="Эдвард Ризванов">Rizvanov Edward</a>
+                  </td>
+                  <td class="num">2457</td>
+                  <td class="graynum">159</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">25</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">20</td>
+                  <td>
+                    <a href="player_020424.html" title="Дмитрий Епифанов">Epifanov Dmitry</a>
+                  </td>
+                  <td class="num">2446</td>
+                  <td class="graynum">189</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">21</td>
+                  <td>
+                    <a href="player_150188.html" title="">Souček Lukáš</a>
+                  </td>
+                  <td class="num">2436</td>
+                  <td class="graynum">65</td>
+                  <td class="num">53</td>
+                  <td class="num">102</td>
+                  <td class="num">163</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">22</td>
+                  <td>
+                    <a href="player_150206.html" title="">Fňukal František</a>
+                  </td>
+                  <td class="num">2430</td>
+                  <td class="graynum">113</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td class="num">37</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">23</td>
+                  <td>
+                    <a href="player_150180.html" title="">Žižka Petr</a>
+                  </td>
+                  <td class="num">2424</td>
+                  <td class="graynum">67</td>
+                  <td class="num">50</td>
+                  <td class="num">80</td>
+                  <td class="num">107</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">24</td>
+                  <td>
+                    <a href="player_170029.html" title="">Ménesi Kristóf</a>
+                  </td>
+                  <td class="num">2421</td>
+                  <td class="graynum">89</td>
+                  <td class="num">19</td>
+                  <td class="num">27</td>
+                  <td class="num">34</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">25</td>
+                  <td>
+                    <a href="player_090147.html" title="">Topkin Georg-Romet</a>
+                  </td>
+                  <td class="num">2418</td>
+                  <td class="graynum">136</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td class="num">20</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">26</td>
+                  <td>
+                    <a href="player_150204.html" title="">Horák Jakub</a>
+                  </td>
+                  <td class="num">2411</td>
+                  <td class="graynum">67</td>
+                  <td class="num">48</td>
+                  <td class="num">81</td>
+                  <td class="num">110</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">27</td>
+                  <td>
+                    <a href="player_020848.html" title="Максим Лаврик-Кармазин">Lavrik-Karmazin Maksim</a>
+                  </td>
+                  <td class="num">2406</td>
+                  <td class="graynum">166</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">18</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">28</td>
+                  <td>
+                    <a href="player_160006.html" title="">Gorzecki Marek</a>
+                  </td>
+                  <td class="num">2406</td>
+                  <td class="graynum">167</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">8</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">29</td>
+                  <td>
+                    <a href="player_160079.html" title="">Nowak Paweł</a>
+                  </td>
+                  <td class="num">2396</td>
+                  <td class="graynum">98</td>
+                  <td class="num">19</td>
+                  <td class="num">19</td>
+                  <td class="num">19</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">30</td>
+                  <td>
+                    <a href="player_990037.html" title="">Eged Igor</a>
+                  </td>
+                  <td class="num">2394</td>
+                  <td class="graynum">75</td>
+                  <td class="num">37</td>
+                  <td class="num">85</td>
+                  <td class="num">117</td>
+                  <td>Slovakia</td>
+                </tr>
+                <tr>
+                  <td class="num">31</td>
+                  <td>
+                    <a href="player_020804.html" title="">Katsev Ilya</a>
+                  </td>
+                  <td class="num">2393</td>
+                  <td class="graynum">94</td>
+                  <td class="num">16</td>
+                  <td class="num">24</td>
+                  <td class="num">69</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">32</td>
+                  <td>
+                    <a href="player_020149.html" title="">Lomakin Mikhail</a>
+                  </td>
+                  <td class="num">2387</td>
+                  <td class="graynum">166</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">14</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">33</td>
+                  <td>
+                    <a href="player_050043.html" title="">Riherts Matiss</a>
+                  </td>
+                  <td class="num">2375</td>
+                  <td class="graynum">164</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">20</td>
+                  <td>Latvia</td>
+                </tr>
+                <tr>
+                  <td class="num">34</td>
+                  <td>
+                    <a href="player_160166.html" title="">Bieniek Piotr</a>
+                  </td>
+                  <td class="num">2365</td>
+                  <td class="graynum">177</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">8</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">35</td>
+                  <td>
+                    <a href="player_150027.html" title="">Kostlivý Radim</a>
+                  </td>
+                  <td class="num">2363</td>
+                  <td class="graynum">82</td>
+                  <td class="num">26</td>
+                  <td class="num">46</td>
+                  <td class="num">75</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">36</td>
+                  <td>
+                    <a href="player_160060.html" title="">Pawela Kamil</a>
+                  </td>
+                  <td class="num">2359</td>
+                  <td class="graynum">187</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">8</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">37</td>
+                  <td>
+                    <a href="player_020370.html" title="Виктор Балабай">Balabhai Viktor</a>
+                  </td>
+                  <td class="num">2354</td>
+                  <td class="graynum">145</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">41</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">38</td>
+                  <td>
+                    <a href="player_160176.html" title="">Majksner Łukasz</a>
+                  </td>
+                  <td class="num">2352</td>
+                  <td class="graynum">113</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td class="num">36</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">39</td>
+                  <td>
+                    <a href="player_160037.html" title="">Nowakowski Maciej</a>
+                  </td>
+                  <td class="num">2346</td>
+                  <td class="graynum">88</td>
+                  <td class="num">24</td>
+                  <td class="num">24</td>
+                  <td class="num">24</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">40</td>
+                  <td>
+                    <a href="player_170112.html" title="">Sonkoly Zoltán</a>
+                  </td>
+                  <td class="num">2342</td>
+                  <td class="graynum">98</td>
+                  <td class="num">8</td>
+                  <td class="num">23</td>
+                  <td class="num">30</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">41</td>
+                  <td>
+                    <a href="player_160173.html" title="">Brachaczek Bogdan</a>
+                  </td>
+                  <td class="num">2332</td>
+                  <td class="graynum">128</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td class="num">9</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">42</td>
+                  <td>
+                    <a href="player_170121.html" class="female" title="">Bekő Virág</a>
+                  </td>
+                  <td class="num">2321</td>
+                  <td class="graynum">97</td>
+                  <td class="num">15</td>
+                  <td class="num">23</td>
+                  <td class="num">23</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">43</td>
+                  <td>
+                    <a href="player_090113.html" title="">Mesila Villem</a>
+                  </td>
+                  <td class="num">2316</td>
+                  <td class="graynum">191</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">4</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">44</td>
+                  <td>
+                    <a href="player_020880.html" title="">Lebedev Alexey</a>
+                  </td>
+                  <td class="num">2312</td>
+                  <td class="graynum">156</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">27</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">45</td>
+                  <td>
+                    <a href="player_090049.html" title="">Purk Tauri</a>
+                  </td>
+                  <td class="num">2312</td>
+                  <td class="graynum">172</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">4</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">46</td>
+                  <td>
+                    <a href="player_020682.html" title="Денис Федотов">Fedotov Denis</a>
+                  </td>
+                  <td class="num">2309</td>
+                  <td class="graynum">178</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">6</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">47</td>
+                  <td>
+                    <a href="player_150060.html" class="female" title="">Kolouchová Monika</a>
+                  </td>
+                  <td class="num">2293</td>
+                  <td class="graynum">174</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">6</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">48</td>
+                  <td>
+                    <a href="player_030114.html" title="">Sandstrom Richard</a>
+                  </td>
+                  <td class="num">2292</td>
+                  <td class="graynum">137</td>
+                  <td class="num">6</td>
+                  <td class="num">6</td>
+                  <td class="num">6</td>
+                  <td>Sweden</td>
+                </tr>
+                <tr>
+                  <td class="num">49</td>
+                  <td>
+                    <a href="player_090025.html" title="">Ilu Timo</a>
+                  </td>
+                  <td class="num">2290</td>
+                  <td class="graynum">216</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">4</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">50</td>
+                  <td>
+                    <a href="player_020194.html" title="">Smirnov Anatolie</a>
+                  </td>
+                  <td class="num">2283</td>
+                  <td class="graynum">176</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">51</td>
+                  <td>
+                    <a href="player_020266.html" title="Юрий Тайблин">Taiblin Yuriy</a>
+                  </td>
+                  <td class="num">2282</td>
+                  <td class="graynum">152</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">18</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">52</td>
+                  <td>
+                    <a href="player_170093.html" title="">Horváth Márk</a>
+                  </td>
+                  <td class="num">2282</td>
+                  <td class="graynum">163</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">15</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">53</td>
+                  <td>
+                    <a href="player_030007.html" title="">Jonsson Peter</a>
+                  </td>
+                  <td class="num">2275</td>
+                  <td class="graynum">103</td>
+                  <td class="num">13</td>
+                  <td class="num">21</td>
+                  <td class="num">21</td>
+                  <td>Sweden</td>
+                </tr>
+                <tr>
+                  <td class="num">54</td>
+                  <td>
+                    <a href="player_150229.html" title="">Holub Matěj</a>
+                  </td>
+                  <td class="num">2250</td>
+                  <td class="graynum">69</td>
+                  <td class="num">43</td>
+                  <td class="num">78</td>
+                  <td class="num">91</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">55</td>
+                  <td>
+                    <a href="player_020835.html" title="">Yanov Artem</a>
+                  </td>
+                  <td class="num">2246</td>
+                  <td class="graynum">159</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">56</td>
+                  <td>
+                    <a href="player_020878.html" title="">Gorbachev Dmitriy</a>
+                  </td>
+                  <td class="num">2235</td>
+                  <td class="graynum">162</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">57</td>
+                  <td>
+                    <a href="player_160186.html" title="">Łukasik Szczepan</a>
+                  </td>
+                  <td class="num">2233</td>
+                  <td class="graynum">172</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">58</td>
+                  <td>
+                    <a href="player_030115.html" title="">Lind Björn</a>
+                  </td>
+                  <td class="num">2228</td>
+                  <td class="graynum">124</td>
+                  <td class="num">6</td>
+                  <td class="num">14</td>
+                  <td class="num">14</td>
+                  <td>Sweden</td>
+                </tr>
+                <tr>
+                  <td class="num">59</td>
+                  <td>
+                    <a href="player_160010.html" title="">Małowiejski Piotr</a>
+                  </td>
+                  <td class="num">2222</td>
+                  <td class="graynum">79</td>
+                  <td class="num">35</td>
+                  <td class="num">65</td>
+                  <td class="num">93</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">60</td>
+                  <td>
+                    <a href="player_090116.html" title="">Kolk Kuno</a>
+                  </td>
+                  <td class="num">2222</td>
+                  <td class="graynum">161</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">21</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">61</td>
+                  <td>
+                    <a href="player_100601.html" title="朱天逸">Zhu Tianyi</a>
+                  </td>
+                  <td class="num">2217</td>
+                  <td class="graynum">135</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <td class="num">62</td>
+                  <td>
+                    <a href="player_150230.html" title="">Holba Josef</a>
+                  </td>
+                  <td class="num">2209</td>
+                  <td class="graynum">127</td>
+                  <td class="num">0</td>
+                  <td class="num">22</td>
+                  <td class="num">22</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">63</td>
+                  <td>
+                    <a href="player_020729.html" title="">Bogatyrev Aleksandr</a>
+                  </td>
+                  <td class="num">2206</td>
+                  <td class="graynum">158</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">18</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">64</td>
+                  <td>
+                    <a href="player_150166.html" class="female" title="">Brdková Pavlína</a>
+                  </td>
+                  <td class="num">2206</td>
+                  <td class="graynum">126</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">36</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">65</td>
+                  <td>
+                    <a href="player_990051.html" title="">Magyar Peter</a>
+                  </td>
+                  <td class="num">2200</td>
+                  <td class="graynum">106</td>
+                  <td class="num">15</td>
+                  <td class="num">22</td>
+                  <td class="num">22</td>
+                  <td>Slovakia</td>
+                </tr>
+                <tr>
+                  <td class="num">66</td>
+                  <td>
+                    <a href="player_150118.html" title="">Purkrábek Jan</a>
+                  </td>
+                  <td class="num">2194</td>
+                  <td class="graynum">102</td>
+                  <td class="num">7</td>
+                  <td class="num">21</td>
+                  <td class="num">42</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">67</td>
+                  <td>
+                    <a href="player_090135.html" title="">Ikla Markus</a>
+                  </td>
+                  <td class="num">2189</td>
+                  <td class="graynum">162</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">21</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">68</td>
+                  <td>
+                    <a href="player_170118.html" title="">Lucey Ciarán</a>
+                  </td>
+                  <td class="num">2182</td>
+                  <td class="graynum">106</td>
+                  <td class="num">8</td>
+                  <td class="num">16</td>
+                  <td class="num">23</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">69</td>
+                  <td>
+                    <a href="player_090153.html" title="">Orlov Denis</a>
+                  </td>
+                  <td class="num">2149</td>
+                  <td class="graynum">180</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">5</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">70</td>
+                  <td>
+                    <a href="player_150250.html" title="">Kerekeš Pavel</a>
+                  </td>
+                  <td class="num">2142</td>
+                  <td class="graynum">122</td>
+                  <td class="num">7</td>
+                  <td class="num">15</td>
+                  <td class="num">15</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">71</td>
+                  <td>
+                    <a href="player_020907.html" title="Пётр Бурцев">Burtsev Peter</a>
+                  </td>
+                  <td class="num">2132</td>
+                  <td class="graynum">160</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">34</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">72</td>
+                  <td>
+                    <a href="player_150231.html" title="">Fojtík Jakub</a>
+                  </td>
+                  <td class="num">2125</td>
+                  <td class="graynum">90</td>
+                  <td class="num">15</td>
+                  <td class="num">35</td>
+                  <td class="num">35</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">73</td>
+                  <td>
+                    <a href="player_170055.html" title="">Varga Ádám</a>
+                  </td>
+                  <td class="num">2124</td>
+                  <td class="graynum">146</td>
+                  <td class="num">0</td>
+                  <td class="num">8</td>
+                  <td class="num">8</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">74</td>
+                  <td>
+                    <a href="player_160183.html" title="">Sekułowicz Jan</a>
+                  </td>
+                  <td class="num">2119</td>
+                  <td class="graynum">185</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">75</td>
+                  <td>
+                    <a href="player_150248.html" title="">Podolský Petr</a>
+                  </td>
+                  <td class="num">2115</td>
+                  <td class="graynum">102</td>
+                  <td class="num">22</td>
+                  <td class="num">28</td>
+                  <td class="num">28</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">76</td>
+                  <td>
+                    <a href="player_150135.html" title="">Barták Tomáš</a>
+                  </td>
+                  <td class="num">2114</td>
+                  <td class="graynum">190</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">8</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">77</td>
+                  <td>
+                    <a href="player_020813.html" title="Максим Метревели">Metreveli Maksim</a>
+                  </td>
+                  <td class="num">2104</td>
+                  <td class="graynum">165</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">15</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">78</td>
+                  <td>
+                    <a href="player_090157.html" title="">Kõlar Karl-Ustav</a>
+                  </td>
+                  <td class="num">2091</td>
+                  <td class="graynum">158</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">34</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">79</td>
+                  <td>
+                    <a href="player_090129.html" title="">Heidmets Mark</a>
+                  </td>
+                  <td class="num">2070</td>
+                  <td class="graynum">177</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">6</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">80</td>
+                  <td>
+                    <a href="player_090121.html" title="">Piik Sander</a>
+                  </td>
+                  <td class="num">2067</td>
+                  <td class="graynum">174</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">4</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">81</td>
+                  <td>
+                    <a href="player_090156.html" title="">Raag Ardi</a>
+                  </td>
+                  <td class="num">2066</td>
+                  <td class="graynum">171</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">82</td>
+                  <td>
+                    <a href="player_150160.html" title="">Hodan Jiří</a>
+                  </td>
+                  <td class="num">2063</td>
+                  <td class="graynum">155</td>
+                  <td class="num">0</td>
+                  <td class="num">6</td>
+                  <td class="num">13</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">83</td>
+                  <td>
+                    <a href="player_090193.html" title="">Lääne Rauno</a>
+                  </td>
+                  <td class="num">2048</td>
+                  <td class="graynum">157</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">38</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">84</td>
+                  <td>
+                    <a href="player_020837.html" class="female" title="Дарья Юсупмурзина">Yusupmurzina Darya</a>
+                  </td>
+                  <td class="num">2047</td>
+                  <td class="graynum">172</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">85</td>
+                  <td>
+                    <a href="player_160185.html" title="">Wacławik Adam</a>
+                  </td>
+                  <td class="num">2043</td>
+                  <td class="graynum">185</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">86</td>
+                  <td>
+                    <a href="player_090155.html" class="female" title="">Koni Kirke</a>
+                  </td>
+                  <td class="num">2034</td>
+                  <td class="graynum">167</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">87</td>
+                  <td>
+                    <a href="player_090073.html" class="female" title="">Mirme Madli</a>
+                  </td>
+                  <td class="num">2021</td>
+                  <td class="graynum">132</td>
+                  <td class="num">0</td>
+                  <td class="num">13</td>
+                  <td class="num">13</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">88</td>
+                  <td>
+                    <a href="player_120014.html" title="">Ikonen Jussi</a>
+                  </td>
+                  <td class="num">2019</td>
+                  <td class="graynum">120</td>
+                  <td class="num">15</td>
+                  <td class="num">15</td>
+                  <td class="num">15</td>
+                  <td>Finland</td>
+                </tr>
+                <tr>
+                  <td class="num">89</td>
+                  <td>
+                    <a href="player_020122.html" title="">Metreveli Georgiy</a>
+                  </td>
+                  <td class="num">2008</td>
+                  <td class="graynum">148</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">36</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">90</td>
+                  <td>
+                    <a href="player_090127.html" title="">Moor Karl-Mattias</a>
+                  </td>
+                  <td class="num">2003</td>
+                  <td class="graynum">169</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">4</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">91</td>
+                  <td>
+                    <a href="player_150234.html" title="">Černý Jakub Jan</a>
+                  </td>
+                  <td class="num">2002</td>
+                  <td class="graynum">128</td>
+                  <td class="num">7</td>
+                  <td class="num">14</td>
+                  <td class="num">14</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">92</td>
+                  <td>
+                    <a href="player_021031.html" title="">Gershman Artem</a>
+                  </td>
+                  <td class="num">1990</td>
+                  <td class="graynum">168</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">93</td>
+                  <td>
+                    <a href="player_020680.html" title="">Sedov Andrey</a>
+                  </td>
+                  <td class="num">1988</td>
+                  <td class="graynum">168</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">94</td>
+                  <td>
+                    <a href="player_020695.html" class="female" title="Илона Качаева">Kachaeva Ilona</a>
+                  </td>
+                  <td class="num">1980</td>
+                  <td class="graynum">157</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">95</td>
+                  <td>
+                    <a href="player_021042.html" title="">Barinov Rendom</a>
+                  </td>
+                  <td class="num">1972</td>
+                  <td class="graynum">174</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">96</td>
+                  <td>
+                    <a href="player_150209.html" title="">Kraus Lukáš</a>
+                  </td>
+                  <td class="num">1963</td>
+                  <td class="graynum">178</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">8</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">97</td>
+                  <td>
+                    <a href="player_170009.html" title="">Pusztai Péter</a>
+                  </td>
+                  <td class="num">1960</td>
+                  <td class="graynum">98</td>
+                  <td class="num">8</td>
+                  <td class="num">16</td>
+                  <td class="num">16</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">98</td>
+                  <td>
+                    <a href="player_170056.html" title="">Győrfi Attila</a>
+                  </td>
+                  <td class="num">1957</td>
+                  <td class="graynum">149</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">99</td>
+                  <td>
+                    <a href="player_090182.html" title="">Tõnisson Trent Asso</a>
+                  </td>
+                  <td class="num">1952</td>
+                  <td class="graynum">177</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">100</td>
+                  <td>
+                    <a href="player_150251.html" title="">Dořičák Tomáš</a>
+                  </td>
+                  <td class="num">1952</td>
+                  <td class="graynum">125</td>
+                  <td class="num">7</td>
+                  <td class="num">15</td>
+                  <td class="num">15</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">101</td>
+                  <td>
+                    <a href="player_020780.html" title="">Stoyanov Kirill</a>
+                  </td>
+                  <td class="num">1948</td>
+                  <td class="graynum">176</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">6</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">102</td>
+                  <td>
+                    <a href="player_090132.html" class="female" title="">Kolk Mari</a>
+                  </td>
+                  <td class="num">1945</td>
+                  <td class="graynum">175</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">4</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">103</td>
+                  <td>
+                    <a href="player_150187.html" title="">Kozubík Pavel</a>
+                  </td>
+                  <td class="num">1940</td>
+                  <td class="graynum">158</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">104</td>
+                  <td>
+                    <a href="player_020698.html" class="female" title="">Komarova Oxana</a>
+                  </td>
+                  <td class="num">1928</td>
+                  <td class="graynum">166</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">105</td>
+                  <td>
+                    <a href="player_090133.html" title="">Murumaa Magnus</a>
+                  </td>
+                  <td class="num">1915</td>
+                  <td class="graynum">177</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">4</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">106</td>
+                  <td>
+                    <a href="player_090221.html" class="female" title="">Nitov Melissa</a>
+                  </td>
+                  <td class="num">1910</td>
+                  <td class="graynum">166</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">25</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">107</td>
+                  <td>
+                    <a href="player_160003.html" title="">Łękowski Jerzy</a>
+                  </td>
+                  <td class="num">1909</td>
+                  <td class="graynum">192</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">108</td>
+                  <td>
+                    <a href="player_150208.html" title="">Arabo Semir</a>
+                  </td>
+                  <td class="num">1909</td>
+                  <td class="graynum">132</td>
+                  <td class="num">7</td>
+                  <td class="num">7</td>
+                  <td class="num">22</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">109</td>
+                  <td>
+                    <a href="player_170095.html" title="">Volman Ferenc</a>
+                  </td>
+                  <td class="num">1906</td>
+                  <td class="graynum">127</td>
+                  <td class="num">0</td>
+                  <td class="num">8</td>
+                  <td class="num">8</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">110</td>
+                  <td>
+                    <a href="player_020858.html" title="">Prokopyev Andrei</a>
+                  </td>
+                  <td class="num">1905</td>
+                  <td class="graynum">171</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">111</td>
+                  <td>
+                    <a href="player_170119.html" class="female" title="">Balázsi Janka</a>
+                  </td>
+                  <td class="num">1897</td>
+                  <td class="graynum">87</td>
+                  <td class="num">15</td>
+                  <td class="num">36</td>
+                  <td class="num">36</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">112</td>
+                  <td>
+                    <a href="player_160032.html" title="">Godlewski Filip</a>
+                  </td>
+                  <td class="num">1881</td>
+                  <td class="graynum">163</td>
+                  <td class="num">5</td>
+                  <td class="num">5</td>
+                  <td class="num">9</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">113</td>
+                  <td>
+                    <a href="player_170123.html" title="">Polán Roland</a>
+                  </td>
+                  <td class="num">1879</td>
+                  <td class="graynum">95</td>
+                  <td class="num">15</td>
+                  <td class="num">22</td>
+                  <td class="num">22</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">114</td>
+                  <td>
+                    <a href="player_090178.html" title="">Narva Jaan Oskar</a>
+                  </td>
+                  <td class="num">1878</td>
+                  <td class="graynum">173</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">115</td>
+                  <td>
+                    <a href="player_150167.html" class="female" title="">Turečková Soňa</a>
+                  </td>
+                  <td class="num">1875</td>
+                  <td class="graynum">142</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td class="num">14</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">116</td>
+                  <td>
+                    <a href="player_150210.html" title="">Svoboda Jakub</a>
+                  </td>
+                  <td class="num">1872</td>
+                  <td class="graynum">178</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">8</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">117</td>
+                  <td>
+                    <a href="player_090198.html" class="female" title="">Mumm Kristina</a>
+                  </td>
+                  <td class="num">1838</td>
+                  <td class="graynum">180</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">118</td>
+                  <td>
+                    <a href="player_020894.html" title="">Stoyanov Egor</a>
+                  </td>
+                  <td class="num">1836</td>
+                  <td class="graynum">171</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">119</td>
+                  <td>
+                    <a href="player_150203.html" title="">Stránský Jan</a>
+                  </td>
+                  <td class="num">1836</td>
+                  <td class="graynum">185</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">6</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">120</td>
+                  <td>
+                    <a href="player_170098.html" title="">Kamarás Csaba</a>
+                  </td>
+                  <td class="num">1828</td>
+                  <td class="graynum">76</td>
+                  <td class="num">39</td>
+                  <td class="num">65</td>
+                  <td class="num">72</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">121</td>
+                  <td>
+                    <a href="player_150228.html" title="">Novotný Robin</a>
+                  </td>
+                  <td class="num">1818</td>
+                  <td class="graynum">175</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">14</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">122</td>
+                  <td>
+                    <a href="player_021006.html" title="">Roginski Roman</a>
+                  </td>
+                  <td class="num">1806</td>
+                  <td class="graynum">163</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">123</td>
+                  <td>
+                    <a href="player_170120.html" class="female" title="">Almási Evelin</a>
+                  </td>
+                  <td class="num">1805</td>
+                  <td class="graynum">92</td>
+                  <td class="num">14</td>
+                  <td class="num">35</td>
+                  <td class="num">35</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">124</td>
+                  <td>
+                    <a href="player_020900.html" class="female" title="">Vostriakova Yulia</a>
+                  </td>
+                  <td class="num">1802</td>
+                  <td class="graynum">178</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">125</td>
+                  <td>
+                    <a href="player_020974.html" title="">Galochkin Sergey</a>
+                  </td>
+                  <td class="num">1801</td>
+                  <td class="graynum">187</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">126</td>
+                  <td>
+                    <a href="player_150212.html" title="">Linhart Vojtěch</a>
+                  </td>
+                  <td class="num">1798</td>
+                  <td class="graynum">186</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">13</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">127</td>
+                  <td>
+                    <a href="player_090197.html" class="female" title="">Kõllo Liisa Maria</a>
+                  </td>
+                  <td class="num">1794</td>
+                  <td class="graynum">174</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">8</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">128</td>
+                  <td>
+                    <a href="player_090210.html" title="">Lääne Kristjan</a>
+                  </td>
+                  <td class="num">1782</td>
+                  <td class="graynum">160</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">25</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">129</td>
+                  <td>
+                    <a href="player_020879.html" class="female" title="">Averina Anna</a>
+                  </td>
+                  <td class="num">1782</td>
+                  <td class="graynum">190</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">130</td>
+                  <td>
+                    <a href="player_090213.html" title="">Laanemets Emil</a>
+                  </td>
+                  <td class="num">1769</td>
+                  <td class="graynum">179</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">131</td>
+                  <td>
+                    <a href="player_150213.html" title="">David Alan</a>
+                  </td>
+                  <td class="num">1748</td>
+                  <td class="graynum">190</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">132</td>
+                  <td>
+                    <a href="player_021025.html" title="">Gorbachev Daniil</a>
+                  </td>
+                  <td class="num">1735</td>
+                  <td class="graynum">169</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">27</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">133</td>
+                  <td>
+                    <a href="player_170100.html" class="female" title="">Kamarás Krisztina</a>
+                  </td>
+                  <td class="num">1731</td>
+                  <td class="graynum">77</td>
+                  <td class="num">39</td>
+                  <td class="num">66</td>
+                  <td class="num">73</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">134</td>
+                  <td>
+                    <a href="player_030059.html" title="">Karlsson Martin</a>
+                  </td>
+                  <td class="num">1730</td>
+                  <td class="graynum">146</td>
+                  <td class="num">0</td>
+                  <td class="num">8</td>
+                  <td class="num">8</td>
+                  <td>Sweden</td>
+                </tr>
+                <tr>
+                  <td class="num">135</td>
+                  <td>
+                    <a href="player_030006.html" title="">Maltell Tommy</a>
+                  </td>
+                  <td class="num">1730</td>
+                  <td class="graynum">135</td>
+                  <td class="num">6</td>
+                  <td class="num">14</td>
+                  <td class="num">14</td>
+                  <td>Sweden</td>
+                </tr>
+                <tr>
+                  <td class="num">136</td>
+                  <td>
+                    <a href="player_030043.html" title="">Nyberg Bengt</a>
+                  </td>
+                  <td class="num">1713</td>
+                  <td class="graynum">145</td>
+                  <td class="num">0</td>
+                  <td class="num">8</td>
+                  <td class="num">8</td>
+                  <td>Sweden</td>
+                </tr>
+                <tr>
+                  <td class="num">137</td>
+                  <td>
+                    <a href="player_020999.html" title="">Puzanov Georgi</a>
+                  </td>
+                  <td class="num">1701</td>
+                  <td class="graynum">167</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">138</td>
+                  <td>
+                    <a href="player_090154.html" title="">Pukk Oskar</a>
+                  </td>
+                  <td class="num">1693</td>
+                  <td class="graynum">169</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">17</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">139</td>
+                  <td>
+                    <a href="player_020998.html" class="female" title="">Yudina Polina</a>
+                  </td>
+                  <td class="num">1685</td>
+                  <td class="graynum">178</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">140</td>
+                  <td>
+                    <a href="player_150241.html" title="">Chládek Vojtěch</a>
+                  </td>
+                  <td class="num">1670</td>
+                  <td class="graynum">147</td>
+                  <td class="num">4</td>
+                  <td class="num">11</td>
+                  <td class="num">11</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">141</td>
+                  <td>
+                    <a href="player_021033.html" class="female" title="">Roshtshina Dilyara</a>
+                  </td>
+                  <td class="num">1669</td>
+                  <td class="graynum">182</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">142</td>
+                  <td>
+                    <a href="player_021056.html" title="Николай Бурцев">Burtsev Nikolai</a>
+                  </td>
+                  <td class="num">1630</td>
+                  <td class="graynum">175</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">15</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+                <tr>
+                  <td class="num">143</td>
+                  <td>
+                    <a href="player_150244.html" title="">Xia Patrik</a>
+                  </td>
+                  <td class="num">1601</td>
+                  <td class="graynum">140</td>
+                  <td class="num">7</td>
+                  <td class="num">13</td>
+                  <td class="num">13</td>
+                  <td>Czechia</td>
+                </tr>
+                <tr>
+                  <td class="num">144</td>
+                  <td>
+                    <a href="player_170104.html" title="">Gyenei Manó</a>
+                  </td>
+                  <td class="num">1572</td>
+                  <td class="graynum">86</td>
+                  <td class="num">30</td>
+                  <td class="num">57</td>
+                  <td class="num">64</td>
+                  <td>Hungary</td>
+                </tr>
+                <tr>
+                  <td class="num">145</td>
+                  <td>
+                    <a href="player_160172.html" title="">Kosztyła Andrzej</a>
+                  </td>
+                  <td class="num">1534</td>
+                  <td class="graynum">220</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">7</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">146</td>
+                  <td>
+                    <a href="player_090186.html" title="">Pukk Martin</a>
+                  </td>
+                  <td class="num">1531</td>
+                  <td class="graynum">164</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">25</td>
+                  <td>Estonia</td>
+                </tr>
+                <tr>
+                  <td class="num">147</td>
+                  <td>
+                    <a href="player_020853.html" class="female" title="">Dokuchaeva Ekaterina</a>
+                  </td>
+                  <td class="num">1386</td>
+                  <td class="graynum">197</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">16</td>
+                  <td>Russian Renju Association</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="clear" />
+      </div>
+      <div id="footer">
+        <p>Theme based on <a href="http://templated.co/genericblue">GenericBlue</a> designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+      </div>
+    </div>
+  </body>
+</html_gomoku>

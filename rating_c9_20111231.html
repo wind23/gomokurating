@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html_gomoku xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="keywords" content="Gomoku, Gomoku rating, whole-history rating, WHR" />
+    <meta name="description" content="Whole-history rating of Gomoku players" />
+    <meta name="author" content="Tianyi Hao" />
+    <meta name="copyright" content="2024 Gomoku Rating" />
+    <title>Whole History Rating (WHR) of Active Gomoku Players in Poland (2011-12-31) - Gomoku Rating</title>
+    <script>
+        if (window.location.protocol != "file:") {
+            var _hmt = _hmt || [];
+            (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?cb525b0b0c34b96320b743cdf90a90c3";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+    <script>
+        if (window.location.protocol != "file:") {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-173435487-1', 'auto');
+            ga('send', 'pageview');
+        }
+    </script>
+    <link href="css/default.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="outer">
+      <div id="header"></div>
+      <div id="menu">
+        <ul>
+          <li class="first">
+            <a href="index.html">Home page</a>
+          </li>
+          <li>
+            <a href="players.html">Players</a>
+          </li>
+          <li>
+            <a href="tournaments.html">Tournaments</a>
+          </li>
+          <li>
+            <a href="top.html">History of Top players</a>
+          </li>
+          <li>
+            <a href="top_women.html">History of Top Women</a>
+          </li>
+          <li>
+            <a href="https://rating.renju.net/">Renju</a>
+          </li>
+        </ul>
+      </div>
+      <div id="content">
+        <div id="primaryContentContainer">
+          <div id="primaryContent">
+            <h1>Whole History Rating (WHR) of Active Gomoku Players in Poland (2011-12-31)</h1>
+            <p><b>Last update:</b> 2024-03-27, <b>Players:</b> 983, <b>Games:</b> 15338</p>
+            <p><b>Note:</b> This rating is calculated based on the <a href="https://www.remi-coulom.fr/WHR/">WHR algorithm</a> by Rémi Coulom, a similar approach as the <a href="https://www.goratings.org/en/">Go Ratings</a>. The core algorithm is based on the <a href="https://github.com/wind23/whr_renju">open-source code</a> on Github.</p>
+            <p><b>History ratings: </b><select onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);"><option value="rating_c9.html">Current</option><option value="rating_c9_20231231.html">2023</option><option value="rating_c9_20221231.html">2022</option><option value="rating_c9_20211231.html">2021</option><option value="rating_c9_20201231.html">2020</option><option value="rating_c9_20191231.html">2019</option><option value="rating_c9_20181231.html">2018</option><option value="rating_c9_20171231.html">2017</option><option value="rating_c9_20161231.html">2016</option><option value="rating_c9_20151231.html">2015</option><option value="rating_c9_20141231.html">2014</option><option value="rating_c9_20131231.html">2013</option><option value="rating_c9_20121231.html">2012</option><option value="rating_c9_20111231.html" selected="selected">2011</option><option value="rating_c9_20101231.html">2010</option><option value="rating_c9_20091231.html">2009</option><option value="rating_c9_20081231.html">2008</option><option value="rating_c9_20071231.html">2007</option><option value="rating_c9_20061231.html">2006</option><option value="rating_c9_20051231.html">2005</option><option value="rating_c9_20041231.html">2004</option></select>&nbsp;&nbsp;&nbsp;&nbsp;<b>Country/Region: </b><select onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);"><option value="rating_20111231.html">All</option><option value="rating_c12_20111231.html">Armenia</option><option value="rating_c5_20111231.html">China</option><option value="rating_c8_20111231.html">Chinese Taipei</option><option value="rating_c16_20111231.html">Czechia</option><option value="rating_c1_20111231.html">Estonia</option><option value="rating_c3_20111231.html">Finland</option><option value="rating_c44_20111231.html">Greece</option><option value="rating_c10_20111231.html">Hungary</option><option value="rating_c30_20111231.html">Italy</option><option value="rating_c4_20111231.html">Japan</option><option value="rating_c17_20111231.html">Latvia</option><option value="rating_c22_20111231.html">Norway</option><option value="rating_c9_20111231.html" selected="selected">Poland</option><option value="rating_c6_20111231.html">Republic of Korea</option><option value="rating_c2_20111231.html">Russian Renju Association</option><option value="rating_c32_20111231.html">Slovakia</option><option value="rating_c7_20111231.html">Sweden</option><option value="rating_c41_20111231.html">Türkiye</option><option value="rating_c14_20111231.html">Ukraine</option><option value="rating_c28_20111231.html">Vietnam</option></select>&nbsp;&nbsp;&nbsp;&nbsp;<b>Active/All players: </b><select onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);"><option value="rating_c9_20111231.html" selected="selected">Active</option><option value="rating_gy1_c9_20111231.html">Gy1≥10</option><option value="rating_all_c9_20111231.html">All</option></select></p>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Rank</th>
+                  <th>Player</th>
+                  <th>Rating</th>
+                  <th>±</th>
+                  <th>Gy1</th>
+                  <th>Gy2</th>
+                  <th>Gy5</th>
+                  <th>Country/Region</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>
+                    <a href="player_160058.html" title="">Tamioła Artur</a>
+                  </td>
+                  <td class="num">2604</td>
+                  <td class="graynum">57</td>
+                  <td class="num">48</td>
+                  <td class="num">72</td>
+                  <td class="num">165</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>
+                    <a href="player_160101.html" title="">Fitzermann Adrian</a>
+                  </td>
+                  <td class="num">2557</td>
+                  <td class="graynum">63</td>
+                  <td class="num">29</td>
+                  <td class="num">41</td>
+                  <td class="num">119</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>
+                    <a href="player_160119.html" title="">Zajk Michał</a>
+                  </td>
+                  <td class="num">2552</td>
+                  <td class="graynum">67</td>
+                  <td class="num">11</td>
+                  <td class="num">23</td>
+                  <td class="num">90</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>
+                    <a href="player_160159.html" title="">Żukowski Michał</a>
+                  </td>
+                  <td class="num">2521</td>
+                  <td class="graynum">56</td>
+                  <td class="num">28</td>
+                  <td class="num">52</td>
+                  <td class="num">105</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>
+                    <a href="player_160177.html" title="">Wojtasiński Marcin</a>
+                  </td>
+                  <td class="num">2477</td>
+                  <td class="graynum">90</td>
+                  <td class="num">11</td>
+                  <td class="num">11</td>
+                  <td class="num">11</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>
+                    <a href="player_160041.html" title="">Lange Jarosław</a>
+                  </td>
+                  <td class="num">2452</td>
+                  <td class="graynum">83</td>
+                  <td class="num">11</td>
+                  <td class="num">23</td>
+                  <td class="num">23</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>
+                    <a href="player_160165.html" title="">Harmasz Adam</a>
+                  </td>
+                  <td class="num">2425</td>
+                  <td class="graynum">60</td>
+                  <td class="num">29</td>
+                  <td class="num">52</td>
+                  <td class="num">52</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>
+                    <a href="player_160037.html" title="">Nowakowski Maciej</a>
+                  </td>
+                  <td class="num">2423</td>
+                  <td class="graynum">73</td>
+                  <td class="num">18</td>
+                  <td class="num">18</td>
+                  <td class="num">90</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>
+                    <a href="player_160126.html" title="">Kozimor Michał</a>
+                  </td>
+                  <td class="num">2418</td>
+                  <td class="graynum">65</td>
+                  <td class="num">21</td>
+                  <td class="num">33</td>
+                  <td class="num">79</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">10</td>
+                  <td>
+                    <a href="player_160112.html" title="">Majczyk Marcin</a>
+                  </td>
+                  <td class="num">2404</td>
+                  <td class="graynum">67</td>
+                  <td class="num">30</td>
+                  <td class="num">61</td>
+                  <td class="num">164</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">11</td>
+                  <td>
+                    <a href="player_160079.html" title="">Nowak Paweł</a>
+                  </td>
+                  <td class="num">2365</td>
+                  <td class="graynum">127</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">51</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">12</td>
+                  <td>
+                    <a href="player_160124.html" title="">Gaweł Krzysztof</a>
+                  </td>
+                  <td class="num">2359</td>
+                  <td class="graynum">122</td>
+                  <td class="num">0</td>
+                  <td class="num">12</td>
+                  <td class="num">20</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">13</td>
+                  <td>
+                    <a href="player_160036.html" title="">Bohdankiewicz Marcin</a>
+                  </td>
+                  <td class="num">2356</td>
+                  <td class="graynum">101</td>
+                  <td class="num">7</td>
+                  <td class="num">19</td>
+                  <td class="num">57</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">14</td>
+                  <td>
+                    <a href="player_160166.html" title="">Bieniek Piotr</a>
+                  </td>
+                  <td class="num">2352</td>
+                  <td class="graynum">73</td>
+                  <td class="num">27</td>
+                  <td class="num">50</td>
+                  <td class="num">50</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">15</td>
+                  <td>
+                    <a href="player_160105.html" title="">Tarasiński Paweł</a>
+                  </td>
+                  <td class="num">2346</td>
+                  <td class="graynum">68</td>
+                  <td class="num">23</td>
+                  <td class="num">45</td>
+                  <td class="num">162</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">16</td>
+                  <td>
+                    <a href="player_160006.html" title="">Gorzecki Marek</a>
+                  </td>
+                  <td class="num">2332</td>
+                  <td class="graynum">64</td>
+                  <td class="num">22</td>
+                  <td class="num">45</td>
+                  <td class="num">168</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">17</td>
+                  <td>
+                    <a href="player_160149.html" title="">Miśkiewicz Mateusz</a>
+                  </td>
+                  <td class="num">2309</td>
+                  <td class="graynum">134</td>
+                  <td class="num">0</td>
+                  <td class="num">12</td>
+                  <td class="num">21</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">18</td>
+                  <td>
+                    <a href="player_160107.html" title="">Porczak Marcin</a>
+                  </td>
+                  <td class="num">2307</td>
+                  <td class="graynum">120</td>
+                  <td class="num">0</td>
+                  <td class="num">11</td>
+                  <td class="num">11</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">19</td>
+                  <td>
+                    <a href="player_160035.html" title="">Niedbalec Marcin</a>
+                  </td>
+                  <td class="num">2302</td>
+                  <td class="graynum">142</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">19</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">20</td>
+                  <td>
+                    <a href="player_160060.html" title="">Pawela Kamil</a>
+                  </td>
+                  <td class="num">2290</td>
+                  <td class="graynum">112</td>
+                  <td class="num">0</td>
+                  <td class="num">11</td>
+                  <td class="num">29</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">21</td>
+                  <td>
+                    <a href="player_160173.html" title="">Brachaczek Bogdan</a>
+                  </td>
+                  <td class="num">2275</td>
+                  <td class="graynum">105</td>
+                  <td class="num">0</td>
+                  <td class="num">12</td>
+                  <td class="num">12</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">22</td>
+                  <td>
+                    <a href="player_160092.html" title="">Andrzejewski Wawrzyniec</a>
+                  </td>
+                  <td class="num">2270</td>
+                  <td class="graynum">96</td>
+                  <td class="num">10</td>
+                  <td class="num">10</td>
+                  <td class="num">27</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">23</td>
+                  <td>
+                    <a href="player_160039.html" title="">Koziarek Tomasz</a>
+                  </td>
+                  <td class="num">2227</td>
+                  <td class="graynum">154</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">31</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">24</td>
+                  <td>
+                    <a href="player_160010.html" title="">Małowiejski Piotr</a>
+                  </td>
+                  <td class="num">2215</td>
+                  <td class="graynum">56</td>
+                  <td class="num">53</td>
+                  <td class="num">82</td>
+                  <td class="num">210</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">25</td>
+                  <td>
+                    <a href="player_160094.html" title="">Kościelniak Paweł</a>
+                  </td>
+                  <td class="num">2197</td>
+                  <td class="graynum">174</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">26</td>
+                  <td>
+                    <a href="player_160123.html" title="">Szefler Rafał</a>
+                  </td>
+                  <td class="num">2197</td>
+                  <td class="graynum">107</td>
+                  <td class="num">9</td>
+                  <td class="num">9</td>
+                  <td class="num">31</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">27</td>
+                  <td>
+                    <a href="player_160080.html" title="">Gruca Marcin</a>
+                  </td>
+                  <td class="num">2182</td>
+                  <td class="graynum">147</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">19</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">28</td>
+                  <td>
+                    <a href="player_160093.html" title="">Pudło Adrian</a>
+                  </td>
+                  <td class="num">2166</td>
+                  <td class="graynum">178</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">13</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">29</td>
+                  <td>
+                    <a href="player_160015.html" title="">Lachocki Sebastian</a>
+                  </td>
+                  <td class="num">2141</td>
+                  <td class="graynum">164</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">12</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">30</td>
+                  <td>
+                    <a href="player_160129.html" title="">Zajk Radosław</a>
+                  </td>
+                  <td class="num">2126</td>
+                  <td class="graynum">76</td>
+                  <td class="num">11</td>
+                  <td class="num">22</td>
+                  <td class="num">49</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">31</td>
+                  <td>
+                    <a href="player_160004.html" title="">Soliński Dariusz</a>
+                  </td>
+                  <td class="num">2118</td>
+                  <td class="graynum">153</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">48</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">32</td>
+                  <td>
+                    <a href="player_160150.html" title="">Białkowski Łukasz</a>
+                  </td>
+                  <td class="num">2111</td>
+                  <td class="graynum">116</td>
+                  <td class="num">0</td>
+                  <td class="num">12</td>
+                  <td class="num">70</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">33</td>
+                  <td>
+                    <a href="player_160061.html" title="">Nikołajczuk Leszek</a>
+                  </td>
+                  <td class="num">2109</td>
+                  <td class="graynum">153</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">18</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">34</td>
+                  <td>
+                    <a href="player_160161.html" title="">Podwyszyński Karol</a>
+                  </td>
+                  <td class="num">2102</td>
+                  <td class="graynum">124</td>
+                  <td class="num">0</td>
+                  <td class="num">11</td>
+                  <td class="num">20</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">35</td>
+                  <td>
+                    <a href="player_160043.html" title="">Behrendt Krzysztof</a>
+                  </td>
+                  <td class="num">2096</td>
+                  <td class="graynum">181</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">12</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">36</td>
+                  <td>
+                    <a href="player_160144.html" title="">Mielczarek Bartosz</a>
+                  </td>
+                  <td class="num">2095</td>
+                  <td class="graynum">132</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">51</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">37</td>
+                  <td>
+                    <a href="player_160013.html" title="">Papiński Maciej</a>
+                  </td>
+                  <td class="num">2093</td>
+                  <td class="graynum">148</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">22</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">38</td>
+                  <td>
+                    <a href="player_160120.html" title="">Wileczek Michał</a>
+                  </td>
+                  <td class="num">2079</td>
+                  <td class="graynum">135</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">58</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">39</td>
+                  <td>
+                    <a href="player_160062.html" title="">Skrzypczak Mikołaj</a>
+                  </td>
+                  <td class="num">2070</td>
+                  <td class="graynum">108</td>
+                  <td class="num">6</td>
+                  <td class="num">14</td>
+                  <td class="num">14</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">40</td>
+                  <td>
+                    <a href="player_160016.html" title="">Kokoszka Arkadiusz</a>
+                  </td>
+                  <td class="num">2051</td>
+                  <td class="graynum">150</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">39</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">41</td>
+                  <td>
+                    <a href="player_160125.html" title="">Pietrusiak Michał</a>
+                  </td>
+                  <td class="num">2037</td>
+                  <td class="graynum">85</td>
+                  <td class="num">21</td>
+                  <td class="num">38</td>
+                  <td class="num">47</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">42</td>
+                  <td>
+                    <a href="player_160063.html" title="">Pawela Dominik</a>
+                  </td>
+                  <td class="num">2022</td>
+                  <td class="graynum">150</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">18</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">43</td>
+                  <td>
+                    <a href="player_160114.html" title="">Nowak Cyprian</a>
+                  </td>
+                  <td class="num">2017</td>
+                  <td class="graynum">151</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">38</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">44</td>
+                  <td>
+                    <a href="player_160163.html" title="">Leszko Michał</a>
+                  </td>
+                  <td class="num">2016</td>
+                  <td class="graynum">134</td>
+                  <td class="num">0</td>
+                  <td class="num">10</td>
+                  <td class="num">19</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">45</td>
+                  <td>
+                    <a href="player_160176.html" title="">Majksner Łukasz</a>
+                  </td>
+                  <td class="num">2010</td>
+                  <td class="graynum">86</td>
+                  <td class="num">11</td>
+                  <td class="num">11</td>
+                  <td class="num">11</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">46</td>
+                  <td>
+                    <a href="player_160113.html" title="">Gancarczyk Michał</a>
+                  </td>
+                  <td class="num">1987</td>
+                  <td class="graynum">175</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">8</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">47</td>
+                  <td>
+                    <a href="player_160152.html" class="female" title="">Hankiewicz Elżbieta</a>
+                  </td>
+                  <td class="num">1975</td>
+                  <td class="graynum">152</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">18</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">48</td>
+                  <td>
+                    <a href="player_160003.html" title="">Łękowski Jerzy</a>
+                  </td>
+                  <td class="num">1972</td>
+                  <td class="graynum">144</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">27</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">49</td>
+                  <td>
+                    <a href="player_160059.html" title="">Korus Krzysztof</a>
+                  </td>
+                  <td class="num">1969</td>
+                  <td class="graynum">166</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">50</td>
+                  <td>
+                    <a href="player_160032.html" title="">Godlewski Filip</a>
+                  </td>
+                  <td class="num">1945</td>
+                  <td class="graynum">102</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">88</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">51</td>
+                  <td>
+                    <a href="player_160167.html" title="">Śmietana Sebastian</a>
+                  </td>
+                  <td class="num">1928</td>
+                  <td class="graynum">110</td>
+                  <td class="num">10</td>
+                  <td class="num">21</td>
+                  <td class="num">21</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">52</td>
+                  <td>
+                    <a href="player_160134.html" title="">Rędzioch Mateusz</a>
+                  </td>
+                  <td class="num">1923</td>
+                  <td class="graynum">98</td>
+                  <td class="num">9</td>
+                  <td class="num">9</td>
+                  <td class="num">26</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">53</td>
+                  <td>
+                    <a href="player_160121.html" title="">Puszkarewicz Paweł</a>
+                  </td>
+                  <td class="num">1907</td>
+                  <td class="graynum">114</td>
+                  <td class="num">0</td>
+                  <td class="num">22</td>
+                  <td class="num">37</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">54</td>
+                  <td>
+                    <a href="player_160174.html" title="">Kowalczyk Jan</a>
+                  </td>
+                  <td class="num">1868</td>
+                  <td class="graynum">157</td>
+                  <td class="num">10</td>
+                  <td class="num">10</td>
+                  <td class="num">10</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">55</td>
+                  <td>
+                    <a href="player_160168.html" title="">Kądziołka Patryk</a>
+                  </td>
+                  <td class="num">1861</td>
+                  <td class="graynum">155</td>
+                  <td class="num">0</td>
+                  <td class="num">11</td>
+                  <td class="num">11</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">56</td>
+                  <td>
+                    <a href="player_160108.html" title="">Regiec Ariel</a>
+                  </td>
+                  <td class="num">1856</td>
+                  <td class="graynum">172</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">8</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">57</td>
+                  <td>
+                    <a href="player_160130.html" title="">Rędzioch Bartłomiej</a>
+                  </td>
+                  <td class="num">1856</td>
+                  <td class="graynum">151</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">31</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">58</td>
+                  <td>
+                    <a href="player_160095.html" title="">Wiatrak Paweł</a>
+                  </td>
+                  <td class="num">1846</td>
+                  <td class="graynum">162</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">11</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">59</td>
+                  <td>
+                    <a href="player_160082.html" class="female" title="">Behrendt Karolina</a>
+                  </td>
+                  <td class="num">1837</td>
+                  <td class="graynum">179</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">12</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">60</td>
+                  <td>
+                    <a href="player_160132.html" title="">Jakubczak Maciej</a>
+                  </td>
+                  <td class="num">1822</td>
+                  <td class="graynum">169</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">17</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">61</td>
+                  <td>
+                    <a href="player_160169.html" title="">Jakubczyński Jarosław</a>
+                  </td>
+                  <td class="num">1811</td>
+                  <td class="graynum">148</td>
+                  <td class="num">0</td>
+                  <td class="num">11</td>
+                  <td class="num">11</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">62</td>
+                  <td>
+                    <a href="player_160146.html" title="">Matyja Tomasz</a>
+                  </td>
+                  <td class="num">1777</td>
+                  <td class="graynum">128</td>
+                  <td class="num">0</td>
+                  <td class="num">10</td>
+                  <td class="num">41</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">63</td>
+                  <td>
+                    <a href="player_160096.html" title="">Józefowicz Mirosław</a>
+                  </td>
+                  <td class="num">1770</td>
+                  <td class="graynum">175</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">9</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">64</td>
+                  <td>
+                    <a href="player_160175.html" title="">Gorczykowski Paweł</a>
+                  </td>
+                  <td class="num">1757</td>
+                  <td class="graynum">170</td>
+                  <td class="num">10</td>
+                  <td class="num">10</td>
+                  <td class="num">10</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">65</td>
+                  <td>
+                    <a href="player_160172.html" title="">Kosztyła Andrzej</a>
+                  </td>
+                  <td class="num">1626</td>
+                  <td class="graynum">129</td>
+                  <td class="num">10</td>
+                  <td class="num">10</td>
+                  <td class="num">10</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">66</td>
+                  <td>
+                    <a href="player_160147.html" title="">Boratyński Krzysztof</a>
+                  </td>
+                  <td class="num">1625</td>
+                  <td class="graynum">122</td>
+                  <td class="num">0</td>
+                  <td class="num">21</td>
+                  <td class="num">59</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">67</td>
+                  <td>
+                    <a href="player_160148.html" title="">Marszałek Szymon</a>
+                  </td>
+                  <td class="num">1606</td>
+                  <td class="graynum">195</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">12</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">68</td>
+                  <td>
+                    <a href="player_160160.html" class="female" title="">Powchowicz Katarzyna</a>
+                  </td>
+                  <td class="num">1588</td>
+                  <td class="graynum">224</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">10</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">69</td>
+                  <td>
+                    <a href="player_160170.html" title="">Borowicz Adam</a>
+                  </td>
+                  <td class="num">1573</td>
+                  <td class="graynum">175</td>
+                  <td class="num">0</td>
+                  <td class="num">11</td>
+                  <td class="num">11</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">70</td>
+                  <td>
+                    <a href="player_160171.html" title="">Gwóźdź Szymon</a>
+                  </td>
+                  <td class="num">1516</td>
+                  <td class="graynum">187</td>
+                  <td class="num">0</td>
+                  <td class="num">11</td>
+                  <td class="num">11</td>
+                  <td>Poland</td>
+                </tr>
+                <tr>
+                  <td class="num">71</td>
+                  <td>
+                    <a href="player_160084.html" class="female" title="">Częstochowska Anna</a>
+                  </td>
+                  <td class="num">1415</td>
+                  <td class="graynum">172</td>
+                  <td class="num">0</td>
+                  <td class="num">0</td>
+                  <td class="num">12</td>
+                  <td>Poland</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="clear" />
+      </div>
+      <div id="footer">
+        <p>Theme based on <a href="http://templated.co/genericblue">GenericBlue</a> designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+      </div>
+    </div>
+  </body>
+</html_gomoku>

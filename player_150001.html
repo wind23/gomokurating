@@ -1,0 +1,3392 @@
+<!DOCTYPE html>
+<html_gomoku xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="keywords" content="Gomoku, Gomoku rating, whole-history rating, WHR" />
+    <meta name="description" content="Whole-history rating of Gomoku players" />
+    <meta name="author" content="Tianyi Hao" />
+    <meta name="copyright" content="2024 Gomoku Rating" />
+    <title>Rybka Aleš, Czechia - Gomoku Rating</title>
+    <script>
+        if (window.location.protocol != "file:") {
+            var _hmt = _hmt || [];
+            (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?cb525b0b0c34b96320b743cdf90a90c3";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+    <script>
+        if (window.location.protocol != "file:") {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-173435487-1', 'auto');
+            ga('send', 'pageview');
+        }
+    </script>
+    <link href="css/default.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="outer">
+      <div id="header"></div>
+      <div id="menu">
+        <ul>
+          <li class="first">
+            <a href="index.html">Home page</a>
+          </li>
+          <li>
+            <a href="players.html">Players</a>
+          </li>
+          <li>
+            <a href="tournaments.html">Tournaments</a>
+          </li>
+          <li>
+            <a href="top.html">History of Top players</a>
+          </li>
+          <li>
+            <a href="top_women.html">History of Top Women</a>
+          </li>
+          <li>
+            <a href="https://rating.renju.net/">Renju</a>
+          </li>
+        </ul>
+      </div>
+      <div id="content">
+        <div id="primaryContentContainer">
+          <div id="primaryContent">
+            <link href="css/nv.d3.css" rel="stylesheet" type="text/css">
+            <h1> Rybka Aleš</h1>
+            <p><b>Place:</b> Hradec Králové, Czechia</p>
+            <p><b>Rating:</b> 2378.04, <b>Std:</b> 237.43, <b>Rank:</b> -</p>
+            <p><b>First game:</b> 2004-03-22, <b>Last game:</b> 2013-04-14</p>
+            <p><b>Top rating:</b> 2391.50 (2009-07-19)</p>
+            <p><b>Games:</b> 248, <b>Wins:</b> 140, <b>Draws:</b> 43, <b>Losses:</b> 65</p>
+            <p><b>Gy1:</b> 0, <b>Gy2:</b> 0, <b>Gy5:</b> 0</p>
+            <div id="chart1"></div>
+            <table>
+              <tbody>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2744.html">10th Fishparty</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2013-04-14</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2378.04</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114116/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150166.html" class="female" title="">Brdková Pavlína</a>
+                  </td>
+                  <td class="num">2147.10</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114125/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150027.html" title="">Kostlivý Radim</a>
+                  </td>
+                  <td class="num">2253.68</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/114128/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2547.57</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114142/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150024.html" title="">Němec Tomáš</a>
+                  </td>
+                  <td class="num">2344.13</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114153/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160010.html" title="">Małowiejski Piotr</a>
+                  </td>
+                  <td class="num">2198.13</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/114162/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150113.html" title="">Nipoti Vladimir</a>
+                  </td>
+                  <td class="num">2570.03</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/114166/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150146.html" title="">Hanzl Marek</a>
+                  </td>
+                  <td class="num">2110.36</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2742.html">Špekap I.</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2012-12-02</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2374.04</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/114013/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150146.html" title="">Hanzl Marek</a>
+                  </td>
+                  <td class="num">2096.58</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114021/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150118.html" title="">Purkrábek Jan</a>
+                  </td>
+                  <td class="num">2178.22</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/114032/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2537.80</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/114047/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150005.html" title="">Rejšek Jan</a>
+                  </td>
+                  <td class="num">2160.03</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/114050/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150141.html" title="">Kopecký Jan</a>
+                  </td>
+                  <td class="num">2362.26</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/114061/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150024.html" title="">Němec Tomáš</a>
+                  </td>
+                  <td class="num">2356.20</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/114064/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150060.html" class="female" title="">Kolouchová Monika</a>
+                  </td>
+                  <td class="num">2348.80</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2739.html">Deskohraní 2012</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2012-10-14</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2373.37</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113875/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150082.html" title="">Vrzal Tomáš</a>
+                  </td>
+                  <td class="num">1763.91</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113883/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150166.html" class="female" title="">Brdková Pavlína</a>
+                  </td>
+                  <td class="num">2124.61</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/113888/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2530.25</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/113902/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150119.html" title="">Tesařík Štěpán</a>
+                  </td>
+                  <td class="num">2417.37</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113911/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150084.html" title="">Vrzal Martin</a>
+                  </td>
+                  <td class="num">1883.51</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113922/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150113.html" title="">Nipoti Vladimir</a>
+                  </td>
+                  <td class="num">2562.26</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/113925/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150144.html" title="">Háša Miroslav</a>
+                  </td>
+                  <td class="num">2370.83</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2734.html">1st Team Gomoku European Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2012-07-26</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2370.51</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/113581/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150004.html" title="">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2620.38</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113592/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160037.html" title="">Nowakowski Maciej</a>
+                  </td>
+                  <td class="num">2404.22</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113608/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_170080.html" title="">Sapszon Gergely</a>
+                  </td>
+                  <td class="num">1577.23</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/113615/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_170053.html" title="">Hegedűs Attila</a>
+                  </td>
+                  <td class="num">2392.72</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/113636/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_020461.html" title="">Poltaratsky Nikolay</a>
+                  </td>
+                  <td class="num">2340.42</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/113645/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150004.html" title="">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2620.38</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/113654/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_160037.html" title="">Nowakowski Maciej</a>
+                  </td>
+                  <td class="num">2404.22</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113671/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_170080.html" title="">Sapszon Gergely</a>
+                  </td>
+                  <td class="num">1577.23</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113677/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_170053.html" title="">Hegedűs Attila</a>
+                  </td>
+                  <td class="num">2392.72</td>
+                </tr>
+                <tr>
+                  <td class="num">10</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/113693/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_020461.html" title="">Poltaratsky Nikolay</a>
+                  </td>
+                  <td class="num">2340.42</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2733.html">Czech Open 2012</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2012-07-15</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2370.35</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113504/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150167.html" class="female" title="">Turečková Soňa</a>
+                  </td>
+                  <td class="num">1863.69</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113514/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2512.33</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/113525/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150004.html" title="">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2619.32</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/113527/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150025.html" title="">Strádal Jan</a>
+                  </td>
+                  <td class="num">2421.34</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113542/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150060.html" class="female" title="">Kolouchová Monika</a>
+                  </td>
+                  <td class="num">2342.38</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113547/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150118.html" title="">Purkrábek Jan</a>
+                  </td>
+                  <td class="num">2157.05</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/113557/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150024.html" title="">Němec Tomáš</a>
+                  </td>
+                  <td class="num">2367.21</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/113571/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150145.html" title="">Muzika Martin</a>
+                  </td>
+                  <td class="num">2452.34</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2727.html">Czech Open 2011</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2011-07-17</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2353.72</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113128/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150146.html" title="">Hanzl Marek</a>
+                  </td>
+                  <td class="num">2010.18</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113140/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150161.html" title="">Tomeš Lukáš</a>
+                  </td>
+                  <td class="num">2077.59</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113149/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150141.html" title="">Kopecký Jan</a>
+                  </td>
+                  <td class="num">2378.35</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/113162/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150113.html" title="">Nipoti Vladimir</a>
+                  </td>
+                  <td class="num">2547.09</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/113171/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150024.html" title="">Němec Tomáš</a>
+                  </td>
+                  <td class="num">2376.75</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/113179/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150114.html" title="">Bielák Jan</a>
+                  </td>
+                  <td class="num">2312.19</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/113192/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150004.html" title="">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2580.10</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/113199/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_030032.html" title="">Asplund Bengt</a>
+                  </td>
+                  <td class="num">2152.33</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2726.html">8th Fishparty</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2011-04-10</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2348.68</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/113049/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150002.html" title="">Neuman Petr</a>
+                  </td>
+                  <td class="num">2098.11</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113058/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150145.html" title="">Muzika Martin</a>
+                  </td>
+                  <td class="num">2427.39</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/113074/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2470.71</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/113084/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150144.html" title="">Háša Miroslav</a>
+                  </td>
+                  <td class="num">2305.36</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/113092/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160010.html" title="">Małowiejski Piotr</a>
+                  </td>
+                  <td class="num">2228.25</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/113104/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150100.html" class="female" title="">Forštová Kateřina</a>
+                  </td>
+                  <td class="num">1712.19</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/113121/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150160.html" title="">Hodan Jiří</a>
+                  </td>
+                  <td class="num">2061.55</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_631.html">Deskohraní 2009 - Gomoku</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2009-09-20</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2385.67</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/112052/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150024.html" title="">Němec Tomáš</a>
+                  </td>
+                  <td class="num">2275.01</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/112060/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150141.html" title="">Kopecký Jan</a>
+                  </td>
+                  <td class="num">2377.97</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/112068/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150004.html" title="">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2526.89</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/112073/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150119.html" title="">Tesařík Štěpán</a>
+                  </td>
+                  <td class="num">2253.01</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/112081/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2513.48</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/112088/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150100.html" class="female" title="">Forštová Kateřina</a>
+                  </td>
+                  <td class="num">1716.81</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/112095/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150025.html" title="">Strádal Jan</a>
+                  </td>
+                  <td class="num">2401.92</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/112103/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150033.html" title="">Fontán Jiří</a>
+                  </td>
+                  <td class="num">1929.54</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2713.html">Czech Open 2009</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2009-07-19</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2391.50</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111978/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150027.html" title="">Kostlivý Radim</a>
+                  </td>
+                  <td class="num">2159.10</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111988/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150010.html" title="">Rippel Jan</a>
+                  </td>
+                  <td class="num">2115.01</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111996/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150005.html" title="">Rejšek Jan</a>
+                  </td>
+                  <td class="num">2199.13</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/112008/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150004.html" title="">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2521.85</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/112009/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_990037.html" title="">Eged Igor</a>
+                  </td>
+                  <td class="num">2326.54</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/112028/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150141.html" title="">Kopecký Jan</a>
+                  </td>
+                  <td class="num">2374.37</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/112038/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150025.html" title="">Strádal Jan</a>
+                  </td>
+                  <td class="num">2399.42</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/112039/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150113.html" title="">Nipoti Vladimir</a>
+                  </td>
+                  <td class="num">2490.56</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2709.html">6th Fishparty</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2009-04-18</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2387.45</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111705/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150002.html" title="">Neuman Petr</a>
+                  </td>
+                  <td class="num">2071.21</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111715/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_990037.html" title="">Eged Igor</a>
+                  </td>
+                  <td class="num">2315.65</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/111729/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150004.html" title="">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2510.86</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/111742/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2515.09</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/111751/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150141.html" title="">Kopecký Jan</a>
+                  </td>
+                  <td class="num">2373.40</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111760/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150100.html" class="female" title="">Forštová Kateřina</a>
+                  </td>
+                  <td class="num">1717.54</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111770/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150118.html" title="">Purkrábek Jan</a>
+                  </td>
+                  <td class="num">2109.49</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/111782/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150024.html" title="">Němec Tomáš</a>
+                  </td>
+                  <td class="num">2239.09</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/111794/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150025.html" title="">Strádal Jan</a>
+                  </td>
+                  <td class="num">2396.41</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2708.html">21st Polish Gomoku Open</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2009-03-08</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2386.06</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111578/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_170023.html" title="">Tóth Gergő</a>
+                  </td>
+                  <td class="num">2443.99</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/111588/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_170004.html" title="">Demján Attila</a>
+                  </td>
+                  <td class="num">2723.80</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111601/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160126.html" title="">Kozimor Michał</a>
+                  </td>
+                  <td class="num">2407.21</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/111622/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_160080.html" title="">Gruca Marcin</a>
+                  </td>
+                  <td class="num">2182.20</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/111634/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_160105.html" title="">Tarasiński Paweł</a>
+                  </td>
+                  <td class="num">2256.44</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/111645/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160112.html" title="">Majczyk Marcin</a>
+                  </td>
+                  <td class="num">2373.35</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/111662/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160058.html" title="">Tamioła Artur</a>
+                  </td>
+                  <td class="num">2553.36</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/111676/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_170025.html" title="">Szentpéteri Attila</a>
+                  </td>
+                  <td class="num">2251.20</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111691/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160063.html" title="">Pawela Dominik</a>
+                  </td>
+                  <td class="num">2022.26</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2706.html">Piskap 2008</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2008-11-29</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2381.42</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111372/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150119.html" title="">Tesařík Štěpán</a>
+                  </td>
+                  <td class="num">2224.42</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/111386/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150073.html" title="">Brenčík Štefan</a>
+                  </td>
+                  <td class="num">2093.02</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/111395/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150025.html" title="">Strádal Jan</a>
+                  </td>
+                  <td class="num">2389.47</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111397/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_990037.html" title="">Eged Igor</a>
+                  </td>
+                  <td class="num">2301.01</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111410/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150114.html" title="">Bielák Jan</a>
+                  </td>
+                  <td class="num">2290.85</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111413/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150004.html" title="">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2489.24</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111426/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150072.html" title="">Čapák Milan</a>
+                  </td>
+                  <td class="num">2286.60</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111429/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150077.html" title="">Krček Břetislav</a>
+                  </td>
+                  <td class="num">2222.18</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2704.html">Czech Republic vs Poland international match</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2008-10-19</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2374.86</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">12</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111251/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160144.html" title="">Mielczarek Bartosz</a>
+                  </td>
+                  <td class="num">2117.01</td>
+                </tr>
+                <tr>
+                  <td class="num">14</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/111267/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_160010.html" title="">Małowiejski Piotr</a>
+                  </td>
+                  <td class="num">2147.72</td>
+                </tr>
+                <tr>
+                  <td class="num">15</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/111275/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160006.html" title="">Gorzecki Marek</a>
+                  </td>
+                  <td class="num">2247.91</td>
+                </tr>
+                <tr>
+                  <td class="num">16</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111283/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160101.html" title="">Fitzermann Adrian</a>
+                  </td>
+                  <td class="num">2505.52</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2702.html">Czech Open 2008</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2008-07-11</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2359.60</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110948/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_030081.html" title="">Eriksson Marcus</a>
+                  </td>
+                  <td class="num">2205.81</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110955/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150118.html" title="">Purkrábek Jan</a>
+                  </td>
+                  <td class="num">2111.07</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/110968/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150004.html" title="">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2483.88</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110979/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150103.html" class="female" title="">Vondráčková Eva</a>
+                  </td>
+                  <td class="num">1837.26</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110995/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150074.html" title="">Janura Petr</a>
+                  </td>
+                  <td class="num">2251.42</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/111001/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_170022.html" class="female" title="">Fehér Eszter</a>
+                  </td>
+                  <td class="num">1827.57</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/111014/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150024.html" title="">Němec Tomáš</a>
+                  </td>
+                  <td class="num">2198.22</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/111022/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150077.html" title="">Krček Břetislav</a>
+                  </td>
+                  <td class="num">2229.93</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2699.html">Piskap 2007</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2007-12-09</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2355.49</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110697/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150133.html" class="female" title="">Pospechova Petra</a>
+                  </td>
+                  <td class="num">1851.23</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110709/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150102.html" title="">Koláček Michal</a>
+                  </td>
+                  <td class="num">1986.20</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/110723/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150025.html" title="">Strádal Jan</a>
+                  </td>
+                  <td class="num">2324.32</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110739/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150114.html" title="">Bielák Jan</a>
+                  </td>
+                  <td class="num">2256.40</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110749/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150077.html" title="">Krček Břetislav</a>
+                  </td>
+                  <td class="num">2217.81</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110759/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150097.html" title="">Šálek Jiří</a>
+                  </td>
+                  <td class="num">2564.99</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110775/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150121.html" class="female" title="">Kubanová Lenka</a>
+                  </td>
+                  <td class="num">1938.40</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110786/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2467.10</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2698.html">3rd Polish Gomoku Championship</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2007-11-10</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2354.30</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110506/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160016.html" title="">Kokoszka Arkadiusz</a>
+                  </td>
+                  <td class="num">2064.91</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110520/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160015.html" title="">Lachocki Sebastian</a>
+                  </td>
+                  <td class="num">2140.51</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110534/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160084.html" class="female" title="">Częstochowska Anna</a>
+                  </td>
+                  <td class="num">1465.64</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110549/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160148.html" title="">Marszałek Szymon</a>
+                  </td>
+                  <td class="num">1605.86</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110564/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160112.html" title="">Majczyk Marcin</a>
+                  </td>
+                  <td class="num">2301.70</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110579/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160010.html" title="">Małowiejski Piotr</a>
+                  </td>
+                  <td class="num">2148.79</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110592/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160058.html" title="">Tamioła Artur</a>
+                  </td>
+                  <td class="num">2498.26</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110605/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160037.html" title="">Nowakowski Maciej</a>
+                  </td>
+                  <td class="num">2500.64</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110619/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150060.html" class="female" title="">Kolouchová Monika</a>
+                  </td>
+                  <td class="num">2293.94</td>
+                </tr>
+                <tr>
+                  <td class="num">10</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110636/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160101.html" title="">Fitzermann Adrian</a>
+                  </td>
+                  <td class="num">2485.42</td>
+                </tr>
+                <tr>
+                  <td class="num">11</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110654/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150025.html" title="">Strádal Jan</a>
+                  </td>
+                  <td class="num">2316.61</td>
+                </tr>
+                <tr>
+                  <td class="num">12</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110668/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160130.html" title="">Rędzioch Bartłomiej</a>
+                  </td>
+                  <td class="num">1901.98</td>
+                </tr>
+                <tr>
+                  <td class="num">13</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110681/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160126.html" title="">Kozimor Michał</a>
+                  </td>
+                  <td class="num">2349.05</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2697.html">Deskohraní 2007</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2007-09-30</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2353.96</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110345/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150113.html" title="">Nipoti Vladimir</a>
+                  </td>
+                  <td class="num">2454.74</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/110368/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150074.html" title="">Janura Petr</a>
+                  </td>
+                  <td class="num">2216.74</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110378/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2459.21</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110395/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_990037.html" title="">Eged Igor</a>
+                  </td>
+                  <td class="num">2280.43</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110420/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150024.html" title="">Němec Tomáš</a>
+                  </td>
+                  <td class="num">2192.46</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110439/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150025.html" title="">Strádal Jan</a>
+                  </td>
+                  <td class="num">2310.42</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110457/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150033.html" title="">Fontán Jiří</a>
+                  </td>
+                  <td class="num">2011.19</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/110475/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150102.html" title="">Koláček Michal</a>
+                  </td>
+                  <td class="num">1987.87</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110485/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150077.html" title="">Krček Břetislav</a>
+                  </td>
+                  <td class="num">2205.98</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2695.html">Czech Open 2007</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2007-07-14</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2357.67</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110131/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160010.html" title="">Małowiejski Piotr</a>
+                  </td>
+                  <td class="num">2158.67</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/110140/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_160079.html" title="">Nowak Paweł</a>
+                  </td>
+                  <td class="num">2370.45</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110174/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150115.html" title="">Šikula Pavel</a>
+                  </td>
+                  <td class="num">1983.54</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110196/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150104.html" title="">Chalupa Petr</a>
+                  </td>
+                  <td class="num">1929.95</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/110216/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150074.html" title="">Janura Petr</a>
+                  </td>
+                  <td class="num">2206.77</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110225/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150004.html" title="">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2507.80</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110252/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150024.html" title="">Němec Tomáš</a>
+                  </td>
+                  <td class="num">2203.07</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110273/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2444.82</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/110299/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150077.html" title="">Krček Břetislav</a>
+                  </td>
+                  <td class="num">2189.24</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2692.html">4th Fishparty</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2007-04-20</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2370.36</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109851/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150012.html" title="">Flek Jan</a>
+                  </td>
+                  <td class="num">1759.91</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109866/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150063.html" title="">Spilka Jaroslav</a>
+                  </td>
+                  <td class="num">1966.26</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109881/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150109.html" title="">Hájek Karel</a>
+                  </td>
+                  <td class="num">1846.71</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109896/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150025.html" title="">Strádal Jan</a>
+                  </td>
+                  <td class="num">2290.99</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109911/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2428.72</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109926/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150002.html" title="">Neuman Petr</a>
+                  </td>
+                  <td class="num">2148.78</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109941/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150088.html" title="">Eninger Václav</a>
+                  </td>
+                  <td class="num">2007.24</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109958/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150060.html" class="female" title="">Kolouchová Monika</a>
+                  </td>
+                  <td class="num">2263.41</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2690.html">13th Polish Gomoku Open</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2007-02-10</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2376.50</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109667/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160126.html" title="">Kozimor Michał</a>
+                  </td>
+                  <td class="num">2279.54</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109679/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160113.html" title="">Gancarczyk Michał</a>
+                  </td>
+                  <td class="num">1986.56</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109687/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160058.html" title="">Tamioła Artur</a>
+                  </td>
+                  <td class="num">2493.93</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109700/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160037.html" title="">Nowakowski Maciej</a>
+                  </td>
+                  <td class="num">2511.19</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109713/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150025.html" title="">Strádal Jan</a>
+                  </td>
+                  <td class="num">2278.56</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/109722/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150004.html" title="">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2510.03</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109736/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2415.40</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109750/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150060.html" class="female" title="">Kolouchová Monika</a>
+                  </td>
+                  <td class="num">2250.44</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109761/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160120.html" title="">Wileczek Michał</a>
+                  </td>
+                  <td class="num">2185.19</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2689.html">Piskap 2006</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2006-12-10</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2379.77</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109586/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150093.html" class="female" title="">Hutňanová Anna</a>
+                  </td>
+                  <td class="num">1710.73</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/109599/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150009.html" title="">Melichar Stanislav</a>
+                  </td>
+                  <td class="num">2097.95</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109611/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150025.html" title="">Strádal Jan</a>
+                  </td>
+                  <td class="num">2273.46</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109620/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150099.html" title="">Škrdla Michal</a>
+                  </td>
+                  <td class="num">1894.67</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109630/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150002.html" title="">Neuman Petr</a>
+                  </td>
+                  <td class="num">2157.17</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109641/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150005.html" title="">Rejšek Jan</a>
+                  </td>
+                  <td class="num">2264.06</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109650/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_990037.html" title="">Eged Igor</a>
+                  </td>
+                  <td class="num">2255.56</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109653/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150097.html" title="">Šálek Jiří</a>
+                  </td>
+                  <td class="num">2547.95</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2688.html">Deskohraní 2006</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2006-10-07</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2384.56</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109513/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150093.html" class="female" title="">Hutňanová Anna</a>
+                  </td>
+                  <td class="num">1716.89</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/109523/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2393.14</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109531/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150091.html" class="female" title="">Eningerová Valerie</a>
+                  </td>
+                  <td class="num">1816.18</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109543/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150077.html" title="">Krček Břetislav</a>
+                  </td>
+                  <td class="num">2133.13</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109544/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_990037.html" title="">Eged Igor</a>
+                  </td>
+                  <td class="num">2247.97</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109563/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150025.html" title="">Strádal Jan</a>
+                  </td>
+                  <td class="num">2267.58</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109573/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150024.html" title="">Němec Tomáš</a>
+                  </td>
+                  <td class="num">2178.48</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109574/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150005.html" title="">Rejšek Jan</a>
+                  </td>
+                  <td class="num">2261.46</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2686.html">Czech Open 2006</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2006-07-15</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2381.64</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109369/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_030007.html" title="">Jonsson Peter</a>
+                  </td>
+                  <td class="num">2174.00</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109389/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150080.html" title="">Kouřim Tomáš</a>
+                  </td>
+                  <td class="num">1986.77</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109397/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150024.html" title="">Němec Tomáš</a>
+                  </td>
+                  <td class="num">2168.90</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109411/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150005.html" title="">Rejšek Jan</a>
+                  </td>
+                  <td class="num">2258.78</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109412/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2378.20</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109433/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150026.html" title="">Zavadil Jan</a>
+                  </td>
+                  <td class="num">2238.59</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109444/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_990037.html" title="">Eged Igor</a>
+                  </td>
+                  <td class="num">2240.47</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109445/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150002.html" title="">Neuman Petr</a>
+                  </td>
+                  <td class="num">2167.64</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2685.html">3rd Fishparty</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2006-04-09</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2369.51</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109324/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150076.html" title="">Kadlec Karel</a>
+                  </td>
+                  <td class="num">1760.35</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109327/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_990037.html" title="">Eged Igor</a>
+                  </td>
+                  <td class="num">2235.11</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109338/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150024.html" title="">Němec Tomáš</a>
+                  </td>
+                  <td class="num">2156.92</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109344/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150050.html" title="">Taus David</a>
+                  </td>
+                  <td class="num">2271.30</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/109349/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150010.html" title="">Rippel Jan</a>
+                  </td>
+                  <td class="num">2134.64</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109354/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150025.html" title="">Strádal Jan</a>
+                  </td>
+                  <td class="num">2241.03</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109363/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150008.html" title="">Radimský Michal</a>
+                  </td>
+                  <td class="num">2314.95</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2682.html">2nd Polish Gomoku Championship - QT</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2006-03-11</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2367.21</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109002/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160095.html" title="">Wiatrak Paweł</a>
+                  </td>
+                  <td class="num">1813.52</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109018/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160118.html" title="">Blok Marcin</a>
+                  </td>
+                  <td class="num">1658.77</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109032/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160001.html" title="">Zakonnik Andrzej</a>
+                  </td>
+                  <td class="num">2369.06</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109046/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160037.html" title="">Nowakowski Maciej</a>
+                  </td>
+                  <td class="num">2520.08</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/109073/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_160081.html" title="">Depta Paweł</a>
+                  </td>
+                  <td class="num">2243.68</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109084/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160058.html" title="">Tamioła Artur</a>
+                  </td>
+                  <td class="num">2467.10</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109108/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160101.html" title="">Fitzermann Adrian</a>
+                  </td>
+                  <td class="num">2409.92</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109125/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160005.html" title="">Klepacki Kacper</a>
+                  </td>
+                  <td class="num">2012.17</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109144/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160039.html" title="">Koziarek Tomasz</a>
+                  </td>
+                  <td class="num">2252.88</td>
+                </tr>
+                <tr>
+                  <td class="num">10</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/109159/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160079.html" title="">Nowak Paweł</a>
+                  </td>
+                  <td class="num">2282.51</td>
+                </tr>
+                <tr>
+                  <td class="num">11</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/109179/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160003.html" title="">Łękowski Jerzy</a>
+                  </td>
+                  <td class="num">2051.98</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2678.html">Deskohraní 2005</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2005-10-02</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2363.15</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108614/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2307.83</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/108627/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150061.html" title="">Landa Pavel</a>
+                  </td>
+                  <td class="num">2264.17</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108640/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_990037.html" title="">Eged Igor</a>
+                  </td>
+                  <td class="num">2231.28</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108653/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150025.html" title="">Strádal Jan</a>
+                  </td>
+                  <td class="num">2212.85</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108666/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150027.html" title="">Kostlivý Radim</a>
+                  </td>
+                  <td class="num">2112.07</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/108678/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150004.html" title="">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2500.05</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108692/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150030.html" title="">Plecháč Luďek</a>
+                  </td>
+                  <td class="num">2209.60</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/108705/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150008.html" title="">Radimský Michal</a>
+                  </td>
+                  <td class="num">2324.75</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108718/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150011.html" title="">Kubů Jan</a>
+                  </td>
+                  <td class="num">2046.24</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2677.html">Czech Open 2005</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2005-07-16</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2357.40</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108575/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150059.html" title="">Kříž Martin</a>
+                  </td>
+                  <td class="num">1610.71</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108580/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150057.html" class="female" title="">Blažková Ivona</a>
+                  </td>
+                  <td class="num">1760.51</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108587/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150024.html" title="">Němec Tomáš</a>
+                  </td>
+                  <td class="num">2132.39</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/108593/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150004.html" title="">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2488.52</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/108596/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_990037.html" title="">Eged Igor</a>
+                  </td>
+                  <td class="num">2229.56</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/108604/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150051.html" title="">Laube Pavel</a>
+                  </td>
+                  <td class="num">2288.88</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108610/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150028.html" title="">Burešová Martina</a>
+                  </td>
+                  <td class="num">1956.19</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2676.html">2nd Fishparty</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2005-04-17</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2355.72</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108501/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160039.html" title="">Koziarek Tomasz</a>
+                  </td>
+                  <td class="num">2225.72</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/108513/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150005.html" title="">Rejšek Jan</a>
+                  </td>
+                  <td class="num">2238.86</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108522/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150002.html" title="">Neuman Petr</a>
+                  </td>
+                  <td class="num">2153.95</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108531/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160018.html" class="female" title="">Piontek Marta</a>
+                  </td>
+                  <td class="num">1915.91</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108535/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150004.html" title="">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2467.27</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/108551/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150008.html" title="">Radimský Michal</a>
+                  </td>
+                  <td class="num">2327.03</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/108559/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150052.html" title="">Režný Pavel</a>
+                  </td>
+                  <td class="num">2095.70</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/108564/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_160004.html" title="">Soliński Dariusz</a>
+                  </td>
+                  <td class="num">2224.16</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2675.html">Deskohraní 2004</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2004-10-08</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2358.03</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/108346/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_160035.html" title="">Niedbalec Marcin</a>
+                  </td>
+                  <td class="num">2139.75</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/108367/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150024.html" title="">Němec Tomáš</a>
+                  </td>
+                  <td class="num">2120.50</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108382/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150036.html" title="">Knotek Kamil</a>
+                  </td>
+                  <td class="num">1944.41</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108399/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150025.html" title="">Strádal Jan</a>
+                  </td>
+                  <td class="num">2157.04</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108419/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160003.html" title="">Łękowski Jerzy</a>
+                  </td>
+                  <td class="num">2057.07</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>White</td>
+                  <td class="loss">
+                    <a href="https://www.renju.net/game/108445/">Loss</a>
+                  </td>
+                  <td>
+                    <a href="player_150037.html" class="female" title="">Krucká Barbora</a>
+                  </td>
+                  <td class="num">1941.03</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108454/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150032.html" title="">Scholz Karel</a>
+                  </td>
+                  <td class="num">2010.55</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108471/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150030.html" title="">Plecháč Luďek</a>
+                  </td>
+                  <td class="num">2194.47</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>White</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/108483/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_160036.html" title="">Bohdankiewicz Marcin</a>
+                  </td>
+                  <td class="num">2472.02</td>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    <a href="tournament_2672.html">1st Fishparty</a>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="second">Date</th>
+                  <td colspan="2" class="num">2004-03-22</td>
+                  <th class="second">Rating</th>
+                  <td class="num">2374.71</td>
+                </tr>
+                <tr>
+                  <th>Round</th>
+                  <th>Color</th>
+                  <th>Result</th>
+                  <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                  <td class="num">1</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108118/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150017.html" class="female" title="">Horová Pavla</a>
+                  </td>
+                  <td class="num">1737.27</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td>Black</td>
+                  <td class="draw">
+                    <a href="https://www.renju.net/game/108138/">Draw</a>
+                  </td>
+                  <td>
+                    <a href="player_150008.html" title="">Radimský Michal</a>
+                  </td>
+                  <td class="num">2296.37</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108148/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150012.html" title="">Flek Jan</a>
+                  </td>
+                  <td class="num">1890.00</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108160/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160002.html" title="">Olborski Miłosz</a>
+                  </td>
+                  <td class="num">2118.53</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108170/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150002.html" title="">Neuman Petr</a>
+                  </td>
+                  <td class="num">2160.35</td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108182/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_160001.html" title="">Zakonnik Andrzej</a>
+                  </td>
+                  <td class="num">2410.80</td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108192/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150007.html" class="female" title="">Ševčíková Lucie</a>
+                  </td>
+                  <td class="num">2262.69</td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108203/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150004.html" title="">Nykl Ondřej</a>
+                  </td>
+                  <td class="num">2374.03</td>
+                </tr>
+                <tr>
+                  <td class="num">9</td>
+                  <td>Black</td>
+                  <td class="win">
+                    <a href="https://www.renju.net/game/108215/">Win</a>
+                  </td>
+                  <td>
+                    <a href="player_150009.html" title="">Melichar Stanislav</a>
+                  </td>
+                  <td class="num">2156.92</td>
+                </tr>
+              </tbody>
+            </table>
+            <script src="js/d3.min.js" charset="utf-8"></script>
+            <script src="js/nv.d3.js"></script>
+            <script>
+    var chart;
+    var data;
+
+    nv.addGraph(function() {
+        data = Data();
+        var y_min = 1.e+9, y_max = -1.e+9;
+        for(var i = 0; i < data[0].values.length; i ++) {
+            var cur_y = data[0].values[i].y;
+            y_min = Math.min(y_min, cur_y);
+            y_max = Math.max(y_max, cur_y);
+        }
+        var y_d = 200. - (y_max - y_min);
+        if(y_d > 0.) {
+            y_max += y_d / 2.
+            y_min -= y_d / 2.
+        }
+
+        chart = nv.models.lineChart()
+            .options({
+                duration: 300,
+                useInteractiveGuideline: true
+            })
+        ;
+
+        chart.xAxis
+            .axisLabel("Date")
+            .tickFormat(function(d) {
+          return d3.time.format('%Y-%m-%d')(new Date(d))
+		});
+
+		chart.xScale(d3.time.scale());
+
+        chart.yAxis
+            .axisLabel('Rating')
+            .tickFormat(d3.format(',.2f'))
+        ;
+
+        chart.forceY([y_min, y_max]);
+		
+		chart.showYAxis(true).showXAxis(true).showLegend(false).margin({top:20, left: 100, right:100});
+
+        d3.select('#chart1').append('svg')
+            .datum(data)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+    });
+
+    function Data() {
+        var rating = [{x: 1079913600000, y: 2374.706255}, {x: 1097193600000, y: 2358.032235}, {x: 1113696000000, y: 2355.724722}, {x: 1121472000000, y: 2357.396127}, {x: 1128211200000, y: 2363.150234}, {x: 1142035200000, y: 2367.209484}, {x: 1144540800000, y: 2369.511754}, {x: 1152921600000, y: 2381.641607}, {x: 1160179200000, y: 2384.559289}, {x: 1165708800000, y: 2379.773307}, {x: 1171065600000, y: 2376.495508}, {x: 1177027200000, y: 2370.364714}, {x: 1184371200000, y: 2357.670162}, {x: 1191110400000, y: 2353.955241}, {x: 1194652800000, y: 2354.297737}, {x: 1197158400000, y: 2355.487076}, {x: 1215734400000, y: 2359.600792}, {x: 1224374400000, y: 2374.863603}, {x: 1227916800000, y: 2381.418774}, {x: 1236470400000, y: 2386.063571}, {x: 1240012800000, y: 2387.451837}, {x: 1247961600000, y: 2391.498109}, {x: 1253404800000, y: 2385.671308}, {x: 1302393600000, y: 2348.676868}, {x: 1310860800000, y: 2353.720808}, {x: 1342310400000, y: 2370.351860}, {x: 1343260800000, y: 2370.508997}, {x: 1350172800000, y: 2373.368294}, {x: 1354406400000, y: 2374.039335}, {x: 1365897600000, y: 2378.037191}, ];
+            ;
+
+        return [
+            {
+                values: rating,
+                color: "#ff7f0e",
+            }
+        ];
+    }
+
+</script>
+          </div>
+        </div>
+        <div class="clear" />
+      </div>
+      <div id="footer">
+        <p>Theme based on <a href="http://templated.co/genericblue">GenericBlue</a> designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+      </div>
+    </div>
+  </body>
+</html_gomoku>
